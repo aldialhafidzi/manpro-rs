@@ -9,5 +9,7 @@ Aplikasi ini dibuat oleh beberapa kelompok menggunakan framework CodeIgniter.
 1. Clone projek git ini kedalam folder htdocs "C://xampp/htdocs"
 2. Masuk kedalam folder projek "C://xampp/htdocs/manpro-rs"
 3. Composer Install
-4. Jalankan XAMPP
-5. Thanks
+4. Buka aplikasi XAMPP Control Panel
+		- Start Apache Server
+		- Start Mysql Server
+5. Lalu buka dibrowser anda : http://localhost/manpro-rs
