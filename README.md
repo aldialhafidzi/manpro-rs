@@ -28,6 +28,6 @@ Aplikasi ini dibuat oleh beberapa kelompok menggunakan framework CodeIgniter.
 	- Ketikan perintah ==> ```php index.php tools seed UsersSeeder```
 	
 7. Lalu buka dibrowser anda :
-	- Home Page 		: ```http://localhost/manpro-rs/```
-	- User Login Page	: ```http://localhost/manpro-rs/user/login```
-	- Admin Login Page	: ```http://localhost/manpro-rs/admin/login```
+	- Home Page 		: http://localhost/manpro-rs/
+	- User Login Page	: http://localhost/manpro-rs/user/login
+	- Admin Login Page	: http://localhost/manpro-rs/admin/login
