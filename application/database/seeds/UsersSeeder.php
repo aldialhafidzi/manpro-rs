@@ -19,7 +19,7 @@ class UsersSeeder extends Seeder
             $data = array(
                 'role_id' => $this->faker->numberBetween($min = 1, $max = 4),
                 'username' => $this->faker->unique()->userName,
-                'password' => password_hash('123123A', PASSWORD_BCRYPT),
+                'password' => password_hash('123123A', PASSWORD_DEFAULT),
                 'name' => $this->faker->name($gender = null | 'male' | 'female'),
                 'dob' => $this->faker->date($format = 'Y-m-d', $max = 'now'),
                 'date_created' => $this->faker->date($format = 'Y-m-d', $max = 'now'),
