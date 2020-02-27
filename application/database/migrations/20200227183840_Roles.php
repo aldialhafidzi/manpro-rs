@@ -1,6 +1,6 @@
 <?php
 
-class Migration_Categories extends CI_Migration
+class Migration_Roles extends CI_Migration
 {
 
     public function up()
@@ -11,17 +11,9 @@ class Migration_Categories extends CI_Migration
                 'constraint' => 11,
                 'auto_increment' => TRUE
             ),
-            'description' => array(
-                'type' => 'VARCHAR',
-                'constraint' => 100
-            ),
-            'created_from_ip' => array(
-                'type' => 'VARCHAR',
-                'constraint' => 100
-            ),
-            'updated_from_ip' => array(
-                'type' => 'VARCHAR',
-                'constraint' => 100
+            'name' => array(
+                'type' => 'varchar',
+                'constraint' => 20,
             ),
             'date_created' => array(
                 'type' => 'DATETIME'
@@ -31,11 +23,11 @@ class Migration_Categories extends CI_Migration
             )
         ));
         $this->dbforge->add_key('id', TRUE);
-        $this->dbforge->create_table('categories');
+        $this->dbforge->create_table('roles');
     }
 
     public function down()
     {
-        $this->dbforge->drop_table('categories');
+        $this->dbforge->drop_table('roles');
     }
 }
