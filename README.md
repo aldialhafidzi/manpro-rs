@@ -31,3 +31,11 @@ Aplikasi ini dibuat oleh beberapa kelompok menggunakan framework CodeIgniter.
 	- Home Page 		: http://localhost/manpro-rs/
 	- User Login Page	: http://localhost/manpro-rs/user/login
 	- Admin Login Page	: http://localhost/manpro-rs/admin/login
+	
+8. Test login :
+
+	| Field  	| value 				|
+	| ------------- | --------------------------------------|
+	| **Username** 	| ```Lihat ditable user pilih salah satu``` 	|
+	| **Password**  | ```123123A```  				|
+
