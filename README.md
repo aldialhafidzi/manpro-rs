@@ -3,7 +3,7 @@ Aplikasi ini dibuat oleh beberapa kelompok menggunakan framework CodeIgniter.
 
 # Kebutuhan sebelum menjalankan Aplikasi
 1. Install GIT terlebih dahulu sesuaikan (64bit/32bit): https://git-scm.com/download/win
-2. Install XAMPP terbaru minimal : php versi 7.2.0
+2. Install XAMPP terbaru minimal : php versi 7.2.0 : https://www.apachefriends.org/download.html
 3. Download & Install Composer via https://getcomposer.org/download/
 
 
