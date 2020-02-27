@@ -9,7 +9,12 @@ Aplikasi ini dibuat oleh beberapa kelompok menggunakan framework CodeIgniter.
 1. Clone projek git ini kedalam folder htdocs "C://xampp/htdocs"
 2. Masuk kedalam folder projek "C://xampp/htdocs/manpro-rs"
 3. Buka terminal & pastikan anda sedang aktif didalam direktori "C://xampp/htdocs/manpro-rs"
-	- Ketikan perintah tanpa tanda kutip => "composer install"
+	- Ketikan perintah tanpa tanda kutip => ```composer install```
+4. Buat database di mysql dengan nama *manpro-rs*
+5. Buka kembali terminal & pastikan anda sedang aktif didalam direktori "C://xampp/htdocs/manpro-rs"
+	- Ketikan perintah tanpa tanda kutip => ```php index.php tools migrate```
+	- Ketikan perintah tanpa tanda kutip => ```php index.php tools seed RolesSeeder```
+	- Ketikan perintah tanpa tanda kutip => ```php index.php tools seed UsersSeeder```
 4. Buka aplikasi XAMPP Control Panel
 	- Start Apache Server
 	- Start Mysql Server
