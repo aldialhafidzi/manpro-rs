@@ -1,6 +1,6 @@
 <?php
 
-class Migration_Products extends CI_Migration
+class Migration_Examples extends CI_Migration
 {
 
     public function up()
@@ -63,11 +63,11 @@ class Migration_Products extends CI_Migration
             )
         ));
         $this->dbforge->add_key('id', TRUE);
-        $this->dbforge->create_table('products');
+        $this->dbforge->create_table('examples');
     }
 
     public function down()
     {
-        $this->dbforge->drop_table('products');
+        $this->dbforge->drop_table('examples');
     }
 }

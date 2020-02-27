@@ -29,7 +29,6 @@ class Migration_Users extends CI_Migration
             ),
             'dob' => array(
                 'type' => 'DATETIME',
-                'constraint' => 20,
             ),
             'date_created' => array(
                 'type' => 'DATETIME'

@@ -30,13 +30,22 @@ class Tools extends CI_Controller
         $result .= "php index.php tools migrate [\"version_number\"]    Run all migrations. The version number is optional.\n";
         $result .= "php index.php tools seeder \"file_name\"            Creates a new seed file.\n";
         $result .= "php index.php tools seed \"file_name\"              Run the specified seed file.\n";
-
+        $result .= "php index.php tools drop \"all\"                    Drop all tables .\n";
         echo $result . PHP_EOL;
     }
 
     public function migration($name)
     {
         $this->make_migration_file($name);
+    }
+
+    public function drop()
+    {
+        if ($this->dbforge->drop_database('manpro-rs')) {
+            if ($this->dbforge->create_database('manpro-rs')) {
+                echo 'Tables dropped successfully';
+            }
+        }
     }
 
     public function migrate($version = null)
