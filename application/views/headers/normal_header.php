@@ -183,6 +183,31 @@ to get the desired effect
                                 </li>
                             </ul>
                         </li>
+
+                        <li class="nav-header">REKAM MEDIS</li>
+                        <li class="nav-item has-treeview <?= ($page == 'rekam_medis_jalan' || $page == 'rekam_medis_inap') ? 'menu-open' : '' ?>">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-notes-medical"></i>
+                                <p>
+                                    Rekam Medis
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="<?= base_url() ?>pendaftaran/rawat-jalan" class="nav-link <?= ($page == 'rawat_jalan') ? 'active' : '' ?>">
+                                        <i class="fas fa-book-medical nav-icon"></i>
+                                        <p>Rekam Medis Jalan</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="<?= base_url() ?>pendaftaran/rawat-inap" class="nav-link <?= ($page == 'rawat_inap') ? 'active' : '' ?>">
+                                        <i class="fas fa-book-medical nav-icon"></i>
+                                        <p>Rekam Medis Inap</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
                 </nav>
             </div>
