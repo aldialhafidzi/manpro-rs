@@ -20,6 +20,9 @@ Aplikasi ini dibuat oleh beberapa kelompok menggunakan framework CodeIgniter.
 5. Buat database di mysql dengan nama : ***manpro-rs***
 6. Buka kembali terminal & pastikan anda sedang aktif didalam direktori "C://xampp/htdocs/manpro-rs"
 
+	***Drop All Tables*** Jika diperlukan !!!!! ***WARNING*** !!!!!!
+	- Ketikan perintah ==> ```php index.php tools drop``` !!!!! ***WARNING*** !!!!!!
+	
 	***Migrate Database***
 	- Ketikan perintah ==> ```php index.php tools migrate```
 	
