@@ -132,8 +132,8 @@ to get the desired effect
 
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <a href="index3.html" class="brand-link">
-                <!-- <img src="<?= base_url() ?>public/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8"> -->
-                <h4 class="brand-text font-weight-light text-center">MANPRO-RS</h4>
+                <img src="<?= base_url() ?>public/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+                <h4 class="brand-text font-weight-light text-center">MANPRO-APP</h4>
             </a>
 
             <div class="sidebar">
@@ -149,11 +149,9 @@ to get the desired effect
                     </div>
                 </div>
                 <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-
-
+                    <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent" data-widget="treeview" role="menu" data-accordion="false">
                         <li class="nav-item">
-                            <a href="<?= base_url() ?>/admin" class="nav-link <?= ($page == 'dashboard') ? 'active' : '' ?>">
+                            <a href="<?= base_url() ?>admin" class="nav-link <?= ($page == 'dashboard') ? 'active' : '' ?>">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
                                     Dashboard
@@ -172,14 +170,14 @@ to get the desired effect
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="<?= base_url() ?>/pendaftaran/rawat-jalan" class="nav-link <?= ($page == 'rawat_jalan') ? 'active' : '' ?>">
-                                        <i class="far fa-circle nav-icon"></i>
+                                    <a href="<?= base_url() ?>pendaftaran/rawat-jalan" class="nav-link <?= ($page == 'rawat_jalan') ? 'active' : '' ?>">
+                                        <i class="fas fa-ambulance nav-icon"></i>
                                         <p>Rawat Jalan</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="<?= base_url() ?>/pendaftaran/rawat-inap" class="nav-link <?= ($page == 'rawat_inap') ? 'active' : '' ?>">
-                                        <i class="far fa-circle nav-icon"></i>
+                                    <a href="<?= base_url() ?>pendaftaran/rawat-inap" class="nav-link <?= ($page == 'rawat_inap') ? 'active' : '' ?>">
+                                        <i class="fas fa-clinic-medical nav-icon"></i>
                                         <p>Rawat Inap</p>
                                     </a>
                                 </li>

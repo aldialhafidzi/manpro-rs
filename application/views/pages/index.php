@@ -193,7 +193,6 @@
               </div>
             </div>
           </div>
-          <!-- /.card -->
 
           <div class="card">
             <div class="card-header border-0">
