@@ -45,7 +45,8 @@ class Login extends CI_Controller
             if ($user['role_id'] !== '4') {
                 if (password_verify($this->input->post('password'), $user['password'])) {
                     $data_session = array(
-                        'nama' => $user['username'],
+                        'username' => $user['username'],
+                        'name'      => $user['name'],
                         'role_id' => $user['role_id'],
                         'logged_in' => TRUE
                     );
@@ -69,7 +70,8 @@ class Login extends CI_Controller
             if ($user['role_id'] === '4') {
                 if (password_verify($this->input->post('password'), $user['password'])) {
                     $data_session = array(
-                        'nama' => $user['username'],
+                        'username' => $user['username'],
+                        'name'      => $user['name'],
                         'role_id' => $user['role_id'],
                         'logged_in' => TRUE
                     );

@@ -17,6 +17,7 @@ class Admin extends CI_Controller
     public function index()
     {
         $data['title'] = 'MANPRO-RS | Dashboard';
+        $data['page'] = 'dashboard';
         $this->load->view('headers/normal_header', $data);
         $this->load->view('pages/index');
         $this->load->view('footers/normal_footer');
