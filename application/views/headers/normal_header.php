@@ -182,6 +182,29 @@ to get the desired effect
                                     </a>
                                 </li>
                             </ul>
+                        <li class="nav-item has-treeview menu-open">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon far fa-plus-square"></i>
+                                <p>
+                                    Poliklinik
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="<?= base_url() ?>jadwal_poliklinik/jadwal_poli" class="nav-link <?= ($page == 'jadwal_poli') ? 'active' : '' ?>">
+                                        <i class="fas fa-ambulance nav-icon"></i>
+                                        <p>Jadwal Poliklinik</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="<?= base_url() ?>jadwal_poliklinik/dokter_poli" class="nav-link <?= ($page == 'dokter_poli') ? 'active' : '' ?>">
+                                        <i class="fas fa-clinic-medical nav-icon"></i>
+                                        <p>Dokter Poliklinik</p>
+                                    </a>
+                                </li>
+                        
+                            </ul>
                         </li>
 
                         <li class="nav-header">REKAM MEDIS</li>
@@ -207,6 +230,30 @@ to get the desired effect
                                     </a>
                                 </li>
                             </ul>
+                        </li>
+
+                        <li class="nav-header">POLIKLINIK</li>
+                        <li class="nav-item has-treeview <?= ($page == 'lihat_jadwal_poli' || $page == 'lihat_dokter_poli') ? 'menu-open' : '' ?>">
+                            <a href="#" class="nav-link">
+                                <i class="fas fa-clinic-medical nav-icon"></i>
+                                <p>
+                                    Poliklinik
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="<?= base_url() ?>jadwal_poliklinik/jadwal_poli" class="nav-link <?= ($page == 'jadwal_poli') ? 'active' : '' ?>">
+                                        <i class="fas fa-calendar-alt nav-icon"></i>
+                                        <p>Jadwal Poliklinik</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="<?= base_url() ?>jadwal_poliklinik/dokter_poli" class="nav-link <?= ($page == 'dokter') ? 'active' : '' ?>">
+                                        <i class="fas fa-book-medical nav-icon"></i>
+                                        <p>Dokter Poliklinik</p>
+                                    </a>
+                                </li>
                         </li>
                     </ul>
                 </nav>
