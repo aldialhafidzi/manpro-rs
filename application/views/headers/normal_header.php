@@ -159,8 +159,7 @@ to get the desired effect
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-header">SHORTCUT</li>
-                        <li class="nav-item has-treeview menu-open">
+                        <li class="nav-item has-treeview">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon far fa-plus-square"></i>
                                 <p>
@@ -182,6 +181,15 @@ to get the desired effect
                                     </a>
                                 </li>
                             </ul>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="<?= base_url() ?>ruangrawat/ruang_rawat" class="nav-link <?= ($page == 'ruang-rawat') ? 'active' : '' ?>">
+                                    <i class="fas fa-clinic-medical nav-icon"></i>
+                                <p>
+                                    Ruang Rawat
+                                </p>
+                            </a>
                         </li>
 
                         <li class="nav-header">REKAM MEDIS</li>

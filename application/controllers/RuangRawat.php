@@ -23,21 +23,12 @@ class RuangRawat extends CI_Controller
         $this->load->view('footers/normal_footer');
     }
 
-    public function rawat_jalan()
+    public function ruang_rawat()
     {
-        $data['title'] = 'MANPRO-RS | Pendaftaran';
-        $data['page'] = 'rawat_jalan';
+        $data['title'] = 'MANPRO-RS | Ruang Rawat';
+        $data['page'] = 'ruang_rawat';
         $this->load->view('headers/normal_header', $data);
-        $this->load->view('pages/rawat_jalan');
-        $this->load->view('footers/normal_footer');
-    }
-
-    public function rawat_inap()
-    {
-        $data['title'] = 'MANPRO-RS | Pendaftaran';
-        $data['page'] = 'rawat_inap';
-        $this->load->view('headers/normal_header', $data);
-        $this->load->view('pages/rawat_inap');
+        $this->load->view('pages/ruang_rawat');
         $this->load->view('footers/normal_footer');
     }
 }
