@@ -22,8 +22,8 @@ class UsersSeeder extends Seeder
                 'password' => password_hash('123123A', PASSWORD_DEFAULT),
                 'name' => $this->faker->name($gender = null | 'male' | 'female'),
                 'dob' => $this->faker->date($format = 'Y-m-d', $max = 'now'),
-                'date_created' => $this->faker->date($format = 'Y-m-d', $max = 'now'),
-                'date_updated' => $this->faker->date($format = 'Y-m-d', $max = 'now')
+                'created_at' => $this->faker->date($format = 'Y-m-d', $max = 'now'),
+                'updated_at' => $this->faker->date($format = 'Y-m-d', $max = 'now')
             );
 
             $this->db->insert($this->table, $data);

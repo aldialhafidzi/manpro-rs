@@ -1,6 +1,6 @@
 <?php
 
-class Migration_Roles extends CI_Migration
+class Migration_Obat extends CI_Migration
 {
 
     public function up()
@@ -12,12 +12,20 @@ class Migration_Roles extends CI_Migration
                 'auto_increment' => TRUE
             ),
             'kode' => array(
-                'type' => 'varchar',
+                'type' => 'VARCHAR',
                 'constraint' => 10,
                 'unique' => TRUE,
             ),
-            'name' => array(
-                'type' => 'varchar',
+            'nama' => array(
+                'type' => 'VARCHAR',
+                'constraint' => 20,
+            ),
+            'jenis' => array(
+                'type' => 'VARCHAR',
+                'constraint' => 20,
+            ),
+            'harga' => array(
+                'type' => 'INT',
                 'constraint' => 20,
             ),
             'created_at' => array(
@@ -30,11 +38,11 @@ class Migration_Roles extends CI_Migration
             )
         ));
         $this->dbforge->add_key('id', TRUE);
-        $this->dbforge->create_table('roles');
+        $this->dbforge->create_table('obat');
     }
 
     public function down()
     {
-        $this->dbforge->drop_table('roles');
+        $this->dbforge->drop_table('obat');
     }
 }
