@@ -45,13 +45,13 @@
               <table class="table table-bordered text-center">
                 <tbody><tr>
                   <td>
-                    <a href="ruang_rawat_info" type="button" class="btn btn-block btn-default" onclick="a">Kasur 1</a>
+                    <a type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#exampleModal">Kasur 1 <br> Status : Available</a>
                   </td>
                   <td>
-                    <button type="button" class="btn btn-block btn-default">Kasur 2</button>
+                    <a type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#exampleModal">Kasur 2</a>
                   </td>
                   <td>
-                    <button type="button" class="btn btn-block btn-default">Kasur 3</button>
+                    <a type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#exampleModal">Kasur 3</a>
                   </td>
                   <td>
                     <button type="button" class="btn btn-block btn-default">Kasur 4</button>
@@ -74,6 +74,26 @@
                 </th>
                 </tr>
               </tbody></table>
+            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    ...
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
