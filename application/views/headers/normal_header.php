@@ -183,13 +183,28 @@ to get the desired effect
                             </ul>
                         </li>
 
-                        <li class="nav-item">
+                        <li class="nav-item has-treeview">
                             <a href="<?= base_url() ?>ruangrawat/ruang_rawat" class="nav-link <?= ($page == 'ruang-rawat') ? 'active' : '' ?>">
                                     <i class="fas fa-clinic-medical nav-icon"></i>
                                 <p>
                                     Ruang Rawat
+                                    <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="<?= base_url() ?>ruangrawat/info_ruang_rawat" class="nav-link <?= ($page == 'info_ruang_rawat') ? 'active' : '' ?>">
+                                        <i class="fas fa-ambulance nav-icon"></i>
+                                        <p>Rawat Jalan</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="<?= base_url() ?>pendaftaran/detail_ruang_rawat" class="nav-link <?= ($page == 'detail_ruang_rawat') ? 'active' : '' ?>">
+                                        <i class="fas fa-clinic-medical nav-icon"></i>
+                                        <p>Rawat Inap</p>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
 
                         <li class="nav-header">REKAM MEDIS</li>

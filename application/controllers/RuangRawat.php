@@ -31,6 +31,15 @@ class RuangRawat extends CI_Controller
         $this->load->view('pages/ruang_rawat');
         $this->load->view('footers/normal_footer');
     }
+    
+    public function info_ruang_rawat()
+    {
+        $data['title'] = 'MANPRO-RS | Informasi Ruang Rawat';
+        $data['page'] = 'info_ruang_rawat';
+        $this->load->view('headers/normal_header', $data);
+        $this->load->view('pages/info_ruang_rawat');
+        $this->load->view('footers/normal_footer');
+    }
 
     public function ruang_vvip()
     {
