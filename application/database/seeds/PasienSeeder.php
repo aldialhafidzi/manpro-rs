@@ -15,7 +15,7 @@ class PasienSeeder extends Seeder
             echo ".";
 
             $data = array(
-                'no_mr' => 'MR-' . $this->faker->month($max = 'now') . '-' . $i,
+                'no_mr' => '00 ' . $this->faker->month($max = 'now') . ' ' . $i,
                 'nama' => $this->faker->name,
                 'jenis_kelamin' => $this->faker->randomElement($array = array('P', 'L')),
                 'no_telp' => $this->faker->tollFreePhoneNumber,

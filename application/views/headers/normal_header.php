@@ -8,10 +8,20 @@
     <title> <?= $title; ?> </title>
     <link rel="stylesheet" href="<?= base_url() ?>public/plugins/fontawesome-free/css/all.min.css">
     <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="<?= base_url() ?>public/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
     <link rel="stylesheet" href="<?= base_url() ?>public/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
     <link rel="stylesheet" href="<?= base_url() ?>public/plugins/toastr/toastr.min.css">
     <link rel="stylesheet" href="<?= base_url() ?>public/dist/css/adminlte.min.css">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+    <script src="<?= base_url() ?>public/plugins/jquery/jquery.min.js"></script>
+    <script src="<?= base_url() ?>public/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="<?= base_url() ?>public/plugins/datatables/jquery.dataTables.js"></script>
+    <script src="<?= base_url() ?>public/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+    <script src="<?= base_url() ?>/public/dist/js/adminlte.js"></script>
+    <script src="<?= base_url() ?>public/plugins/chart.js/Chart.min.js"></script>
+    <script src="<?= base_url() ?>public/dist/js/demo.js"></script>
+    <script src="<?= base_url() ?>public/dist/js/pages/dashboard3.js"></script>
 </head>
 <!--
 BODY TAG OPTIONS:
@@ -53,7 +63,7 @@ to get the desired effect
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                         <a href="#" class="dropdown-item">
                             <div class="media">
-                                <img src="dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+                                <img src="<?= base_url() ?>public/dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
                                 <div class="media-body">
                                     <h3 class="dropdown-item-title">
                                         Brad Diesel
@@ -67,7 +77,7 @@ to get the desired effect
                         <div class="dropdown-divider"></div>
                         <a href="#" class="dropdown-item">
                             <div class="media">
-                                <img src="dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+                                <img src="<?= base_url() ?>public/dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
                                 <div class="media-body">
                                     <h3 class="dropdown-item-title">
                                         John Pierce
@@ -81,7 +91,7 @@ to get the desired effect
                         <div class="dropdown-divider"></div>
                         <a href="#" class="dropdown-item">
                             <div class="media">
-                                <img src="dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+                                <img src="<?= base_url() ?>public/dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
                                 <div class="media-body">
                                     <h3 class="dropdown-item-title">
                                         Nora Silvester
@@ -145,7 +155,7 @@ to get the desired effect
                         <a href="#" class="d-block">
                             <?= $this->session->userdata('name') ?>
                         </a>
-                        <small class="text-secondary">Your login as Admin</small>
+                        <small class="text-secondary">Your login as <span style="text-transform: capitalize;"><?= $this->session->userdata('role_name') ?></span></small>
                     </div>
                 </div>
                 <nav class="mt-2">
@@ -184,7 +194,7 @@ to get the desired effect
                             </ul>
                         </li>
 
-                        <li class="nav-header">REKAM MEDIS</li>
+                        <!-- <li class="nav-header">REKAM MEDIS</li> -->
                         <li class="nav-item has-treeview <?= ($page == 'rekam_medis_jalan' || $page == 'rekam_medis_inap') ? 'menu-open' : '' ?>">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-notes-medical"></i>
@@ -195,19 +205,133 @@ to get the desired effect
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="<?= base_url() ?>pendaftaran/rawat-jalan" class="nav-link <?= ($page == 'rawat_jalan') ? 'active' : '' ?>">
-                                        <i class="fas fa-book-medical nav-icon"></i>
-                                        <p>Rekam Medis Jalan</p>
+                                    <a href="<?= base_url() ?>admin/rekam-medis/rawat-jalan" class="nav-link <?= ($page == 'rekam-medis') ? 'active' : '' ?>">
+                                        <i class="fas fa-user-injured nav-icon"></i>
+                                        <p>List Diagnosa Rajal</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="<?= base_url() ?>pendaftaran/rawat-inap" class="nav-link <?= ($page == 'rawat_inap') ? 'active' : '' ?>">
+                                    <a href="<?= base_url() ?>admin/rekam-medis/rawat-inap" class="nav-link <?= ($page == 'rawat-inap') ? 'active' : '' ?>">
                                         <i class="fas fa-book-medical nav-icon"></i>
-                                        <p>Rekam Medis Inap</p>
+                                        <p>List Diagnosa Ranap</p>
                                     </a>
                                 </li>
                             </ul>
                         </li>
+
+
+                        <li class="nav-header">Master</li>
+
+                        <li class="nav-item">
+                            <a href="<?= base_url() ?>admin/transaksi" class="nav-link <?= ($page == 'admin-transaksi') ? 'active' : '' ?>">
+                                <i class="nav-icon fas fa-money-bill"></i>
+                                <p>
+                                    Transaksi
+                                </p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="<?= base_url() ?>admin/poliklinik" class="nav-link <?= ($page == 'admin-poliklinik') ? 'active' : '' ?>">
+                                <i class="nav-icon fas fa-clinic-medical"></i>
+                                <p>
+                                    Poliklinik
+                                </p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="<?= base_url() ?>admin/dokter" class="nav-link <?= ($page == 'admin-dokter') ? 'active' : '' ?>">
+                                <i class="nav-icon fas fa-user-nurse"></i>
+                                <p>
+                                    Dokter
+                                </p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="<?= base_url() ?>admin/pasien" class="nav-link <?= ($page == 'admin-pasien') ? 'active' : '' ?>">
+                                <i class="nav-icon fas fa-users"></i>
+                                <p>
+                                    Pasien
+                                </p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="<?= base_url() ?>admin/specialization" class="nav-link <?= ($page == 'admin-specialization') ? 'active' : '' ?>">
+                                <i class="nav-icon fas fa-user-tag"></i>
+                                <p>
+                                    Dokter Specialization
+                                </p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="<?= base_url() ?>admin/ruangan" class="nav-link <?= ($page == 'admin-ruangan') ? 'active' : '' ?>">
+                                <i class="nav-icon fas fa-hospital-alt"></i>
+                                <p>
+                                    Ruangan
+                                </p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="<?= base_url() ?>admin/tindakan" class="nav-link <?= ($page == 'admin-tindakan') ? 'active' : '' ?>">
+                                <i class="nav-icon fas fa-medkit"></i>
+                                <p>
+                                    Tindakan
+                                </p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="<?= base_url() ?>admin/penyakit" class="nav-link <?= ($page == 'admin-penyakit') ? 'active' : '' ?>">
+                                <i class="nav-icon fas fa-biohazard"></i>
+                                <p>
+                                    Penyakit
+                                </p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="<?= base_url() ?>admin/obat" class="nav-link <?= ($page == 'admin-obat') ? 'active' : '' ?>">
+                                <i class="nav-icon fas fa-capsules"></i>
+                                <p>
+                                    Obat
+                                </p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="<?= base_url() ?>admin/user" class="nav-link <?= ($page == 'admin-user') ? 'active' : '' ?>">
+                                <i class="nav-icon far fa-user"></i>
+                                <p>
+                                    Users
+                                </p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="<?= base_url() ?>admin/role" class="nav-link <?= ($page == 'admin-role') ? 'active' : '' ?>">
+                                <i class="nav-icon fas fa-users-cog"></i>
+                                <p>
+                                    User Roles
+                                </p>
+                            </a>
+                        </li>
+
+                        <li class="nav-header"></li>
+
+                        <li class="nav-item mb-5">
+                            <a href="<?= base_url() ?>/logout" class="nav-link">
+                                <i class="nav-icon fas fa-sign-out-alt"></i>
+                                <p>
+                                    Logout
+                                </p>
+                            </a>
+                        </li>
+
                     </ul>
                 </nav>
             </div>
