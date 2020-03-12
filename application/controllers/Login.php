@@ -40,14 +40,16 @@ class Login extends CI_Controller
             }
             redirect(base_url('/admin'));
         }
-        $user = $this->UserModel->getByUsername($this->input->post('username'));
+
+        $user = $this->UserModel->with_roles()->get(array('username' => $this->input->post('username')));
         if ($user) {
-            if ($user['role_id'] !== '4') {
-                if (password_verify($this->input->post('password'), $user['password'])) {
+            if ($user->role_id !== '4') {
+                if (password_verify($this->input->post('password'), $user->password)) {
                     $data_session = array(
-                        'username' => $user['username'],
-                        'name'      => $user['name'],
-                        'role_id' => $user['role_id'],
+                        'username'  => $user->username,
+                        'name'      => $user->name,
+                        'role_id'   => $user->role_id,
+                        'role_name' => $user->roles->name,
                         'logged_in' => TRUE
                     );
                     $this->session->set_userdata($data_session);
@@ -65,14 +67,16 @@ class Login extends CI_Controller
         if ($this->session->userdata('logged_in')) {
             redirect(base_url('/'));
         }
-        $user = $this->UserModel->getByUsername($this->input->post('username'));
+
+        $user = $this->UserModel->with_roles()->get(array('username' => $this->input->post('username')));
         if ($user) {
-            if ($user['role_id'] === '4') {
-                if (password_verify($this->input->post('password'), $user['password'])) {
+            if ($user->role_id === '4') {
+                if (password_verify($this->input->post('password'), $user->password)) {
                     $data_session = array(
-                        'username' => $user['username'],
-                        'name'      => $user['name'],
-                        'role_id' => $user['role_id'],
+                        'username'  => $user->username,
+                        'name'      => $user->name,
+                        'role_id'   => $user->role_id,
+                        'role_name' => $user->roles->name,
                         'logged_in' => TRUE
                     );
                     $this->session->set_userdata($data_session);

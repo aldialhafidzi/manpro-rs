@@ -1,6 +1,6 @@
 <?php
 
-class Migration_Users extends CI_Migration
+class Migration_Ruangan extends CI_Migration
 {
 
     public function up()
@@ -11,26 +11,26 @@ class Migration_Users extends CI_Migration
                 'constraint' => 11,
                 'auto_increment' => TRUE
             ),
-            'role_id' => array(
-                'type' => 'INT',
-                'constraint' => 11,
-            ),
-            'username' => array(
-                'type' => 'varchar',
-                'constraint' => 20,
+            'kode' => array(
+                'type' => 'VARCHAR',
+                'constraint' => 10,
                 'unique' => TRUE,
             ),
-            'password' => array(
-                'type' => 'varchar',
-                'constraint' => 500,
-            ),
-            'name' => array(
-                'type' => 'varchar',
+            'nama' => array(
+                'type' => 'VARCHAR',
                 'constraint' => 20,
             ),
-            'dob' => array(
-                'type' => 'DATETIME',
-                'null' => TRUE,
+            'kelas' => array(
+                'type' => 'VARCHAR',
+                'constraint' => 20,
+            ),
+            'harga' => array(
+                'type' => 'INT',
+                'constraint' => 20,
+            ),
+            'status' => array(
+                'type' => 'VARCHAR',
+                'constraint' => 20,
             ),
             'created_at' => array(
                 'type' => 'DATETIME',
@@ -41,14 +41,12 @@ class Migration_Users extends CI_Migration
                 'null' => TRUE,
             )
         ));
-        
         $this->dbforge->add_key('id', TRUE);
-        $this->dbforge->create_table('users');
-        $this->db->query(add_foreign_key('users', 'role_id', 'roles(id)', 'CASCADE', 'CASCADE'));
+        $this->dbforge->create_table('ruangan');
     }
 
     public function down()
     {
-        $this->dbforge->drop_table('users');
+        $this->dbforge->drop_table('ruangan');
     }
 }

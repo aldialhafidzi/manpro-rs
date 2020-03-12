@@ -10,15 +10,34 @@ class RolesSeeder extends Seeder
         // $this->db->truncate($this->table);
 
         //seed many records using faker
-        $roles = ['superadmin', 'admin_pendaftaran', 'admin_input', 'user'];
+        $roles = array(
+            [
+                'name' => 'superadmin',
+                'kode' => 'SUPER'
+            ],
+            [
+                'name' => 'admin_pendaftaran',
+                'kode' => 'APEND'
+            ],
+            [
+                'name' => 'admin_input',
+                'kode' => 'AINP'
+            ],
+            [
+                'name' => 'user',
+                'kode' => 'USER'
+            ]
+        );
+
         echo "seeding role types";
 
         foreach ($roles as $value) {
             echo ".";
             $data = array(
-                'name' => $value,
-                'date_created' => $this->faker->date($format = 'Y-m-d'),
-                'date_updated' => $this->faker->date($format = 'Y-m-d'),
+                'name' => $value['name'],
+                'kode' => $value['kode'],
+                'created_at' => $this->faker->date($format = 'Y-m-d'),
+                'updated_at' => $this->faker->date($format = 'Y-m-d'),
             );
 
             $this->db->insert($this->table, $data);

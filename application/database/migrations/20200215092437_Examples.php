@@ -55,10 +55,10 @@ class Migration_Examples extends CI_Migration
                 'type' => 'VARCHAR',
                 'constraint' => 100
             ),
-            'date_created' => array(
+            'created_at' => array(
                 'type' => 'DATETIME'
             ),
-            'date_updated' => array(
+            'updated_at' => array(
                 'type' => 'DATETIME'
             )
         ));

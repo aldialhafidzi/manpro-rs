@@ -10,12 +10,6 @@
 </footer>
 </div>
 
-<script src="<?= base_url() ?>public/plugins/jquery/jquery.min.js"></script>
-<script src="<?= base_url() ?>public/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="<?= base_url() ?>/public/dist/js/adminlte.js"></script>
-<script src="<?= base_url() ?>public/plugins/chart.js/Chart.min.js"></script>
-<script src="<?= base_url() ?>public/dist/js/demo.js"></script>
-<script src="<?= base_url() ?>public/dist/js/pages/dashboard3.js"></script>
 <?php $this->load->view('notifications/notif'); ?>
 </body>
 
