@@ -34,7 +34,7 @@
                                     foreach ($ruangans as $key => $item) {
                                         echo '
                                             <tr>
-                                                <td> ' . ($key + 1) . '</td>
+                                                <td class="text-center"> ' . ($key + 1) . '</td>
                                                 <td class="text-uppercase">' . $item->kode . '</td>
                                                 <td>' . $item->nama . '</td>
                                                 <td>' . $item->kelas . '</td>

@@ -32,7 +32,7 @@
                                     foreach ($specializations as $key => $spec) {
                                         echo '
                                             <tr>
-                                                <td> ' . ($key + 1) . '</td>
+                                                <td class="text-center"> ' . ($key + 1) . '</td>
                                                 <td class="text-uppercase">' . $spec->kode . '</td>
                                                 <td>' . $spec->nama . '</td>
                                                 <td>' . $spec->created_at . '</td>

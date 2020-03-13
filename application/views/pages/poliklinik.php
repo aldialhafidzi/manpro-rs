@@ -33,7 +33,7 @@
                                     foreach ($polikliniks as $key => $poli) {
                                         echo '
                                             <tr>
-                                                <td> ' . ($key + 1) . '</td>
+                                                <td class="text-center"> ' . ($key + 1) . '</td>
                                                 <td class="text-uppercase">' . $poli->kode . '</td>
                                                 <td>' . $poli->nama . '</td>
                                                 <td>' . $poli->lokasi . '</td>

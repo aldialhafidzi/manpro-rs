@@ -34,7 +34,7 @@
                                     foreach ($dokters as $key => $doktr) {
                                         echo '
                                             <tr>
-                                                <td> ' . ($key + 1) . '</td>
+                                                <td class="text-center"> ' . ($key + 1) . '</td>
                                                 <td>' . $doktr->kode . '</td>
                                                 <td>' . $doktr->nama . '</td>
                                                 <td>' . $doktr->no_telp . '</td>
