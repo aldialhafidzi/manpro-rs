@@ -193,35 +193,7 @@ to get the desired effect
                             </ul>
                         </li>
 
-<<<<<<< HEAD
-                        <li class="nav-item has-treeview">
-                            <a href="<?= base_url() ?>ruangrawat/ruang_rawat" class="nav-link <?= ($page == 'ruang-rawat') ? 'active' : '' ?>">
-                                    <i class="fas fa-clinic-medical nav-icon"></i>
-                                <p>
-                                    Ruang Rawat
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="<?= base_url() ?>ruangrawat/info_ruang_rawat" class="nav-link <?= ($page == 'info_ruang_rawat') ? 'active' : '' ?>">
-                                        <i class="fas fa-ambulance nav-icon"></i>
-                                        <p>Rawat Jalan</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="<?= base_url() ?>pendaftaran/detail_ruang_rawat" class="nav-link <?= ($page == 'detail_ruang_rawat') ? 'active' : '' ?>">
-                                        <i class="fas fa-clinic-medical nav-icon"></i>
-                                        <p>Rawat Inap</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li class="nav-header">REKAM MEDIS</li>
-=======
                         <!-- <li class="nav-header">REKAM MEDIS</li> -->
->>>>>>> c10973ab7665f2fa948eb95bd381a84a4c1bbbb4
                         <li class="nav-item has-treeview <?= ($page == 'rekam_medis_jalan' || $page == 'rekam_medis_inap') ? 'menu-open' : '' ?>">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-notes-medical"></i>
@@ -294,13 +266,28 @@ to get the desired effect
                             </a>
                         </li>
 
-                        <li class="nav-item">
-                            <a href="<?= base_url() ?>admin/ruangan" class="nav-link <?= ($page == 'admin-ruangan') ? 'active' : '' ?>">
-                                <i class="nav-icon fas fa-hospital-alt"></i>
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon far fa-plus-square"></i>
                                 <p>
                                     Ruangan
+                                    <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="<?= base_url() ?>admin/ruangan" class="nav-link <?= ($page == 'ruangan') ? 'active' : '' ?>">
+                                        <i class="fas fa-ambulance nav-icon"></i>
+                                        <p>List Ruangan</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="<?= base_url() ?>ruangrawat/ruang_rawat" class="nav-link <?= ($page == 'ruang_rawat') ? 'active' : '' ?>">
+                                        <i class="fas fa-clinic-medical nav-icon"></i>
+                                        <p>Ruang Rawat</p>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
 
                         <li class="nav-item">

@@ -12,12 +12,9 @@
             <span class="caret"></span>
           </button>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="<?= base_url() ?>ruangrawat/ruang_vvip">VVIP</a></li>
-            <li><a href="#">VIP</a></li>
-            <li class="divider"></li>
-            <li><a href="#">Kelas 1</a></li>
-            <li><a href="#">Kelas 2</a></li>
-            <li><a href="#">Kelas 3</a></li>
+            <li><a class="dropdown-item" href="<?= base_url() ?>ruangrawat/lantai1">Lantai 1</a></li>
+            <li><a class="dropdown-item" href="<?= base_url() ?>ruangrawat/lantai2">Lantai 2</a></li>
+            <li><a class="dropdown-item" href="<?= base_url() ?>ruangrawat/lantai3">Lantai 3</a></li>
           </ul>
         </div>
       
@@ -45,31 +42,31 @@
               <table class="table table-bordered text-center">
                 <tbody><tr>
                   <td>
-                    <a href="ruang_rawat_info" type="button" class="btn btn-block btn-default" onclick="a">Kasur 1</a>
+                    <a href="ruang_rawat_info" type="button" class="btn btn-block btn-default" onclick="a">Bed 1</a>
                   </td>
                   <td>
-                    <button type="button" class="btn btn-block btn-default">Kasur 2</button>
+                    <button type="button" class="btn btn-block btn-default">Bed 2</button>
                   </td>
                   <td>
-                    <button type="button" class="btn btn-block btn-default">Kasur 3</button>
+                    <button type="button" class="btn btn-block btn-default">Bed 3</button>
                   </td>
                   <td>
-                    <button type="button" class="btn btn-block btn-default">Kasur 4</button>
+                    <button type="button" class="btn btn-block btn-default">Bed 4</button>
                   </td>
                 </th>
                 </tr>
                 <tr>
                   <td>
-                    <button type="button" class="btn btn-block btn-default">Kasur 5</button>
+                    <button type="button" class="btn btn-block btn-default">Bed 5</button>
                   </td>
                   <td>
-                    <button type="button" class="btn btn-block btn-default">Kasur 6</button>
+                    <button type="button" class="btn btn-block btn-default">Bed 6</button>
                   </td>
                   <td>
-                    <button type="button" class="btn btn-block btn-default">Kasur 7</button>
+                    <button type="button" class="btn btn-block btn-default">Bed 7</button>
                   </td>
                   <td>
-                    <button type="button" class="btn btn-block btn-default">Kasur 8</button>
+                    <button type="button" class="btn btn-block btn-default">Bed 8</button>
                   </td>
                 </th>
                 </tr>
@@ -84,31 +81,31 @@
               <table class="table table-bordered text-center">
                 <tbody><tr>
                   <td>
-                    <button type="button" class="btn btn-block btn-default">Kasur 1</button>
+                    <button type="button" class="btn btn-block btn-default">Bed 1</button>
                   </td>
                   <td>
-                    <button type="button" class="btn btn-block btn-default">Kasur 2</button>
+                    <button type="button" class="btn btn-block btn-default">Bed 2</button>
                   </td>
                   <td>
-                    <button type="button" class="btn btn-block btn-default">Kasur 3</button>
+                    <button type="button" class="btn btn-block btn-default">Bed 3</button>
                   </td>
                   <td>
-                    <button type="button" class="btn btn-block btn-default">Kasur 4</button>
+                    <button type="button" class="btn btn-block btn-default">Bed 4</button>
                   </td>
                 </th>
                 </tr>
                 <tr>
                   <td>
-                    <button type="button" class="btn btn-block btn-default">Kasur 5</button>
+                    <button type="button" class="btn btn-block btn-default">Bed 5</button>
                   </td>
                   <td>
-                    <button type="button" class="btn btn-block btn-default">Kasur 6</button>
+                    <button type="button" class="btn btn-block btn-default">Bed 6</button>
                   </td>
                   <td>
-                    <button type="button" class="btn btn-block btn-default">Kasur 7</button>
+                    <button type="button" class="btn btn-block btn-default">Bed 7</button>
                   </td>
                   <td>
-                    <button type="button" class="btn btn-block btn-default">Kasur 8</button>
+                    <button type="button" class="btn btn-block btn-default">Bed 8</button>
                   </td>
                 </th>
                 </tr>
@@ -123,31 +120,31 @@
               <table class="table table-bordered text-center">
                 <tbody><tr>
                   <td>
-                    <button type="button" class="btn btn-block btn-default">Kasur 1</button>
+                    <button type="button" class="btn btn-block btn-default">Bed 1</button>
                   </td>
                   <td>
-                    <button type="button" class="btn btn-block btn-default">Kasur 2</button>
+                    <button type="button" class="btn btn-block btn-default">Bed 2</button>
                   </td>
                   <td>
-                    <button type="button" class="btn btn-block btn-default">Kasur 3</button>
+                    <button type="button" class="btn btn-block btn-default">Bed 3</button>
                   </td>
                   <td>
-                    <button type="button" class="btn btn-block btn-default">Kasur 4</button>
+                    <button type="button" class="btn btn-block btn-default">Bed 4</button>
                   </td>
                 </th>
                 </tr>
                 <tr>
                   <td>
-                    <button type="button" class="btn btn-block btn-default">Kasur 5</button>
+                    <button type="button" class="btn btn-block btn-default">Bed 5</button>
                   </td>
                   <td>
-                    <button type="button" class="btn btn-block btn-default">Kasur 6</button>
+                    <button type="button" class="btn btn-block btn-default">Bed 6</button>
                   </td>
                   <td>
-                    <button type="button" class="btn btn-block btn-default">Kasur 7</button>
+                    <button type="button" class="btn btn-block btn-default">Bed 7</button>
                   </td>
                   <td>
-                    <button type="button" class="btn btn-block btn-default">Kasur 8</button>
+                    <button type="button" class="btn btn-block btn-default">Bed 8</button>
                   </td>
                 </th>
                 </tr>
@@ -163,31 +160,31 @@
               <table class="table table-bordered text-center">
                 <tbody><tr>
                   <td>
-                    <button type="button" class="btn btn-block btn-default">Kasur 1</button>
+                    <button type="button" class="btn btn-block btn-default">Bed 1</button>
                   </td>
                   <td>
-                    <button type="button" class="btn btn-block btn-default">Kasur 2</button>
+                    <button type="button" class="btn btn-block btn-default">Bed 2</button>
                   </td>
                   <td>
-                    <button type="button" class="btn btn-block btn-default">Kasur 3</button>
+                    <button type="button" class="btn btn-block btn-default">Bed 3</button>
                   </td>
                   <td>
-                    <button type="button" class="btn btn-block btn-default">Kasur 4</button>
+                    <button type="button" class="btn btn-block btn-default">Bed 4</button>
                   </td>
                 </th>
                 </tr>
                 <tr>
                   <td>
-                    <button type="button" class="btn btn-block btn-default">Kasur 5</button>
+                    <button type="button" class="btn btn-block btn-default">Bed 5</button>
                   </td>
                   <td>
-                    <button type="button" class="btn btn-block btn-default">Kasur 6</button>
+                    <button type="button" class="btn btn-block btn-default">Bed 6</button>
                   </td>
                   <td>
-                    <button type="button" class="btn btn-block btn-default">Kasur 7</button>
+                    <button type="button" class="btn btn-block btn-default">Bed 7</button>
                   </td>
                   <td>
-                    <button type="button" class="btn btn-block btn-default">Kasur 8</button>
+                    <button type="button" class="btn btn-block btn-default">Bed 8</button>
                   </td>
                 </th>
                 </tr>

@@ -22,10 +22,10 @@
                                     <tr>
                                         <th style="width: 10px">#</th>
                                         <th>Kode</th>
-                                        <th>Nama Ruangan</th>
                                         <th>Kelas</th>
-                                        <th>Harga</th>
+                                        <th>Nama Ruangan</th>
                                         <th>Status</th>
+                                        <th>Harga</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -36,14 +36,11 @@
                                             <tr>
                                                 <td> ' . ($key + 1) . '</td>
                                                 <td class="text-uppercase">' . $item->kode . '</td>
-                                                <td>' . $item->nama . '</td>
                                                 <td>' . $item->kelas . '</td>
-                                                <td> Rp. ' . $item->harga . '</td>
+                                                <td>' . $item->nama . '</td>
                                                 <td>' . $item->status . '</td>
-                                                <td style="width:160px;text-align:center;">
-                                                    <button value="' . $item->id . '" class="btn-hapusRuangan btn btn-sm btn-danger">
-                                                        <i class="far fa-trash-alt"></i> &nbsp; Hapus
-                                                    </button>
+                                                <td>Rp.' . $item->harga . '</td>
+                                                <td style="width:100px;text-align:center;">
                                                     <button value="' . $item->id . '" class="btn-lihatRuangan btn btn-sm btn-info">
                                                         <i class="far fa-eye"></i> &nbsp; Lihat
                                                     </button>

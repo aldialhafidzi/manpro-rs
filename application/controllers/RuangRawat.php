@@ -41,48 +41,40 @@ class RuangRawat extends CI_Controller
         $this->load->view('footers/normal_footer');
     }
 
-    public function ruang_vvip()
+    public function lantai1()
     {
-        $data['title'] = 'MANPRO-RS | Ruang Rawat VVIP';
-        $data['page'] = 'vvip';
+        $data['title'] = 'MANPRO-RS | Ruang Rawat';
+        $data['page'] = 'lantai1';
         $this->load->view('headers/normal_header', $data);
-        $this->load->view('pages/class_rr/vvip');
+        $this->load->view('pages/class_rr/l1');
         $this->load->view('footers/normal_footer');
     }
 
-    public function ruang_vip()
+    public function lantai2()
     {
-        $data['title'] = 'MANPRO-RS | Ruang Rawat VIP';
-        $data['page'] = 'vip';
+        $data['title'] = 'MANPRO-RS | Ruang Rawat';
+        $data['page'] = 'lantai2';
         $this->load->view('headers/normal_header', $data);
-        $this->load->view('pages/class_rr/vip');
+        $this->load->view('pages/class_rr/l2');
         $this->load->view('footers/normal_footer');
     }
 
-    public function ruang_k1()
+    public function lantai3()
     {
-        $data['title'] = 'MANPRO-RS | Ruang Rawat Kelas 1';
-        $data['page'] = 'k1';
+        $data['title'] = 'MANPRO-RS | Ruang Rawat';
+        $data['page'] = 'lantai3';
         $this->load->view('headers/normal_header', $data);
-        $this->load->view('pages/class_rr/k1');
+        $this->load->view('pages/class_rr/l3');
         $this->load->view('footers/normal_footer');
     }
 
-    public function ruang_k2()
+    public function lantai21()
     {
-        $data['title'] = 'MANPRO-RS | Ruang Rawat Kelas 2';
-        $data['page'] = 'k2';
+        $data['title'] = 'MANPRO-RS | List ruangan';
+        $data['page'] = 'lantai1';
+        $data['ruangans'] = $this->RuanganModel->get_all();
         $this->load->view('headers/normal_header', $data);
-        $this->load->view('pages/class_rr/k2');
-        $this->load->view('footers/normal_footer');
-    }
-
-    public function ruang_k3()
-    {
-        $data['title'] = 'MANPRO-RS | Ruang Rawat Kelas 3';
-        $data['page'] = 'k3';
-        $this->load->view('headers/normal_header', $data);
-        $this->load->view('pages/class_rr/k3');
+        $this->load->view('pages/class_rr/l1', $data);
         $this->load->view('footers/normal_footer');
     }
 
