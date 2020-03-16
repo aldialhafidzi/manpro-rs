@@ -33,7 +33,7 @@
                                     foreach ($pasiens as $key => $pasien) {
                                         echo '
                                             <tr>
-                                                <td> ' . ($key + 1) . '</td>
+                                                <td class="text-center"> ' . ($key + 1) . '</td>
                                                 <td>' . $pasien->no_mr . '</td>
                                                 <td>' . $pasien->nama . '</td>
                                                 <td>' . $pasien->no_telp . '</td>

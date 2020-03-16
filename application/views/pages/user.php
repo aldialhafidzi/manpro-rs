@@ -34,7 +34,7 @@
                                     foreach ($users as $key => $user) {
                                         echo '
                                             <tr>
-                                                <td> ' . ($key + 1) . '</td>
+                                                <td class="text-center"> ' . ($key + 1) . '</td>
                                                 <td class="text-uppercase">' . $user->roles->name . '</td>
                                                 <td>' . $user->username . '</td>
                                                 <td>' . $user->name . '</td>

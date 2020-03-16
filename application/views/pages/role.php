@@ -32,7 +32,7 @@
                                     foreach ($roles as $key => $item) {
                                         echo '
                                             <tr>
-                                                <td> ' . ($key + 1) . '</td>
+                                                <td class="text-center"> ' . ($key + 1) . '</td>
                                                 <td class="text-uppercase">' . $item->kode . '</td>
                                                 <td>' . $item->name . '</td>
                                                 <td>' . $item->created_at . '</td>

@@ -11,7 +11,8 @@
     <link rel="stylesheet" href="<?= base_url() ?>public/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
     <link rel="stylesheet" href="<?= base_url() ?>public/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
     <link rel="stylesheet" href="<?= base_url() ?>public/plugins/toastr/toastr.min.css">
-    <link rel="stylesheet" href="<?= base_url() ?>public/dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="<?= base_url() ?>public/dist/css/adminlte.css">
+    <link rel="stylesheet" href="<?= base_url() ?>public/dist/scss/style-gue.scss">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
     <script src="<?= base_url() ?>public/plugins/jquery/jquery.min.js"></script>
@@ -140,10 +141,10 @@ to get the desired effect
             </ul>
         </nav>
 
-        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <aside class="main-sidebar sidebar-light-warning elevation-4">
             <a href="index3.html" class="brand-link">
                 <img src="<?= base_url() ?>public/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-                <h4 class="brand-text font-weight-light text-center">MANPRO-APP</h4>
+                <h4 class="brand-text font-weight-light text-center text-light">MANPRO-APP</h4>
             </a>
 
             <div class="sidebar">
@@ -155,7 +156,7 @@ to get the desired effect
                         <a href="#" class="d-block">
                             <?= $this->session->userdata('name') ?>
                         </a>
-                        <small class="text-secondary">Your login as <span style="text-transform: capitalize;"><?= $this->session->userdata('role_name') ?></span></small>
+                        <small class="text-light">Your login as <span style="text-transform: capitalize;"><?= $this->session->userdata('role_name') ?></span></small>
                     </div>
                 </div>
                 <nav class="mt-2">

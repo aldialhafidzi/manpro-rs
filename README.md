@@ -27,8 +27,16 @@ Aplikasi ini dibuat oleh beberapa kelompok menggunakan framework CodeIgniter.
 	- Ketikan perintah ==> ```php index.php tools migrate```
 	
 	***Membuat Data Palsu***
-	- Ketikan perintah ==> ```php index.php tools seed RolesSeeder```
-	- Ketikan perintah ==> ```php index.php tools seed UsersSeeder```
+	- Ketikan perintah ==> ``` php index.php tools seed RolesSeeder```
+	- Ketikan perintah ==> ``` php index.php tools seed UsersSeeder```
+	- Ketikan perintah ==> ``` php index.php tools seed SpecializationSeeder ```
+	- Ketikan perintah ==> ``` php index.php tools seed PoliklinikSeeder ```
+	- Ketikan perintah ==> ``` php index.php tools seed DokterSeeder ```
+	- Ketikan perintah ==> ``` php index.php tools seed ObatSeeder ```
+	- Ketikan perintah ==> ``` php index.php tools seed PasienSeeder ```
+	- Ketikan perintah ==> ``` php index.php tools seed PenyakitSeeder ```
+	- Ketikan perintah ==> ``` php index.php tools seed RuanganSeeder ```
+	- Ketikan perintah ==> ``` php index.php tools seed TindakanSeeder ```
 	
 7. Lalu buka dibrowser anda :
 	- Home Page 		: http://localhost/manpro-rs/
