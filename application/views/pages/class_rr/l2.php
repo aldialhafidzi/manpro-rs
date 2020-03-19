@@ -49,7 +49,7 @@
                         <table class="table text-center">
                           <tbody><tr>
                             <td>
-                              <a href="ruang_rawat_info" type="button" class="btn btn-block btn-default" onclick="a">Bed</a>
+                              <a href="ruang_rawat_info" type="button" class="btn btn-block btn-danger" onclick="a">Bed</a>
                             </td>
                           </th>
                         </tbody></table>
@@ -63,7 +63,7 @@
                         <table class="table text-center">
                           <tbody><tr>
                             <td>
-                              <a href="ruang_rawat_info" type="button" class="btn btn-block btn-default" onclick="a">Bed</a>
+                              <a href="ruang_rawat_info" type="button" class="btn btn-block btn-danger" onclick="a">Bed</a>
                             </td>
                           </th>
                           </tr>
@@ -78,7 +78,7 @@
                         <table class="table text-center">
                           <tbody><tr>
                             <td>
-                              <a href="ruang_rawat_info" type="button" class="btn btn-block btn-default" onclick="a">Bed</a>
+                              <a href="ruang_rawat_info" type="button" class="btn btn-block btn-danger" onclick="a">Bed</a>
                             </td>
                           </th>
                         </tbody></table>
@@ -92,7 +92,7 @@
                         <table class="table text-center">
                           <tbody><tr>
                             <td>
-                              <a href="ruang_rawat_info" type="button" class="btn btn-block btn-default" onclick="a">Bed</a>
+                              <a href="ruang_rawat_info" type="button" class="btn btn-block btn-success" onclick="a">Bed</a>
                             </td>
                           </th>
                           </tr>
@@ -120,7 +120,7 @@
                         <table class="table text-center">
                           <tbody><tr>
                             <td>
-                              <a href="ruang_rawat_info" type="button" class="btn btn-block btn-default" onclick="a">Bed</a>
+                              <a href="ruang_rawat_info" type="button" class="btn btn-block btn-danger" onclick="a">Bed</a>
                             </td>
                           </th>
                         </tbody></table>
@@ -134,7 +134,7 @@
                         <table class="table text-center">
                           <tbody><tr>
                             <td>
-                              <a href="ruang_rawat_info" type="button" class="btn btn-block btn-default" onclick="a">Bed</a>
+                              <a href="ruang_rawat_info" type="button" class="btn btn-block btn-danger" onclick="a">Bed</a>
                             </td>
                           </th>
                           </tr>
@@ -149,7 +149,7 @@
                         <table class="table text-center">
                           <tbody><tr>
                             <td>
-                              <a href="ruang_rawat_info" type="button" class="btn btn-block btn-default" onclick="a">Bed</a>
+                              <a href="ruang_rawat_info" type="button" class="btn btn-block btn-success" onclick="a">Bed</a>
                             </td>
                           </th>
                         </tbody></table>
@@ -163,7 +163,7 @@
                         <table class="table text-center">
                           <tbody><tr>
                             <td>
-                              <a href="ruang_rawat_info" type="button" class="btn btn-block btn-default" onclick="a">Bed</a>
+                              <a href="ruang_rawat_info" type="button" class="btn btn-block btn-success" onclick="a">Bed</a>
                             </td>
                           </th>
                           </tr>
@@ -191,7 +191,7 @@
                         <table class="table text-center">
                           <tbody><tr>
                             <td>
-                              <a href="ruang_rawat_info" type="button" class="btn btn-block btn-default" onclick="a">Bed</a>
+                              <a href="ruang_rawat_info" type="button" class="btn btn-block btn-success" onclick="a">Bed</a>
                             </td>
                           </th>
                         </tbody></table>
@@ -205,7 +205,7 @@
                         <table class="table text-center">
                           <tbody><tr>
                             <td>
-                              <a href="ruang_rawat_info" type="button" class="btn btn-block btn-default" onclick="a">Bed</a>
+                              <a href="ruang_rawat_info" type="button" class="btn btn-block btn-danger" onclick="a">Bed</a>
                             </td>
                           </th>
                           </tr>
@@ -220,7 +220,7 @@
                         <table class="table text-center">
                           <tbody><tr>
                             <td>
-                              <a href="ruang_rawat_info" type="button" class="btn btn-block btn-default" onclick="a">Bed</a>
+                              <a href="ruang_rawat_info" type="button" class="btn btn-block btn-danger" onclick="a">Bed</a>
                             </td>
                           </th>
                         </tbody></table>
@@ -234,7 +234,7 @@
                         <table class="table text-center">
                           <tbody><tr>
                             <td>
-                              <a href="ruang_rawat_info" type="button" class="btn btn-block btn-default" onclick="a">Bed</a>
+                              <a href="ruang_rawat_info" type="button" class="btn btn-block btn-danger" onclick="a">Bed</a>
                             </td>
                           </th>
                           </tr>

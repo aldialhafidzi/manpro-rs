@@ -39,7 +39,7 @@
                         <td class="text-uppercase">' . $item->kode . '</td>
                         <td>' . $item->kelas . '</td>
                         <td>' . $item->nama . '</td>
-                        <td><button class="btn btn-sm btn-danger"><i class="fa fa-times"></i></button> &nbsp' . $item->status . '</td>
+                        <td>' .($item->status=="KOSONG" ? "<button class='btn btn-sm btn-danger'><i class='fa fa-times'></i></button> &nbsp ISI" : "<button class='btn btn-sm btn-success'><i class='fa fa-check'></i></button> &nbsp KOSONG").'</td>
                         <td>Rp.' . $item->harga . '</td>
                         <td style="width:140px;text-align:center;">
                           <button value="' . $item->kode . '"  data-toggle="modal" data-target="#modal_edit" class="btn btn-sm btn-warning">

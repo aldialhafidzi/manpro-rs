@@ -49,17 +49,17 @@
                         <table class="table text-center">
                           <tbody><tr>
                             <td>
-                              <a type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 1</a>
+                              <a type="button" class="btn btn-block btn-danger" data-toggle="modal" data-target="#ruang_rawat_info">Bed 1</a>
                             </td>
                           </th>
                             <td>
-                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 2</a>
+                              <a  type="button" class="btn btn-block btn-danger" data-toggle="modal" data-target="#ruang_rawat_info">Bed 2</a>
                             </td>
                           </th>
                           </tr>
                           <tr>
                             <td>
-                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 3</a>
+                              <a  type="button" class="btn btn-block btn-success" data-toggle="modal" data-target="#ruang_rawat_info">Bed 3</a>
                             </td>
                           </th>
                           </tr>
@@ -74,21 +74,21 @@
                         <table class="table text-center">
                           <tbody><tr>
                             <td>
-                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 1</a>
+                              <a  type="button" class="btn btn-block btn-success" data-toggle="modal" data-target="#ruang_rawat_info">Bed 1</a>
                             </td>
                           </th>
                             <td>
-                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 2</a>
+                              <a  type="button" class="btn btn-block btn-danger" data-toggle="modal" data-target="#ruang_rawat_info">Bed 2</a>
                             </td>
                           </th>
                           </tr>
                           <tr>
                             <td>
-                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 3</a>
+                              <a  type="button" class="btn btn-block btn-danger" data-toggle="modal" data-target="#ruang_rawat_info">Bed 3</a>
                             </td>
                           </th>
                             <td>
-                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 4</a>
+                              <a  type="button" class="btn btn-block btn-danger" data-toggle="modal" data-target="#ruang_rawat_info">Bed 4</a>
                             </td>
                           </th>
                           </tr>
@@ -104,29 +104,29 @@
                         <table class="table text-center">
                           <tbody><tr>
                             <td>
-                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 1</a>
+                              <a  type="button" class="btn btn-block btn-success" data-toggle="modal" data-target="#ruang_rawat_info">Bed 1</a>
                             </td>
                           </th>
                             <td>
-                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 2</a>
+                              <a  type="button" class="btn btn-block btn-success" data-toggle="modal" data-target="#ruang_rawat_info">Bed 2</a>
                             </td>
                           </th>
                           <td>
-                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 3</a>
+                              <a  type="button" class="btn btn-block btn-success" data-toggle="modal" data-target="#ruang_rawat_info">Bed 3</a>
                             </td>
                           </th>
                           </tr>
                           <tr>
                             <td>
-                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 4</a>
+                              <a  type="button" class="btn btn-block btn-danger" data-toggle="modal" data-target="#ruang_rawat_info">Bed 4</a>
                             </td>
                           </th>
                             <td>
-                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 5</a>
+                              <a  type="button" class="btn btn-block btn-danger" data-toggle="modal" data-target="#ruang_rawat_info">Bed 5</a>
                             </td>
                           </th>
                             <td>
-                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 6</a>
+                              <a  type="button" class="btn btn-block btn-danger" data-toggle="modal" data-target="#ruang_rawat_info">Bed 6</a>
                             </td>
                           </th>
                           </tr>
@@ -153,17 +153,17 @@
                         <table class="table text-center">
                           <tbody><tr>
                             <td>
-                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 1</a>
+                              <a  type="button" class="btn btn-block btn-danger" data-toggle="modal" data-target="#ruang_rawat_info">Bed 1</a>
                             </td>
                           </th>
                             <td>
-                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 2</a>
+                              <a  type="button" class="btn btn-block btn-danger" data-toggle="modal" data-target="#ruang_rawat_info">Bed 2</a>
                             </td>
                           </th>
                           </tr>
                           <tr>
                             <td>
-                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 3</a>
+                              <a  type="button" class="btn btn-block btn-success" data-toggle="modal" data-target="#ruang_rawat_info">Bed 3</a>
                             </td>
                           </th>
                           </tr>
@@ -178,21 +178,21 @@
                         <table class="table text-center">
                           <tbody><tr>
                             <td>
-                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 1</a>
+                              <a  type="button" class="btn btn-block btn-success" data-toggle="modal" data-target="#ruang_rawat_info">Bed 1</a>
                             </td>
                           </th>
                             <td>
-                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 2</a>
+                              <a  type="button" class="btn btn-block btn-success" data-toggle="modal" data-target="#ruang_rawat_info">Bed 2</a>
                             </td>
                           </th>
                           </tr>
                           <tr>
                             <td>
-                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 3</a>
+                              <a  type="button" class="btn btn-block btn-success" data-toggle="modal" data-target="#ruang_rawat_info">Bed 3</a>
                             </td>
                           </th>
                             <td>
-                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 4</a>
+                              <a  type="button" class="btn btn-block btn-danger" data-toggle="modal" data-target="#ruang_rawat_info">Bed 4</a>
                             </td>
                           </th>
                           </tr>
@@ -208,29 +208,29 @@
                         <table class="table text-center">
                           <tbody><tr>
                             <td>
-                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 1</a>
+                              <a  type="button" class="btn btn-block btn-danger" data-toggle="modal" data-target="#ruang_rawat_info">Bed 1</a>
                             </td>
                           </th>
                             <td>
-                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 2</a>
+                              <a  type="button" class="btn btn-block btn-success" data-toggle="modal" data-target="#ruang_rawat_info">Bed 2</a>
                             </td>
                           </th>
                           <td>
-                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 3</a>
+                              <a  type="button" class="btn btn-block btn-success" data-toggle="modal" data-target="#ruang_rawat_info">Bed 3</a>
                             </td>
                           </th>
                           </tr>
                           <tr>
                             <td>
-                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 4</a>
+                              <a  type="button" class="btn btn-block btn-danger" data-toggle="modal" data-target="#ruang_rawat_info">Bed 4</a>
                             </td>
                           </th>
                             <td>
-                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 5</a>
+                              <a  type="button" class="btn btn-block btn-danger" data-toggle="modal" data-target="#ruang_rawat_info">Bed 5</a>
                             </td>
                           </th>
                             <td>
-                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 6</a>
+                              <a  type="button" class="btn btn-block btn-danger" data-toggle="modal" data-target="#ruang_rawat_info">Bed 6</a>
                             </td>
                           </th>
                           </tr>
@@ -259,17 +259,17 @@
                         <table class="table text-center">
                           <tbody><tr>
                             <td>
-                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 1</a>
+                              <a  type="button" class="btn btn-block btn-danger" data-toggle="modal" data-target="#ruang_rawat_info">Bed 1</a>
                             </td>
                           </th>
                             <td>
-                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 2</a>
+                              <a  type="button" class="btn btn-block btn-danger" data-toggle="modal" data-target="#ruang_rawat_info">Bed 2</a>
                             </td>
                           </th>
                           </tr>
                           <tr>
                             <td>
-                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 3</a>
+                              <a  type="button" class="btn btn-block btn-danger" data-toggle="modal" data-target="#ruang_rawat_info">Bed 3</a>
                             </td>
                           </th>
                           </tr>
@@ -284,21 +284,21 @@
                         <table class="table text-center">
                           <tbody><tr>
                             <td>
-                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 1</a>
+                              <a  type="button" class="btn btn-block btn-success" data-toggle="modal" data-target="#ruang_rawat_info">Bed 1</a>
                             </td>
                           </th>
                             <td>
-                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 2</a>
+                              <a  type="button" class="btn btn-block btn-danger" data-toggle="modal" data-target="#ruang_rawat_info">Bed 2</a>
                             </td>
                           </th>
                           </tr>
                           <tr>
                             <td>
-                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 3</a>
+                              <a  type="button" class="btn btn-block btn-danger" data-toggle="modal" data-target="#ruang_rawat_info">Bed 3</a>
                             </td>
                           </th>
                             <td>
-                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 4</a>
+                              <a  type="button" class="btn btn-block btn-danger" data-toggle="modal" data-target="#ruang_rawat_info">Bed 4</a>
                             </td>
                           </th>
                           </tr>
@@ -314,29 +314,29 @@
                         <table class="table text-center">
                           <tbody><tr>
                             <td>
-                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 1</a>
+                              <a  type="button" class="btn btn-block btn-danger" data-toggle="modal" data-target="#ruang_rawat_info">Bed 1</a>
                             </td>
                           </th>
                             <td>
-                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 2</a>
+                              <a  type="button" class="btn btn-block btn-success" data-toggle="modal" data-target="#ruang_rawat_info">Bed 2</a>
                             </td>
                           </th>
                           <td>
-                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 3</a>
+                              <a  type="button" class="btn btn-block btn-success" data-toggle="modal" data-target="#ruang_rawat_info">Bed 3</a>
                             </td>
                           </th>
                           </tr>
                           <tr>
                             <td>
-                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 4</a>
+                              <a  type="button" class="btn btn-block btn-success" data-toggle="modal" data-target="#ruang_rawat_info">Bed 4</a>
                             </td>
                           </th>
                             <td>
-                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 5</a>
+                              <a  type="button" class="btn btn-block btn-success" data-toggle="modal" data-target="#ruang_rawat_info">Bed 5</a>
                             </td>
                           </th>
                             <td>
-                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 6</a>
+                              <a  type="button" class="btn btn-block btn-success" data-toggle="modal" data-target="#ruang_rawat_info">Bed 6</a>
                             </td>
                           </th>
                           </tr>
@@ -363,17 +363,17 @@
                         <table class="table text-center">
                           <tbody><tr>
                             <td>
-                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 1</a>
+                              <a  type="button" class="btn btn-block btn-success" data-toggle="modal" data-target="#ruang_rawat_info">Bed 1</a>
                             </td>
                           </th>
                             <td>
-                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 2</a>
+                              <a  type="button" class="btn btn-block btn-success" data-toggle="modal" data-target="#ruang_rawat_info">Bed 2</a>
                             </td>
                           </th>
                           </tr>
                           <tr>
                             <td>
-                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 3</a>
+                              <a  type="button" class="btn btn-block btn-success" data-toggle="modal" data-target="#ruang_rawat_info">Bed 3</a>
                             </td>
                           </th>
                           </tr>
@@ -388,21 +388,21 @@
                         <table class="table text-center">
                           <tbody><tr>
                             <td>
-                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 1</a>
+                              <a  type="button" class="btn btn-block btn-success" data-toggle="modal" data-target="#ruang_rawat_info">Bed 1</a>
                             </td>
                           </th>
                             <td>
-                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 2</a>
+                              <a  type="button" class="btn btn-block btn-danger" data-toggle="modal" data-target="#ruang_rawat_info">Bed 2</a>
                             </td>
                           </th>
                           </tr>
                           <tr>
                             <td>
-                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 3</a>
+                              <a  type="button" class="btn btn-block btn-danger" data-toggle="modal" data-target="#ruang_rawat_info">Bed 3</a>
                             </td>
                           </th>
                             <td>
-                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 4</a>
+                              <a  type="button" class="btn btn-block btn-danger" data-toggle="modal" data-target="#ruang_rawat_info">Bed 4</a>
                             </td>
                           </th>
                           </tr>
@@ -418,29 +418,29 @@
                         <table class="table text-center">
                           <tbody><tr>
                             <td>
-                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 1</a>
+                              <a  type="button" class="btn btn-block btn-danger" data-toggle="modal" data-target="#ruang_rawat_info">Bed 1</a>
                             </td>
                           </th>
                             <td>
-                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 2</a>
+                              <a  type="button" class="btn btn-block btn-danger" data-toggle="modal" data-target="#ruang_rawat_info">Bed 2</a>
                             </td>
                           </th>
                           <td>
-                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 3</a>
+                              <a  type="button" class="btn btn-block btn-danger" data-toggle="modal" data-target="#ruang_rawat_info">Bed 3</a>
                             </td>
                           </th>
                           </tr>
                           <tr>
                             <td>
-                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 4</a>
+                              <a  type="button" class="btn btn-block btn-danger" data-toggle="modal" data-target="#ruang_rawat_info">Bed 4</a>
                             </td>
                           </th>
                             <td>
-                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 5</a>
+                              <a  type="button" class="btn btn-block btn-danger" data-toggle="modal" data-target="#ruang_rawat_info">Bed 5</a>
                             </td>
                           </th>
                             <td>
-                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 6</a>
+                              <a  type="button" class="btn btn-block btn-danger" data-toggle="modal" data-target="#ruang_rawat_info">Bed 6</a>
                             </td>
                           </th>
                           </tr>
