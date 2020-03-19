@@ -277,7 +277,7 @@ to get the desired effect
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="<?= base_url() ?>admin/ruangan" class="nav-link <?= ($page == 'ruangan') ? 'active' : '' ?>">
+                                    <a href="<?= base_url() ?>ruangrawat/ruangan" class="nav-link <?= ($page == 'ruangan') ? 'active' : '' ?>">
                                         <i class="fas fa-ambulance nav-icon"></i>
                                         <p>List Ruangan</p>
                                     </a>

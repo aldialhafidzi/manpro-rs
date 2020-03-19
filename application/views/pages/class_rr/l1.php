@@ -31,56 +31,504 @@
       </div>
     </div>
   </div>
-
+  
   <div class="content">
     <div class="container-fluid">
+     
       <div class="row">
-        <div class="col-md-12 col-xs-12">
+        <div class="col-md-6 col-xs-6">
           <div class="small-box bg-white">
             <div class="inner">
-              <h4>Ruang Melati</h4>
-              <table class="table table-bordered text-center">
+              <h4>Ruang 101</h4>
+              <table class="table text-center">
                 <tbody><tr>
                   <td>
-                    <a type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#infobedModal">VVIP</a>
+                    <div class="small-box bg-white">
+                      <div class="inner">
+                        <h4>Kelas 1</h4>
+                        <table class="table text-center">
+                          <tbody><tr>
+                            <td>
+                              <a type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 1</a>
+                            </td>
+                          </th>
+                            <td>
+                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 2</a>
+                            </td>
+                          </th>
+                          </tr>
+                          <tr>
+                            <td>
+                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 3</a>
+                            </td>
+                          </th>
+                          </tr>
+                        </tbody></table>
+                      </div>
+                    </div>
                   </td>
-                </tr>
-                <tr>
                   <td>
-                    <button type="button" class="btn btn-block btn-default">VIP</button>
+                    <div class="small-box bg-white">
+                      <div class="inner">
+                        <h4>Kelas 2</h4>
+                        <table class="table text-center">
+                          <tbody><tr>
+                            <td>
+                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 1</a>
+                            </td>
+                          </th>
+                            <td>
+                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 2</a>
+                            </td>
+                          </th>
+                          </tr>
+                          <tr>
+                            <td>
+                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 3</a>
+                            </td>
+                          </th>
+                            <td>
+                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 4</a>
+                            </td>
+                          </th>
+                          </tr>
+                        </tbody></table>
+                      </div>
+                    </div>
                   </td>
-                  <td>
-                    <button type="button" class="btn btn-block btn-default">Bed 8</button>
+                  </tr>
+                  <td colspan="2">
+                    <div class="small-box bg-white">
+                      <div class="inner">
+                        <h4>Kelas 3</h4>
+                        <table class="table text-center">
+                          <tbody><tr>
+                            <td>
+                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 1</a>
+                            </td>
+                          </th>
+                            <td>
+                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 2</a>
+                            </td>
+                          </th>
+                          <td>
+                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 3</a>
+                            </td>
+                          </th>
+                          </tr>
+                          <tr>
+                            <td>
+                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 4</a>
+                            </td>
+                          </th>
+                            <td>
+                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 5</a>
+                            </td>
+                          </th>
+                            <td>
+                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 6</a>
+                            </td>
+                          </th>
+                          </tr>
+                        </tbody></table>
+                      </div>
+                    </div>
                   </td>
                 </th>
                 </tr>
               </tbody></table>
             </div>
-            
-            <!-- Modal -->
-            <div class="modal fade" id="infobedModal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Info Bed</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
           </div>
         </div>
-    
+        <div class="col-md-6 col-xs-6">
+          <div class="small-box bg-white">
+            <div class="inner">
+              <h4>Ruang 102</h4>
+              <table class="table text-center">
+                <tbody><tr>
+                  <td>
+                    <div class="small-box bg-white">
+                      <div class="inner">
+                        <h4>Kelas 1</h4>
+                        <table class="table text-center">
+                          <tbody><tr>
+                            <td>
+                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 1</a>
+                            </td>
+                          </th>
+                            <td>
+                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 2</a>
+                            </td>
+                          </th>
+                          </tr>
+                          <tr>
+                            <td>
+                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 3</a>
+                            </td>
+                          </th>
+                          </tr>
+                        </tbody></table>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="small-box bg-white">
+                      <div class="inner">
+                        <h4>Kelas 2</h4>
+                        <table class="table text-center">
+                          <tbody><tr>
+                            <td>
+                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 1</a>
+                            </td>
+                          </th>
+                            <td>
+                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 2</a>
+                            </td>
+                          </th>
+                          </tr>
+                          <tr>
+                            <td>
+                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 3</a>
+                            </td>
+                          </th>
+                            <td>
+                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 4</a>
+                            </td>
+                          </th>
+                          </tr>
+                        </tbody></table>
+                      </div>
+                    </div>
+                  </td>
+                  </tr>
+                  <td colspan="2">
+                    <div class="small-box bg-white">
+                      <div class="inner">
+                        <h4>Kelas 3</h4>
+                        <table class="table text-center">
+                          <tbody><tr>
+                            <td>
+                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 1</a>
+                            </td>
+                          </th>
+                            <td>
+                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 2</a>
+                            </td>
+                          </th>
+                          <td>
+                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 3</a>
+                            </td>
+                          </th>
+                          </tr>
+                          <tr>
+                            <td>
+                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 4</a>
+                            </td>
+                          </th>
+                            <td>
+                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 5</a>
+                            </td>
+                          </th>
+                            <td>
+                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 6</a>
+                            </td>
+                          </th>
+                          </tr>
+                        </tbody></table>
+                      </div>
+                    </div>
+                  </td>
+                </th>
+                </tr>
+              </tbody></table>
+            </div>
+          </div>
+        </div>
       </div>  
+      <div class="row">
+        <div class="col-md-6 col-xs-6">
+          <div class="small-box bg-white">
+            <div class="inner">
+              <h4>Ruang 103</h4>
+              <table class="table text-center">
+                <tbody><tr>
+                  <td>
+                    <div class="small-box bg-white">
+                      <div class="inner">
+                        <h4>Kelas 1</h4>
+                        <table class="table text-center">
+                          <tbody><tr>
+                            <td>
+                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 1</a>
+                            </td>
+                          </th>
+                            <td>
+                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 2</a>
+                            </td>
+                          </th>
+                          </tr>
+                          <tr>
+                            <td>
+                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 3</a>
+                            </td>
+                          </th>
+                          </tr>
+                        </tbody></table>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="small-box bg-white">
+                      <div class="inner">
+                        <h4>Kelas 2</h4>
+                        <table class="table text-center">
+                          <tbody><tr>
+                            <td>
+                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 1</a>
+                            </td>
+                          </th>
+                            <td>
+                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 2</a>
+                            </td>
+                          </th>
+                          </tr>
+                          <tr>
+                            <td>
+                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 3</a>
+                            </td>
+                          </th>
+                            <td>
+                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 4</a>
+                            </td>
+                          </th>
+                          </tr>
+                        </tbody></table>
+                      </div>
+                    </div>
+                  </td>
+                  </tr>
+                  <td colspan="2">
+                    <div class="small-box bg-white">
+                      <div class="inner">
+                        <h4>Kelas 3</h4>
+                        <table class="table text-center">
+                          <tbody><tr>
+                            <td>
+                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 1</a>
+                            </td>
+                          </th>
+                            <td>
+                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 2</a>
+                            </td>
+                          </th>
+                          <td>
+                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 3</a>
+                            </td>
+                          </th>
+                          </tr>
+                          <tr>
+                            <td>
+                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 4</a>
+                            </td>
+                          </th>
+                            <td>
+                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 5</a>
+                            </td>
+                          </th>
+                            <td>
+                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 6</a>
+                            </td>
+                          </th>
+                          </tr>
+                        </tbody></table>
+                      </div>
+                    </div>
+                  </td>
+                </th>
+                </tr>
+              </tbody></table>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-xs-6">
+          <div class="small-box bg-white">
+            <div class="inner">
+              <h4>Ruang 104</h4>
+              <table class="table text-center">
+                <tbody><tr>
+                  <td>
+                    <div class="small-box bg-white">
+                      <div class="inner">
+                        <h4>Kelas 1</h4>
+                        <table class="table text-center">
+                          <tbody><tr>
+                            <td>
+                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 1</a>
+                            </td>
+                          </th>
+                            <td>
+                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 2</a>
+                            </td>
+                          </th>
+                          </tr>
+                          <tr>
+                            <td>
+                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 3</a>
+                            </td>
+                          </th>
+                          </tr>
+                        </tbody></table>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="small-box bg-white">
+                      <div class="inner">
+                        <h4>Kelas 2</h4>
+                        <table class="table text-center">
+                          <tbody><tr>
+                            <td>
+                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 1</a>
+                            </td>
+                          </th>
+                            <td>
+                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 2</a>
+                            </td>
+                          </th>
+                          </tr>
+                          <tr>
+                            <td>
+                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 3</a>
+                            </td>
+                          </th>
+                            <td>
+                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 4</a>
+                            </td>
+                          </th>
+                          </tr>
+                        </tbody></table>
+                      </div>
+                    </div>
+                  </td>
+                  </tr>
+                  <td colspan="2">
+                    <div class="small-box bg-white">
+                      <div class="inner">
+                        <h4>Kelas 3</h4>
+                        <table class="table text-center">
+                          <tbody><tr>
+                            <td>
+                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 1</a>
+                            </td>
+                          </th>
+                            <td>
+                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 2</a>
+                            </td>
+                          </th>
+                          <td>
+                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 3</a>
+                            </td>
+                          </th>
+                          </tr>
+                          <tr>
+                            <td>
+                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 4</a>
+                            </td>
+                          </th>
+                            <td>
+                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 5</a>
+                            </td>
+                          </th>
+                            <td>
+                              <a  type="button" class="btn btn-block btn-default" data-toggle="modal" data-target="#ruang_rawat_info">Bed 6</a>
+                            </td>
+                          </th>
+                          </tr>
+                        </tbody></table>
+                      </div>
+                    </div>
+                  </td>
+                </th>
+                </tr>
+              </tbody></table>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- ============ MODAL Info =============== -->
+      <div class="modal fade" id="ruang_rawat_info" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+        <div class="modal-dialog" style="max-width: 700px">
+          <div class="modal-content" style="width: 700px">
+          <div class="modal-header">
+            <h3 class="modal-title" id="myModalLabel">Info Ruangan</h3>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+          </div>
+          <form class="form-horizontal">
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-md-4">
+                  
+                 <div class="form-group">
+                    <label class="control-label col-xs-3" >Kode Ruangan</label>
+                    <div class="col-xs-6">
+                      <input name="nama_ruangan" class="form-control" type="text" placeholder="Kode ruangan..." disabled>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="control-label col-xs-3" >Status Ruangan</label>
+                    <div class="col-xs-6">
+                      <input name="nama_ruangan" class="form-control" type="text" placeholder="Status Ruangan..." disabled>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-8">
+                  <div class="form-group">
+                    <label class="control-label col-xs-3" >No.Medrec</label>
+                    <div class="col-xs-8">
+                      <input name="nama_ruangan" class="form-control" type="text" placeholder="Status Ruangan..." disabled>
+                    </div>
+                  </div>
+              
+                  <div class="form-group">
+                    <label class="control-label col-xs-3" >Nama Pasien</label>
+                    <div class="col-xs-8">
+                      <input name="nama_ruangan" class="form-control" type="text" placeholder="Status Ruangan..." disabled>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="control-label col-xs-3" >Jenis Kelamin</label>
+                    <div class="col-xs-8">
+                      <input name="nama_ruangan" class="form-control" type="text" placeholder="Status Ruangan..." disabled>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="control-label col-xs-3" >No.Telp Pasien</label>
+                    <div class="col-xs-8">
+                      <input name="nama_ruangan" class="form-control" type="text" placeholder="Status Ruangan..." disabled>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="control-label col-xs-3" >Alamat Pasien</label>
+                    <div class="col-xs-8">
+                      <input name="nama_ruangan" class="form-control" type="text" placeholder="Status Ruangan..." disabled>
+                    </div>
+                  </div>
+                </div>
+
+              <div class="modal-footer">
+                <button class="btn btn-info" data-dismiss="modal" aria-hidden="true">Tutup</button>
+            </div>
+          </form>
+        </div>
+            
+      </div>
     </div>
   </div>
+
 </div>

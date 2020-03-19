@@ -34,166 +34,224 @@
 
   <div class="content">
     <div class="container-fluid">
+     
       <div class="row">
-        <div class="col-md-6 col-xs-6">
+        <div class="col-md-12 col-xs-12">
           <div class="small-box bg-white">
             <div class="inner">
-              <h4>Ruang Melati</h4>
-              <table class="table table-bordered text-center">
+              <h4>Ruang 301</h4>
+              <table class="table text-center">
                 <tbody><tr>
                   <td>
-                    <a href="ruang_rawat_info" type="button" class="btn btn-block btn-default" onclick="a">Bed 1</a>
+                    <div class="small-box bg-white">
+                      <div class="inner">
+                        <h4>VVVIP 1</h4>
+                        <table class="table text-center">
+                          <tbody><tr>
+                            <td>
+                              <a href="ruang_rawat_info" type="button" class="btn btn-block btn-default" onclick="a">Bed</a>
+                            </td>
+                          </th>
+                        </tbody></table>
+                      </div>
+                    </div>
                   </td>
                   <td>
-                    <button type="button" class="btn btn-block btn-default">Bed 2</button>
+                    <div class="small-box bg-white">
+                      <div class="inner">
+                        <h4>VVIP 2</h4>
+                        <table class="table text-center">
+                          <tbody><tr>
+                            <td>
+                              <a href="ruang_rawat_info" type="button" class="btn btn-block btn-default" onclick="a">Bed</a>
+                            </td>
+                          </th>
+                          </tr>
+                        </tbody></table>
+                      </div>
+                    </div>
                   </td>
                   <td>
-                    <button type="button" class="btn btn-block btn-default">Bed 3</button>
+                    <div class="small-box bg-white">
+                      <div class="inner">
+                        <h4>VVIP 3</h4>
+                        <table class="table text-center">
+                          <tbody><tr>
+                            <td>
+                              <a href="ruang_rawat_info" type="button" class="btn btn-block btn-default" onclick="a">Bed</a>
+                            </td>
+                          </th>
+                        </tbody></table>
+                      </div>
+                    </div>
                   </td>
                   <td>
-                    <button type="button" class="btn btn-block btn-default">Bed 4</button>
+                    <div class="small-box bg-white">
+                      <div class="inner">
+                        <h4>VVIP 4</h4>
+                        <table class="table text-center">
+                          <tbody><tr>
+                            <td>
+                              <a href="ruang_rawat_info" type="button" class="btn btn-block btn-default" onclick="a">Bed</a>
+                            </td>
+                          </th>
+                          </tr>
+                        </tbody></table>
+                      </div>
+                    </div>
                   </td>
-                </th>
-                </tr>
-                <tr>
-                  <td>
-                    <button type="button" class="btn btn-block btn-default">Bed 5</button>
-                  </td>
-                  <td>
-                    <button type="button" class="btn btn-block btn-default">Bed 6</button>
-                  </td>
-                  <td>
-                    <button type="button" class="btn btn-block btn-default">Bed 7</button>
-                  </td>
-                  <td>
-                    <button type="button" class="btn btn-block btn-default">Bed 8</button>
-                  </td>
-                </th>
+                  </tr>
+                  </th>
                 </tr>
               </tbody></table>
             </div>
           </div>
         </div>
-        <div class="col-md-6 col-xs-6">
+        <div class="col-md-12 col-xs-12">
           <div class="small-box bg-white">
             <div class="inner">
-              <h4>Ruang Melati</h4>
-              <table class="table table-bordered text-center">
+              <h4>Ruang 302</h4>
+              <table class="table text-center">
                 <tbody><tr>
                   <td>
-                    <button type="button" class="btn btn-block btn-default">Bed 1</button>
+                    <div class="small-box bg-white">
+                      <div class="inner">
+                        <h4>VVIP 1</h4>
+                        <table class="table text-center">
+                          <tbody><tr>
+                            <td>
+                              <a href="ruang_rawat_info" type="button" class="btn btn-block btn-default" onclick="a">Bed</a>
+                            </td>
+                          </th>
+                        </tbody></table>
+                      </div>
+                    </div>
                   </td>
                   <td>
-                    <button type="button" class="btn btn-block btn-default">Bed 2</button>
+                    <div class="small-box bg-white">
+                      <div class="inner">
+                        <h4>VVIP 2</h4>
+                        <table class="table text-center">
+                          <tbody><tr>
+                            <td>
+                              <a href="ruang_rawat_info" type="button" class="btn btn-block btn-default" onclick="a">Bed</a>
+                            </td>
+                          </th>
+                          </tr>
+                        </tbody></table>
+                      </div>
+                    </div>
                   </td>
                   <td>
-                    <button type="button" class="btn btn-block btn-default">Bed 3</button>
+                    <div class="small-box bg-white">
+                      <div class="inner">
+                        <h4>VVIP 3</h4>
+                        <table class="table text-center">
+                          <tbody><tr>
+                            <td>
+                              <a href="ruang_rawat_info" type="button" class="btn btn-block btn-default" onclick="a">Bed</a>
+                            </td>
+                          </th>
+                        </tbody></table>
+                      </div>
+                    </div>
                   </td>
                   <td>
-                    <button type="button" class="btn btn-block btn-default">Bed 4</button>
+                    <div class="small-box bg-white">
+                      <div class="inner">
+                        <h4>VVIP 4</h4>
+                        <table class="table text-center">
+                          <tbody><tr>
+                            <td>
+                              <a href="ruang_rawat_info" type="button" class="btn btn-block btn-default" onclick="a">Bed</a>
+                            </td>
+                          </th>
+                          </tr>
+                        </tbody></table>
+                      </div>
+                    </div>
                   </td>
-                </th>
-                </tr>
-                <tr>
-                  <td>
-                    <button type="button" class="btn btn-block btn-default">Bed 5</button>
-                  </td>
-                  <td>
-                    <button type="button" class="btn btn-block btn-default">Bed 6</button>
-                  </td>
-                  <td>
-                    <button type="button" class="btn btn-block btn-default">Bed 7</button>
-                  </td>
-                  <td>
-                    <button type="button" class="btn btn-block btn-default">Bed 8</button>
-                  </td>
-                </th>
+                  </tr>
+                  </th>
                 </tr>
               </tbody></table>
             </div>
           </div>
         </div>
-        <div class="col-md-6 col-xs-6">
+        <div class="col-md-12 col-xs-12">
           <div class="small-box bg-white">
             <div class="inner">
-              <h4>Ruang Melati</h4>
-              <table class="table table-bordered text-center">
+              <h4>Ruang 303</h4>
+              <table class="table text-center">
                 <tbody><tr>
                   <td>
-                    <button type="button" class="btn btn-block btn-default">Bed 1</button>
+                    <div class="small-box bg-white">
+                      <div class="inner">
+                        <h4>VVIP 1</h4>
+                        <table class="table text-center">
+                          <tbody><tr>
+                            <td>
+                              <a href="ruang_rawat_info" type="button" class="btn btn-block btn-default" onclick="a">Bed</a>
+                            </td>
+                          </th>
+                        </tbody></table>
+                      </div>
+                    </div>
                   </td>
                   <td>
-                    <button type="button" class="btn btn-block btn-default">Bed 2</button>
+                    <div class="small-box bg-white">
+                      <div class="inner">
+                        <h4>VVIP 2</h4>
+                        <table class="table text-center">
+                          <tbody><tr>
+                            <td>
+                              <a href="ruang_rawat_info" type="button" class="btn btn-block btn-default" onclick="a">Bed</a>
+                            </td>
+                          </th>
+                          </tr>
+                        </tbody></table>
+                      </div>
+                    </div>
                   </td>
                   <td>
-                    <button type="button" class="btn btn-block btn-default">Bed 3</button>
+                    <div class="small-box bg-white">
+                      <div class="inner">
+                        <h4>VVIP 3</h4>
+                        <table class="table text-center">
+                          <tbody><tr>
+                            <td>
+                              <a href="ruang_rawat_info" type="button" class="btn btn-block btn-default" onclick="a">Bed</a>
+                            </td>
+                          </th>
+                        </tbody></table>
+                      </div>
+                    </div>
                   </td>
                   <td>
-                    <button type="button" class="btn btn-block btn-default">Bed 4</button>
+                    <div class="small-box bg-white">
+                      <div class="inner">
+                        <h4>VVIP 4</h4>
+                        <table class="table text-center">
+                          <tbody><tr>
+                            <td>
+                              <a href="ruang_rawat_info" type="button" class="btn btn-block btn-default" onclick="a">Bed</a>
+                            </td>
+                          </th>
+                          </tr>
+                        </tbody></table>
+                      </div>
+                    </div>
                   </td>
-                </th>
-                </tr>
-                <tr>
-                  <td>
-                    <button type="button" class="btn btn-block btn-default">Bed 5</button>
-                  </td>
-                  <td>
-                    <button type="button" class="btn btn-block btn-default">Bed 6</button>
-                  </td>
-                  <td>
-                    <button type="button" class="btn btn-block btn-default">Bed 7</button>
-                  </td>
-                  <td>
-                    <button type="button" class="btn btn-block btn-default">Bed 8</button>
-                  </td>
-                </th>
+                  </tr>
+                  </th>
                 </tr>
               </tbody></table>
             </div>
           </div>
         </div>
-    
-        <div class="col-md-6 col-xs-6">
-          <div class="small-box bg-white">
-            <div class="inner">
-              <h4>Ruang Melati</h4>
-              <table class="table table-bordered text-center">
-                <tbody><tr>
-                  <td>
-                    <button type="button" class="btn btn-block btn-default">Bed 1</button>
-                  </td>
-                  <td>
-                    <button type="button" class="btn btn-block btn-default">Bed 2</button>
-                  </td>
-                  <td>
-                    <button type="button" class="btn btn-block btn-default">Bed 3</button>
-                  </td>
-                  <td>
-                    <button type="button" class="btn btn-block btn-default">Bed 4</button>
-                  </td>
-                </th>
-                </tr>
-                <tr>
-                  <td>
-                    <button type="button" class="btn btn-block btn-default">Bed 5</button>
-                  </td>
-                  <td>
-                    <button type="button" class="btn btn-block btn-default">Bed 6</button>
-                  </td>
-                  <td>
-                    <button type="button" class="btn btn-block btn-default">Bed 7</button>
-                  </td>
-                  <td>
-                    <button type="button" class="btn btn-block btn-default">Bed 8</button>
-                  </td>
-                </th>
-                </tr>
-              </tbody></table>
-            </div>
-          </div>
-        </div>
-    
+      
       </div>  
+
     </div>
   </div>
 </div>
