@@ -19,12 +19,16 @@ class Migration_Transaksi extends CI_Migration
                 'type' => 'INT',
                 'constraint' => 11
             ),
-            'dokter_id' => array(
+            'jadwal_id' => array(
                 'type' => 'INT',
                 'constraint' => 11
             ),
             'no_bill' => array(
                 'type' => 'VARCHAR',
+                'constraint' => 20,
+            ),
+            'no_reg' => array(
+                'type' => 'INT',
                 'constraint' => 20,
             ),
             'total_tarif' => array(
@@ -55,7 +59,7 @@ class Migration_Transaksi extends CI_Migration
         $this->dbforge->create_table('transaksi');
         $this->db->query(add_foreign_key('transaksi', 'pasien_id', 'pasien(id)', 'CASCADE', 'CASCADE'));
         $this->db->query(add_foreign_key('transaksi', 'user_id', 'pasien(id)', 'CASCADE', 'CASCADE'));
-        $this->db->query(add_foreign_key('transaksi', 'dokter_id', 'dokter(id)', 'CASCADE', 'CASCADE'));
+        $this->db->query(add_foreign_key('transaksi', 'jadwal_id', 'jadwal_dokter(id)', 'CASCADE', 'CASCADE'));
     }
 
     public function down()

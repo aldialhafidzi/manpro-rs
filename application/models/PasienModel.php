@@ -10,9 +10,16 @@ class PasienModel extends MY_Model
         parent::__construct();
     }
 
-    public function lastRecord(){
+    public function lastRecord()
+    {
         $table = 'pasien';
         $this->db->order_by('id', 'desc');
         return $this->db->get($table)->row();
+    }
+
+    public function post($data)
+    {
+        $table = 'pasien';
+        return $this->db->insert($table, $data);
     }
 }

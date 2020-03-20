@@ -15,11 +15,16 @@ class PasienSeeder extends Seeder
             echo ".";
 
             $data = array(
+                'tipe_id' => $this->faker->randomElement($array = array(1, 2, 3, 4)),
                 'no_mr' => '00 ' . $this->faker->month($max = 'now') . ' ' . $i,
                 'nama' => $this->faker->name,
                 'jenis_kelamin' => $this->faker->randomElement($array = array('P', 'L')),
                 'no_telp' => $this->faker->tollFreePhoneNumber,
-                'alamat' => $this->faker->streetAddress,
+                'kota' => $this->faker->city,
+                'kecamatan' => $this->faker->cityPrefix,
+                'kelurahan' => $this->faker->streetName,
+                'rt' => $this->faker->randomElement($array = array(1, 2, 3, 4)),
+                'rw' => $this->faker->randomElement($array = array(1, 2, 3, 4)),
                 'tanggal_lahir' => $this->faker->date($format = 'Y-m-d'),
                 'created_at' => $this->faker->date($format = 'Y-m-d'),
                 'updated_at' => $this->faker->date($format = 'Y-m-d'),
