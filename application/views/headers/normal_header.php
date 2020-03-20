@@ -14,8 +14,11 @@
     <link rel="stylesheet" href="<?= base_url() ?>public/dist/css/adminlte.css">
     <link rel="stylesheet" href="<?= base_url() ?>public/dist/scss/style-gue.scss">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <link rel="stylesheet" href="<?= base_url() ?>public/plugins/select2/css/select2.min.css">
+    <link rel="stylesheet" href="<?= base_url() ?>public/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+    <link rel="stylesheet" href="<?= base_url() ?>public/plugins/daterangepicker/daterangepicker.css">
 
-    <script src="<?= base_url() ?>public/plugins/jquery/jquery.min.js"></script>
+    <script src="<?= base_url() ?>public/plugins/jquery/jquery.js"></script>
     <script src="<?= base_url() ?>public/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="<?= base_url() ?>public/plugins/datatables/jquery.dataTables.js"></script>
     <script src="<?= base_url() ?>public/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
@@ -23,6 +26,10 @@
     <script src="<?= base_url() ?>public/plugins/chart.js/Chart.min.js"></script>
     <script src="<?= base_url() ?>public/dist/js/demo.js"></script>
     <script src="<?= base_url() ?>public/dist/js/pages/dashboard3.js"></script>
+    <script src="<?= base_url() ?>public/plugins/select2/js/select2.full.min.js"></script>
+    <script src="<?= base_url() ?>public/plugins/moment/moment.min.js"></script>
+    <script src="<?= base_url() ?>public/plugins/daterangepicker/daterangepicker.js"></script>
+    <script src="<?= base_url() ?>public/plugins/jquery-validation/jquery.validate.min.js"></script>
 </head>
 <!--
 BODY TAG OPTIONS:

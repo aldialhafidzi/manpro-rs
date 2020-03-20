@@ -30,8 +30,8 @@ label:not(.form-check-label):not(.custom-file-label) {
   border-bottom: 0px;
 }
 
-.card-info:not(.card-outline)>.card-header {
-  background: linear-gradient(122deg, rgb(115, 115, 115) -20%, rgb(173, 173, 173) 100%);
+.card-primary:not(.card-outline)>.card-header {
+  background-color: #2293d8;
 }
 
 

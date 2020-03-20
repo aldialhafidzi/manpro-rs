@@ -25,6 +25,8 @@ class Admin extends CI_Controller
         $this->load->model('ObatModel');
         $this->load->model('TindakanModel');
         $this->load->model('RuanganModel');
+        $this->load->model('TipePasienModel');
+        $this->load->model('TransaksiModel');
     }
     public function index()
     {
@@ -132,6 +134,16 @@ class Admin extends CI_Controller
         $data['ruangans'] = $this->RuanganModel->get_all();
         $this->load->view('headers/normal_header', $data);
         $this->load->view('pages/ruangan', $data);
+        $this->load->view('footers/normal_footer');
+    }
+
+    public function transaksi()
+    {
+        $data['title'] = 'MANPRO-RS | List Transaksi';
+        $data['page'] = 'admin-transaksi';
+        $data['transaksis'] = $this->TransaksiModel->with_pasien()->get_all();
+        $this->load->view('headers/normal_header', $data);
+        $this->load->view('pages/transaksi', $data);
         $this->load->view('footers/normal_footer');
     }
 }

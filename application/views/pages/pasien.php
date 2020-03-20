@@ -15,7 +15,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <button class="btn btn-primary btn-sm"> <i class="fas fa-plus"></i> &nbsp; Buat Pasien Baru</button>
+                            <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal_pasien"> <i class="fas fa-plus"></i> &nbsp; Buat Pasien Baru</button>
                             <button class="btn btn-secondary btn-sm"> <i class="fas fa-sync"></i> &nbsp; Refresh</button>
                             <table id="tablePasien" class="table table-bordered">
                                 <thead>
@@ -55,6 +55,27 @@
 
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modal_pasien" tabindex="-1" role="dialog" aria-labelledby="modal_pasienTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Pendaftaran</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row form-group">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
+                <button type="button" class="btn btn-primary">Simpan</button>
             </div>
         </div>
     </div>
