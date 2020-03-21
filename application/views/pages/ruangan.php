@@ -3,7 +3,11 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0 text-dark">List Ruang Rawat</h1>
+        <h5 class="m-0 text-dark" style="background-color: #2090d7;
+    display: inline-block;
+    padding: 1rem;
+    border-radius: 0px 30px 30px 0px;
+    color: #ffff !important;"><i class="fas fa-clinic-medical nav-icon"></i> &nbsp;List Ruangan</h5>
         </div>
       </div>
     </div>
