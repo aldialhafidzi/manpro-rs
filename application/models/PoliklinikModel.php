@@ -1,5 +1,5 @@
 <?php
-class PoliKlinikModel extends MY_Model
+class PoliklinikModel extends MY_Model
 {
     public function __construct()
     {
