@@ -8,6 +8,7 @@ class DokterModel extends MY_Model
         $this->soft_deletes = false;
         $this->has_one['specialization'] = array('SpecializationModel', 'id', 'spec_id');
         $this->has_one['poliklinik'] = array('PoliKlinikModel', 'id', 'poli_id');
+        $this->has_many['rekam_medis'] = array('RekamMedisModel', 'dokter_id', 'id');
         parent::__construct();
     }
 }

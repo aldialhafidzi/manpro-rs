@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Pasien extends CI_Controller
+class Ruangan extends CI_Controller
 {
     public function __construct()
     {
@@ -13,12 +13,12 @@ class Pasien extends CI_Controller
                 redirect('/');
             }
         }
-        $this->load->model('PasienModel');
+        $this->load->model('RuanganModel');
     }
 
     public function all()
     {
-        $data =  $this->PasienModel->get_all();
+        $data =  $this->RuanganModel->get_all();
         if ($data) {
             return $this->output
                 ->set_content_type('application/json')
@@ -39,13 +39,22 @@ class Pasien extends CI_Controller
 
     public function search()
     {
-        $data = $this->PasienModel->or_like(
-            array(
-                'nama' => $this->input->get('search', TRUE),
-                'no_mr' => $this->input->get('search', TRUE)
-            )
-        )->with_tipe_pasien()->get_all();
+        $data = $this->RuanganModel->like(
+            array("nama" => $this->input->get('search', TRUE))
+        )->with_kamar(
+            array('with' => array('bed'))
+        )->get_all();
 
-        echo json_encode((array) $data);
+        $list = array();
+        if ($data) {
+            foreach ($data as $key => $value) {
+                $list[$key]['id']       = $value->id;
+                $list[$key]['text']     = $value->nama;
+                $list[$key]['harga']    = $value->harga;
+                $list[$key]['kelas']    = $value->kelas;
+                $list[$key]['status']   = $value->status;
+            }
+        }
+        echo json_encode($list);
     }
 }

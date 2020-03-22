@@ -3,11 +3,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-12">
-                    <h5 class="m-0 text-dark" style="background-color: #2090d7;
-    display: inline-block;
-    padding: 1rem;
-    border-radius: 0px 30px 30px 0px;
-    color: #ffff !important;"><i class="fas fa-ambulance nav-icon"></i> &nbsp;Pendaftaran Rawat Jalan</h5>
+                    <h5 class="m-0 text-dark title-primary"><i class="fas fa-ambulance nav-icon"></i> &nbsp;Pendaftaran Rawat Jalan</h5>
                 </div>
             </div>
         </div>
@@ -20,7 +16,7 @@
                     <div class="col-md-8">
                         <div class="card card-secondary">
                             <div class="card-header">
-                                Data Pasien
+                                <i class="fas fa-user-injured"></i> &nbsp; Data Pasien
                             </div>
                             <div class="card-body">
                                 <div class="form-group row">
@@ -87,8 +83,7 @@
 
                                     <div class="col-12">
                                         <label>Diagnosa Awal</label>
-                                        <select name="diagnosa" class="select-diagnosa form-control form-control-sm">
-                                            <option>-- Pilih Diagnosa --</option>
+                                        <select id="diagnosa_id" name="diagnosa_id" class="select-diagnosa form-control form-control-sm">
                                         </select>
                                     </div>
 
@@ -99,8 +94,8 @@
 
                                     <div class="col-12">
                                         <label>Poliklinik</label>
-                                        <select name="poliklinik" class="select-poliklinik form-control form-control-sm">
-                                            <option>-- Pilih Poliklinik --</option>
+                                        <select required id="poliklinik_id" name="poliklinik_id" class="select-poliklinik form-control form-control-sm">
+
                                         </select>
                                     </div>
 
@@ -109,16 +104,6 @@
                                         </div>
                                     </div>
                                 </div>
-
-
-
-                                <!-- <div class="form-group row">
-                                    <label class="col-3">Dokter</label>
-                                    <select name="dokter" class="select-dokter form-control form-control-sm col-9">
-                                        <option>-- Pilih Dokter --</option>
-                                    </select>
-                                </div> -->
-
                             </div>
                         </div>
 
@@ -212,14 +197,13 @@
 
                         <div class="card card-success">
                             <div class="card-header">
-                                <i class="fas fa-money-bill-alt"></i> &nbsp; Status
+                                <i class="fas fa-money-bill-alt"></i> &nbsp; Status Pembayaran
                             </div>
                             <div class="card-body">
 
                                 <div class="form-group row">
                                     <small for="" class="col-5">Tipe Pasien </small>
-                                    <select name="tipe_pasien" class="select-tipe-pasien form-control form-control-sm col-7">
-                                        <option>-- Pilih Tipe Pasien --</option>
+                                    <select required id="tipe_pasien" name="tipe_pasien" class="select-tipe-pasien form-control form-control-sm col-7">
                                     </select>
                                 </div>
 
@@ -262,12 +246,16 @@
 
         $('.select-gender').select2({
             theme: 'bootstrap4',
-            minimumResultsForSearch: -1
+            minimumResultsForSearch: -1,
+            placeholder: "Pilih Jenis Kelamin",
+            allowClear: true
         });
 
         $('.select-tipe-pasien').select2({
             theme: 'bootstrap4',
             minimumResultsForSearch: -1,
+            placeholder: "Pilih tipe pasien",
+            allowClear: true,
             tags: [],
             ajax: {
                 url: 'http://localhost/manpro-rs/tipepasien/search',
@@ -392,6 +380,8 @@
             tags: [],
             templateResult: formatStateDiagnosa,
             templateSelection: formatRepoSelectionDiagnosa,
+            placeholder: "Pilih diagnosa awal",
+            allowClear: true,
             ajax: {
                 url: 'http://localhost/manpro-rs/penyakit/search',
                 dataType: 'JSON',
@@ -414,6 +404,8 @@
             tags: [],
             templateResult: formatState,
             templateSelection: formatRepoSelection,
+            placeholder: "Pilih Poliklinik",
+            allowClear: true,
             ajax: {
                 url: 'http://localhost/manpro-rs/poliklinik/search',
                 dataType: 'JSON',
@@ -433,49 +425,55 @@
 
         $("#form_rawat_jalan").submit(function(e) {
             e.preventDefault();
+            $(".app").loading();
             $.ajax({
                 url: 'http://localhost/manpro-rs/pendaftaran/rajal',
                 type: 'POST',
                 data: $("#form_rawat_jalan").serialize(),
                 success: function(data) {
-                    toastr.success("Pasien berhasil didaftarkan");
+                    $(".app").loading('stop');
+                    toastr.options = {
+                        "closeButton": false,
+                        "debug": false,
+                        "newestOnTop": false,
+                        "progressBar": true,
+                        "positionClass": "toast-bottom-right",
+                        "preventDuplicates": false,
+                        "onclick": null,
+                        "showDuration": "300",
+                        "hideDuration": "1000",
+                        "timeOut": "5000",
+                        "extendedTimeOut": "1000",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                    }
+                    toastr.success("Pasien rawat jalan berhasil didaftarkan");
+
                     $('#form_rawat_jalan').trigger("reset");
                     $('#selected-poliklinik').html('');
+                    $('#selected-diagnosa').html('');
                     $('#no_mr').val(data.next_transaction.nextMR);
                     $('#no_bill').val(data.next_transaction.nextBill);
                     $('#no_reg').val(data.next_transaction.nextReg);
                     $('#tanggal_transaksi').val(data.next_transaction.tanggal);
+                    $('#poliklinik_id').empty();
+                    $('#tipe_pasien').empty();
+                    $("#diagnosa_id").empty();
 
                     var a = document.createElement("a");
+                    a.setAttribute('target', '_blank');
                     a.href = data.download_url;
                     a.click();
                     removeChild(link);
                     delete link;
                 },
                 error: function(err) {
+                    $(".app").loading('stop');
                     toastr.error("Oops! Pasien gagal didaftarkan");
                 }
             });
         });
-
-        // $('.select-dokter').select2({
-        //     theme: 'bootstrap4',
-        //     tags: [],
-        //     ajax: {
-        //         url: 'http://localhost/manpro-rs/dokter/search',
-        //         dataType: 'JSON',
-        //         method: 'GET',
-        //         data: function(params) {
-        //             return {
-        //                 search: params.term
-        //             }
-        //         },
-        //         processResults: function(data, page) {
-        //             return {
-        //                 results: data
-        //             };
-        //         }
-        //     }
-        // });
     });
 </script>

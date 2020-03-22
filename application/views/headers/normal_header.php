@@ -30,6 +30,7 @@
     <script src="<?= base_url() ?>public/plugins/moment/moment.min.js"></script>
     <script src="<?= base_url() ?>public/plugins/daterangepicker/daterangepicker.js"></script>
     <script src="<?= base_url() ?>public/plugins/jquery-validation/jquery.validate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-easy-loading@2.0.0-rc.2/dist/jquery.loading.min.js"></script>
 </head>
 <!--
 BODY TAG OPTIONS:
@@ -42,7 +43,7 @@ to get the desired effect
 |---------------------------------------------------------|
 -->
 
-<body class="hold-transition sidebar-mini">
+<body class="hold-transition sidebar-mini app">
     <div class="wrapper">
 
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -178,7 +179,7 @@ to get the desired effect
                             </a>
                         </li>
                         <li class="nav-header">SHORTCUT</li>
-                        <li class="nav-item has-treeview menu-open">
+                        <li class="nav-item has-treeview <?= ($page == 'rawat_jalan' || $page == 'rawat_inap') ? 'menu-open' : '' ?>">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon far fa-plus-square"></i>
                                 <p>
@@ -203,7 +204,7 @@ to get the desired effect
                         </li>
 
                         <!-- <li class="nav-header">REKAM MEDIS</li> -->
-                        <li class="nav-item has-treeview <?= ($page == 'rekam_medis_jalan' || $page == 'rekam_medis_inap') ? 'menu-open' : '' ?>">
+                        <li class="nav-item has-treeview <?= ($page == 'rekam-jalan' || $page == 'rekam-inap') ? 'menu-open' : '' ?>">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-notes-medical"></i>
                                 <p>
@@ -213,15 +214,15 @@ to get the desired effect
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="<?= base_url() ?>admin/rekam-medis/rawat-jalan" class="nav-link <?= ($page == 'rekam-medis') ? 'active' : '' ?>">
+                                    <a href="<?= base_url() ?>rekam-medis/rawat-jalan" class="nav-link <?= ($page == 'rekam-jalan') ? 'active' : '' ?>">
                                         <i class="fas fa-user-injured nav-icon"></i>
-                                        <p>List Diagnosa Rajal</p>
+                                        <p>Rekam Jalan</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="<?= base_url() ?>admin/rekam-medis/rawat-inap" class="nav-link <?= ($page == 'rawat-inap') ? 'active' : '' ?>">
-                                        <i class="fas fa-book-medical nav-icon"></i>
-                                        <p>List Diagnosa Ranap</p>
+                                    <a href="<?= base_url() ?>rekam-medis/rawat-inap" class="nav-link <?= ($page == 'rekam-inap') ? 'active' : '' ?>">
+                                        <i class="fas fa-procedures nav-icon"></i>
+                                        <p>Rekam Inap</p>
                                     </a>
                                 </li>
                             </ul>
@@ -230,13 +231,28 @@ to get the desired effect
 
                         <li class="nav-header">Master</li>
 
-                        <li class="nav-item">
-                            <a href="<?= base_url() ?>admin/transaksi" class="nav-link <?= ($page == 'admin-transaksi') ? 'active' : '' ?>">
+                        <li class="nav-item has-treeview <?= ($page == 'transaksi-jalan' || $page == 'transaksi-inap') ? 'menu-open' : '' ?>">
+                            <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-money-bill"></i>
                                 <p>
                                     Transaksi
+                                    <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="<?= base_url() ?>transaksi/rawat-jalan" class="nav-link <?= ($page == 'transaksi-jalan') ? 'active' : '' ?>">
+                                        <i class="fas fa-user-injured nav-icon"></i>
+                                        <p>Transaksi Jalan</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="<?= base_url() ?>transaksi/rawat-inap" class="nav-link <?= ($page == 'transaksi-inap') ? 'active' : '' ?>">
+                                        <i class="fas fa-book-medical nav-icon"></i>
+                                        <p>Transaksi Inap</p>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
 
                         <li class="nav-item">

@@ -1,6 +1,6 @@
 <?php
 
-class Migration_Transaksi extends CI_Migration
+class Migration_Rekam_Medis extends CI_Migration
 {
 
     public function up()
@@ -13,31 +13,19 @@ class Migration_Transaksi extends CI_Migration
             ),
             'pasien_id' => array(
                 'type' => 'INT',
-                'constraint' => 11
+                'constraint' => 11,
             ),
-            'user_id' => array(
+            'penyakit_id' => array(
                 'type' => 'INT',
-                'constraint' => 11
+                'constraint' => 11,
+                'null' => TRUE,
             ),
-            'no_bill' => array(
-                'type' => 'VARCHAR',
-                'constraint' => 20,
-            ),
-            'no_reg' => array(
-                'type' => 'INT',
-                'constraint' => 20,
-            ),
-            'total_tarif' => array(
+            'dokter_id' => array(
                 'type' => 'INT',
                 'constraint' => 11,
                 'null' => TRUE,
             ),
             'jenis_rawat' => array(
-                'type' => 'VARCHAR',
-                'constraint' => 15,
-                'null' => TRUE,
-            ),
-            'status' => array(
                 'type' => 'VARCHAR',
                 'constraint' => 20,
                 'null' => TRUE,
@@ -52,13 +40,14 @@ class Migration_Transaksi extends CI_Migration
             )
         ));
         $this->dbforge->add_key('id', TRUE);
-        $this->dbforge->create_table('transaksi');
-        $this->db->query(add_foreign_key('transaksi', 'pasien_id', 'pasien(id)', 'CASCADE', 'CASCADE'));
-        $this->db->query(add_foreign_key('transaksi', 'user_id', 'pasien(id)', 'CASCADE', 'CASCADE'));
+        $this->dbforge->create_table('rekam_medis');
+        $this->db->query(add_foreign_key('rekam_medis', 'pasien_id', 'pasien(id)', 'CASCADE', 'CASCADE'));
+        $this->db->query(add_foreign_key('rekam_medis', 'penyakit_id', 'penyakit(id)', 'CASCADE', 'CASCADE'));
+        $this->db->query(add_foreign_key('rekam_medis', 'dokter_id', 'dokter(id)', 'CASCADE', 'CASCADE'));
     }
 
     public function down()
     {
-        $this->dbforge->drop_table('transaksi');
+        $this->dbforge->drop_table('rekam_medis');
     }
 }

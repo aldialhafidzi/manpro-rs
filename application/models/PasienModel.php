@@ -6,7 +6,9 @@ class PasienModel extends MY_Model
         $this->table = 'pasien';
         $this->primary_key = 'id';
         $this->soft_deletes = false;
-        $this->has_many['transaksi'] = 'TransaksiModel';
+        $this->has_many['rekam_medis'] = array('RekamMedisModel', 'pasien_id', 'id');
+        $this->has_many['transaksi'] = array('TransaksiModel', 'pasien_id', 'id');
+        $this->has_one['tipe_pasien'] = array('TipePasienModel', 'id', 'tipe_id');
         parent::__construct();
     }
 
