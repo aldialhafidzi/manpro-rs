@@ -207,7 +207,7 @@ class Pendaftaran extends CI_Controller
     $this->pdf->render();
     $output = $this->pdf->output();
     file_put_contents('public/pdf/bukti-pendaftaran/' . date('Ymd HH mm ss') . $data['tr']->pasien->no_mr . '.pdf', $output);
-    return 'http://localhost/manpro-rs/public/pdf/bukti-pendaftaran/' . date('Ymd HH mm ss') . $data['tr']->pasien->no_mr . '.pdf';
+    return  base_url() . '/public/pdf/bukti-pendaftaran/' . date('Ymd HH mm ss') . $data['tr']->pasien->no_mr . '.pdf';
   }
 
   public function generateBuktiPendaftaranRanap($data)
@@ -335,7 +335,7 @@ class Pendaftaran extends CI_Controller
     $this->pdf->render();
     $output = $this->pdf->output();
     file_put_contents('public/pdf/bukti-pendaftaran/' . date('Ymd HH mm ss') . $data['tr_with_pasien']->pasien->no_mr . '.pdf', $output);
-    return 'http://localhost/manpro-rs/public/pdf/bukti-pendaftaran/' . date('Ymd HH mm ss') . $data['tr_with_pasien']->pasien->no_mr . '.pdf';
+    return base_url() . '/public/pdf/bukti-pendaftaran/' . date('Ymd HH mm ss') . $data['tr_with_pasien']->pasien->no_mr . '.pdf';
   }
 
   public function index()

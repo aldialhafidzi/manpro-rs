@@ -258,7 +258,7 @@
             allowClear: true,
             tags: [],
             ajax: {
-                url: 'http://localhost/manpro-rs/tipepasien/search',
+                url: '<?= base_url() ?>tipepasien/search',
                 dataType: 'JSON',
                 method: 'GET',
                 data: function(params) {
@@ -383,7 +383,7 @@
             placeholder: "Pilih diagnosa awal",
             allowClear: true,
             ajax: {
-                url: 'http://localhost/manpro-rs/penyakit/search',
+                url: '<?= base_url() ?>penyakit/search',
                 dataType: 'JSON',
                 method: 'GET',
                 data: function(params) {
@@ -407,7 +407,7 @@
             placeholder: "Pilih Poliklinik",
             allowClear: true,
             ajax: {
-                url: 'http://localhost/manpro-rs/poliklinik/search',
+                url: '<?= base_url() ?>poliklinik/search',
                 dataType: 'JSON',
                 method: 'GET',
                 data: function(params) {
@@ -427,7 +427,7 @@
             e.preventDefault();
             $(".app").loading();
             $.ajax({
-                url: 'http://localhost/manpro-rs/pendaftaran/rajal',
+                url: '<?= base_url() ?>pendaftaran/rajal',
                 type: 'POST',
                 data: $("#form_rawat_jalan").serialize(),
                 success: function(data) {

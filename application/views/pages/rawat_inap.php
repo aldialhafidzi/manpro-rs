@@ -307,7 +307,7 @@
         $('#select-nomor-rm').html('');
         $('.icon-search').html('<i class="fas fa-spinner fa-spin"></i>');
         $.ajax({
-            url: `http://localhost/manpro-rs/pasien/search?search=${value}`,
+            url: `<?= base_url() ?>pasien/search?search=${value}`,
             type: 'GET',
             dataType: 'JSON',
             success: function(data) {
@@ -470,7 +470,7 @@
             allowClear: true,
             tags: [],
             ajax: {
-                url: 'http://localhost/manpro-rs/tipepasien/search',
+                url: '<?= base_url() ?>tipepasien/search',
                 dataType: 'JSON',
                 method: 'GET',
                 data: function(params) {
@@ -495,7 +495,7 @@
             placeholder: "Pilih Diagnosa",
             allowClear: true,
             ajax: {
-                url: 'http://localhost/manpro-rs/penyakit/search',
+                url: '<?= base_url() ?>penyakit/search',
                 dataType: 'JSON',
                 method: 'GET',
                 data: function(params) {
@@ -524,7 +524,7 @@
             placeholder: "Pilih Kamar",
             allowClear: true,
             ajax: {
-                url: 'http://localhost/manpro-rs/bed/search',
+                url: '<?= base_url() ?>bed/search',
                 dataType: 'JSON',
                 method: 'GET',
                 data: function(params) {
@@ -546,7 +546,7 @@
             templateResult: formatStateDiagnosa,
             templateSelection: formatRepoSelectionDiagnosa,
             ajax: {
-                url: 'http://localhost/manpro-rs/pasien/search',
+                url: '<?= base_url() ?>pasien/search',
                 dataType: 'JSON',
                 method: 'GET',
                 data: function(params) {
@@ -574,7 +574,7 @@
             }
 
             $.ajax({
-                url: 'http://localhost/manpro-rs/pendaftaran/ranap',
+                url: '<?= base_url() ?>pendaftaran/ranap',
                 type: 'POST',
                 data: data,
                 success: function(data) {

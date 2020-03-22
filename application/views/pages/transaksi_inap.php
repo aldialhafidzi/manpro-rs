@@ -59,7 +59,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <form action="http://localhost/manpro-rs/rekam-medis/delete" method="POST">
+                <form action="<?= base_url() ?>rekam-medis/delete" method="POST">
                     <input type="hidden" id="delete_id" name="delete_id">
                     <button type="submit" class="btn">Konfirmasi</button>
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Kembali</button>
@@ -144,7 +144,7 @@
     function showRekamMedisByPasienID(id) {
         $(".app").loading();
         $.ajax({
-            url: 'http://localhost/manpro-rs/transaksi/find',
+            url: '<?= base_url() ?>transaksi/find',
             type: 'GET',
             dataType: 'JSON',
             data: {
@@ -198,7 +198,7 @@
         "serverSide": true,
         "order": [],
         "ajax": {
-            "url": 'http://localhost/manpro-rs/transaksi/transaksi-inap-all',
+            "url": '<?= base_url() ?>transaksi/transaksi-inap-all',
             "type": "POST",
         },
     });

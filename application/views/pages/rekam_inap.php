@@ -45,7 +45,7 @@
 <div class="modal fade" id="modal_add" tabindex="-1" role="dialog" aria-labelledby="modal_addTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-            <form action="http://localhost/manpro-rs/rekam-medis/add-inap" method="POST">
+            <form action="<?= base_url() ?>rekam-medis/add-inap" method="POST">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLongTitle">Tambah Rekam Medis</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -86,7 +86,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <form action="http://localhost/manpro-rs/rekam-medis/delete" method="POST">
+                <form action="<?= base_url() ?>rekam-medis/delete" method="POST">
                     <input type="hidden" id="delete_id" name="delete_id">
                     <input type="hidden" id="jenis_rawat" name="jenis_rawat" value="RAWAT-INAP">
                     <button type="submit" class="btn">Konfirmasi</button>
@@ -181,7 +181,7 @@
         $(".app").loading();
         CURRENT_ROW = 0;
         $.ajax({
-            url: 'http://localhost/manpro-rs/rekam-medis/find',
+            url: '<?= base_url() ?>rekam-medis/find',
             type: 'GET',
             dataType: 'JSON',
             data: {
@@ -248,7 +248,7 @@
         "serverSide": true,
         "order": [],
         "ajax": {
-            "url": 'http://localhost/manpro-rs/rekam-medis/rekam-inap-all',
+            "url": '<?= base_url() ?>rekam-medis/rekam-inap-all',
             "type": "POST",
         },
     });
@@ -259,7 +259,7 @@
         placeholder: "Pilih dokter",
         allowClear: true,
         ajax: {
-            url: 'http://localhost/manpro-rs/dokter/search',
+            url: '<?= base_url() ?>dokter/search',
             dataType: 'JSON',
             method: 'GET',
             data: function(params) {
@@ -281,7 +281,7 @@
         placeholder: "Pilih diagnosa",
         allowClear: true,
         ajax: {
-            url: 'http://localhost/manpro-rs/penyakit/search',
+            url: '<?= base_url() ?>penyakit/search',
             dataType: 'JSON',
             method: 'GET',
             data: function(params) {
