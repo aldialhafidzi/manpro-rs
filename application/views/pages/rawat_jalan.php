@@ -21,7 +21,7 @@
                             <div class="card-body">
                                 <div class="form-group row">
                                     <label for="" class="col-sm-12 col-md-3">Nama</label>
-                                    <input id="nama" name="nama" required autocomplete="off" type="text" class="form-control col-sm-12 col-md-9" placeholder="Nama lengkap pasien">
+                                    <input autocomplete="off" id="nama" name="nama" required type="text" class="form-control col-sm-12 col-md-9" placeholder="Nama lengkap pasien">
                                 </div>
                                 <div class="form-group row">
                                     <label for="" class="col-sm-12 col-md-3">Tanggal / Lahir</label>
@@ -45,37 +45,37 @@
                                 <div class="form-group row">
                                     <div class="col-6">
                                         <label for="">NIK</label>
-                                        <input id="nik" name="nik" type="text" class="form-control" placeholder="Nomor KTP pasien">
+                                        <input autocomplete="off" id="nik" name="nik" type="number" class="form-control" placeholder="Nomor KTP pasien">
                                     </div>
                                     <div class="col-6">
                                         <label for="">No. Telp/Hp</label>
-                                        <input id="no_telp" name="no_telp" type="text" class="form-control" placeholder="No. Telp/Hp pasien">
+                                        <input autocomplete="off" id="no_telp" name="no_telp" type="number" class="form-control" placeholder="No. Telp/Hp pasien">
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <div class="col-6">
                                         <label for="">Kota</label>
-                                        <input id="kota" name="kota" type="text" class="form-control" placeholder="Kota pasien">
+                                        <input autocomplete="off" id="kota" name="kota" type="text" class="form-control" placeholder="Kota pasien">
                                     </div>
                                     <div class="col-6">
                                         <label for="">Kecamatan</label>
-                                        <input id="kecamatan" name="kecamatan" type="text" class="form-control" placeholder="Kecamatan pasien">
+                                        <input autocomplete="off" id="kecamatan" name="kecamatan" type="text" class="form-control" placeholder="Kecamatan pasien">
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <div class="col-6">
                                         <label for="">Kelurahan</label>
-                                        <input id="kelurahan" name="kelurahan" type="text" class="form-control" placeholder="Kelurahan pasien">
+                                        <input autocomplete="off" id="kelurahan" name="kelurahan" type="text" class="form-control" placeholder="Kelurahan pasien">
                                     </div>
                                     <div class="col-3">
                                         <label for="">RT</label>
-                                        <input id="rt" name="rt" type="text" class="form-control" placeholder="Nomor RT">
+                                        <input autocomplete="off" id="rt" name="rt" type="text" class="form-control" placeholder="Nomor RT">
                                     </div>
                                     <div class="col-3">
                                         <label for="">RW</label>
-                                        <input id="rw" name="rw" type="text" class="form-control" placeholder="Nomor RW">
+                                        <input autocomplete="off" id="rw" name="rw" type="text" class="form-control" placeholder="Nomor RW">
                                     </div>
                                 </div>
 
@@ -126,44 +126,44 @@
                                 <div class="form-group row">
                                     <div class="col-6">
                                         <label for="">NIK</label>
-                                        <input id="nik_pj" name="nik_pj" type="text" class="form-control" placeholder="Nomor KTP penanggung jawab">
+                                        <input autocomplete="off" id="nik_pj" name="nik_pj" type="number" class="form-control" placeholder="Nomor KTP penanggung jawab">
                                     </div>
                                     <div class="col-6">
                                         <label for="">Nama</label>
-                                        <input id="nama_pj" name="nama_pj" type="text" class="form-control" placeholder="Nama lengkap penanggung jawab">
+                                        <input autocomplete="off" id="nama_pj" name="nama_pj" type="text" class="form-control" placeholder="Nama lengkap penanggung jawab">
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <div class="col-6">
                                         <label for="">No. Telp/Hp</label>
-                                        <input id="no_telp_pj" name="no_telp_pj" type="text" class="form-control" placeholder="No. Telp/Hp penanggung jawab">
+                                        <input autocomplete="off" id="no_telp_pj" name="no_telp_pj" type="number" class="form-control" placeholder="No. Telp/Hp penanggung jawab">
                                     </div>
                                     <div class="col-6">
                                         <label for="">Kota</label>
-                                        <input id="kota_pj" name="kota_pj" type="text" class="form-control" placeholder="Kota penanggung jawab">
+                                        <input autocomplete="off" id="kota_pj" name="kota_pj" type="text" class="form-control" placeholder="Kota penanggung jawab">
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <div class="col-6">
                                         <label for="">Kecamatan</label>
-                                        <input id="kecamatan_pj" name="kecamatan_pj" type="text" class="form-control" placeholder="Kecamatan penanggung jawab">
+                                        <input autocomplete="off" id="kecamatan_pj" name="kecamatan_pj" type="text" class="form-control" placeholder="Kecamatan penanggung jawab">
                                     </div>
                                     <div class="col-6">
                                         <label for="">Kelurahan</label>
-                                        <input id="kelurahan_pj" name="kelurahan_pj" type="text" class="form-control" placeholder="Kelurahan penanggung jawab">
+                                        <input autocomplete="off" id="kelurahan_pj" name="kelurahan_pj" type="text" class="form-control" placeholder="Kelurahan penanggung jawab">
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <div class="col-6">
                                         <label for="">RT</label>
-                                        <input id="rt_pj" name="rt_pj" type="text" class="form-control" placeholder="Nomor RT">
+                                        <input autocomplete="off" id="rt_pj" name="rt_pj" type="text" class="form-control" placeholder="Nomor RT">
                                     </div>
                                     <div class="col-6">
                                         <label for="">RW</label>
-                                        <input id="rw_pj" name="rw_pj" type="text" class="form-control" placeholder="Nomor RW">
+                                        <input autocomplete="off" id="rw_pj" name="rw_pj" type="text" class="form-control" placeholder="Nomor RW">
                                     </div>
                                 </div>
                             </div>
