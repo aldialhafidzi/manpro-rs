@@ -226,6 +226,29 @@ to get the desired effect
                             </ul>
                         </li>
 
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fa fa-clinic-medical"></i>
+                                <p>
+                                    Ruangan
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="<?= base_url() ?>ruangrawat/ruangan" class="nav-link <?= ($page == 'ruangan') ? 'active' : '' ?>">
+                                        <i class="fas fa-ambulance nav-icon"></i>
+                                        <p>List Ruangan</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="<?= base_url() ?>ruangrawat/ruang_rawat" class="nav-link <?= ($page == 'ruang_rawat') ? 'active' : '' ?>">
+                                        <i class="fas fa-clinic-medical nav-icon"></i>
+                                        <p>Ruang Rawat</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
 
                         <li class="nav-header">Master</li>
 
@@ -272,30 +295,6 @@ to get the desired effect
                                     Dokter Specialization
                                 </p>
                             </a>
-                        </li>
-
-                        <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon far fa-plus-square"></i>
-                                <p>
-                                    Ruangan
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="<?= base_url() ?>ruangrawat/ruangan" class="nav-link <?= ($page == 'ruangan') ? 'active' : '' ?>">
-                                        <i class="fas fa-ambulance nav-icon"></i>
-                                        <p>List Ruangan</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="<?= base_url() ?>ruangrawat/ruang_rawat" class="nav-link <?= ($page == 'ruang_rawat') ? 'active' : '' ?>">
-                                        <i class="fas fa-clinic-medical nav-icon"></i>
-                                        <p>Ruang Rawat</p>
-                                    </a>
-                                </li>
-                            </ul>
                         </li>
 
                         <li class="nav-item">

@@ -53,7 +53,7 @@
                         <table class="table text-center">
                           <tbody><tr>
                             <td>
-                              <a href="ruang_rawat_info" type="button" class="btn btn-block btn-danger" onclick="a">Bed</a>
+                              <a href="ruang_rawat_info" type="button" class="btn btn-block btn-danger" data-toggle="modal" data-target="#ruang_rawat_info">Bed</a>
                             </td>
                           </th>
                         </tbody></table>
@@ -67,7 +67,7 @@
                         <table class="table text-center">
                           <tbody><tr>
                             <td>
-                              <a href="ruang_rawat_info" type="button" class="btn btn-block btn-danger" onclick="a">Bed</a>
+                              <a href="ruang_rawat_info" type="button" class="btn btn-block btn-danger" data-toggle="modal" data-target="#ruang_rawat_info">Bed</a>
                             </td>
                           </th>
                           </tr>
@@ -82,7 +82,7 @@
                         <table class="table text-center">
                           <tbody><tr>
                             <td>
-                              <a href="ruang_rawat_info" type="button" class="btn btn-block btn-danger" onclick="a">Bed</a>
+                              <a href="ruang_rawat_info" type="button" class="btn btn-block btn-danger" data-toggle="modal" data-target="#ruang_rawat_info">Bed</a>
                             </td>
                           </th>
                         </tbody></table>
@@ -96,7 +96,7 @@
                         <table class="table text-center">
                           <tbody><tr>
                             <td>
-                              <a href="ruang_rawat_info" type="button" class="btn btn-block btn-success" onclick="a">Bed</a>
+                              <a href="ruang_rawat_info" type="button" class="btn btn-block btn-success" data-toggle="modal" data-target="#ruang_rawat_info">Bed</a>
                             </td>
                           </th>
                           </tr>
@@ -124,7 +124,7 @@
                         <table class="table text-center">
                           <tbody><tr>
                             <td>
-                              <a href="ruang_rawat_info" type="button" class="btn btn-block btn-danger" onclick="a">Bed</a>
+                              <a href="ruang_rawat_info" type="button" class="btn btn-block btn-danger" data-toggle="modal" data-target="#ruang_rawat_info">Bed</a>
                             </td>
                           </th>
                         </tbody></table>
@@ -138,7 +138,7 @@
                         <table class="table text-center">
                           <tbody><tr>
                             <td>
-                              <a href="ruang_rawat_info" type="button" class="btn btn-block btn-danger" onclick="a">Bed</a>
+                              <a href="ruang_rawat_info" type="button" class="btn btn-block btn-danger" data-toggle="modal" data-target="#ruang_rawat_info">Bed</a>
                             </td>
                           </th>
                           </tr>
@@ -153,7 +153,7 @@
                         <table class="table text-center">
                           <tbody><tr>
                             <td>
-                              <a href="ruang_rawat_info" type="button" class="btn btn-block btn-success" onclick="a">Bed</a>
+                              <a href="ruang_rawat_info" type="button" class="btn btn-block btn-success" data-toggle="modal" data-target="#ruang_rawat_info">Bed</a>
                             </td>
                           </th>
                         </tbody></table>
@@ -167,7 +167,7 @@
                         <table class="table text-center">
                           <tbody><tr>
                             <td>
-                              <a href="ruang_rawat_info" type="button" class="btn btn-block btn-success" onclick="a">Bed</a>
+                              <a href="ruang_rawat_info" type="button" class="btn btn-block btn-success" data-toggle="modal" data-target="#ruang_rawat_info">Bed</a>
                             </td>
                           </th>
                           </tr>
@@ -195,7 +195,7 @@
                         <table class="table text-center">
                           <tbody><tr>
                             <td>
-                              <a href="ruang_rawat_info" type="button" class="btn btn-block btn-success" onclick="a">Bed</a>
+                              <a href="ruang_rawat_info" type="button" class="btn btn-block btn-success" data-toggle="modal" data-target="#ruang_rawat_info">Bed</a>
                             </td>
                           </th>
                         </tbody></table>
@@ -209,7 +209,7 @@
                         <table class="table text-center">
                           <tbody><tr>
                             <td>
-                              <a href="ruang_rawat_info" type="button" class="btn btn-block btn-danger" onclick="a">Bed</a>
+                              <a href="ruang_rawat_info" type="button" class="btn btn-block btn-danger" data-toggle="modal" data-target="#ruang_rawat_info">Bed</a>
                             </td>
                           </th>
                           </tr>
@@ -224,7 +224,7 @@
                         <table class="table text-center">
                           <tbody><tr>
                             <td>
-                              <a href="ruang_rawat_info" type="button" class="btn btn-block btn-danger" onclick="a">Bed</a>
+                              <a href="ruang_rawat_info" type="button" class="btn btn-block btn-danger" data-toggle="modal" data-target="#ruang_rawat_info">Bed</a>
                             </td>
                           </th>
                         </tbody></table>
@@ -238,7 +238,7 @@
                         <table class="table text-center">
                           <tbody><tr>
                             <td>
-                              <a href="ruang_rawat_info" type="button" class="btn btn-block btn-danger" onclick="a">Bed</a>
+                              <a href="ruang_rawat_info" type="button" class="btn btn-block btn-danger" data-toggle="modal" data-target="#ruang_rawat_info">Bed</a>
                             </td>
                           </th>
                           </tr>
@@ -255,7 +255,77 @@
         </div>
       
       </div>  
+      <div class="modal fade" id="ruang_rawat_info" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+        <div class="modal-dialog" style="max-width: 700px">
+          <div class="modal-content" style="width: 700px">
+          <div class="modal-header">
+            <h3 class="modal-title" id="myModalLabel">Info Ruangan</h3>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+          </div>
+          <form class="form-horizontal">
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-md-4">
+                  
+                 <div class="form-group">
+                    <label class="control-label col-xs-3" >Kode Ruangan</label>
+                    <div class="col-xs-6">
+                      <input name="nama_ruangan" class="form-control" type="text" placeholder="Kode ruangan..." disabled>
+                    </div>
+                  </div>
 
+                  <div class="form-group">
+                    <label class="control-label col-xs-3" >Status Ruangan</label>
+                    <div class="col-xs-6">
+                      <input name="nama_ruangan" class="form-control" type="text" placeholder="Status Ruangan..." disabled>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-8">
+                  <div class="form-group">
+                    <label class="control-label col-xs-3" >No.Medrec</label>
+                    <div class="col-xs-8">
+                      <input name="nama_ruangan" class="form-control" type="text" placeholder="Status Ruangan..." disabled>
+                    </div>
+                  </div>
+              
+                  <div class="form-group">
+                    <label class="control-label col-xs-3" >Nama Pasien</label>
+                    <div class="col-xs-8">
+                      <input name="nama_ruangan" class="form-control" type="text" placeholder="Status Ruangan..." disabled>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="control-label col-xs-3" >Jenis Kelamin</label>
+                    <div class="col-xs-8">
+                      <input name="nama_ruangan" class="form-control" type="text" placeholder="Status Ruangan..." disabled>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="control-label col-xs-3" >No.Telp Pasien</label>
+                    <div class="col-xs-8">
+                      <input name="nama_ruangan" class="form-control" type="text" placeholder="Status Ruangan..." disabled>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="control-label col-xs-3" >Alamat Pasien</label>
+                    <div class="col-xs-8">
+                      <input name="nama_ruangan" class="form-control" type="text" placeholder="Status Ruangan..." disabled>
+                    </div>
+                  </div>
+                </div>
+
+              <div class="modal-footer">
+                <button class="btn btn-info" data-dismiss="modal" aria-hidden="true">Tutup</button>
+            </div>
+          </form>
+        </div>
+            
+      </div>
     </div>
   </div>
 </div>

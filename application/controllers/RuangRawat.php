@@ -13,24 +13,17 @@ class RuangRawat extends CI_Controller
                 redirect('/');
             }
         }
-        
-        $this->load->model('RuanganModel');
+        $this->load->model('RuanganModel', 'ruangan');
         $this->load->model('PasienModel');
-    }
-    public function index()
-    {
-        $data['title'] = 'MANPRO-RS | Ruang Rawat';
-        $data['page'] = 'ruang rawat';
-        $this->load->view('headers/normal_header', $data);
-        $this->load->view('pages/index');
-        $this->load->view('footers/normal_footer');
+        $this->load->model('DokterModel');
+        $this->load->model('UserModel');
     }
 
     public function ruangan()
     {
         $data['title'] = 'MANPRO-RS | List Ruang Rawat';
         $data['page'] = 'ruangan';
-        $data['ruangans'] = $this->RuanganModel->get_all();
+
         $this->load->view('headers/normal_header', $data);
         $this->load->view('pages/ruangan', $data);
         $this->load->view('footers/normal_footer');
@@ -44,21 +37,11 @@ class RuangRawat extends CI_Controller
         $this->load->view('pages/ruang_rawat');
         $this->load->view('footers/normal_footer');
     }
-    
-    public function info_ruang_rawat()
-    {
-        $data['title'] = 'MANPRO-RS | Informasi Ruang Rawat';
-        $data['page'] = 'info_ruang_rawat';
-        $this->load->view('headers/normal_header', $data);
-        $this->load->view('pages/info_ruang_rawat');
-        $this->load->view('footers/normal_footer');
-    }
 
     public function lantai1()
     {
         $data['title'] = 'MANPRO-RS | Ruang Rawat';
         $data['page'] = 'lantai1';
-        $data['ruangans'] = $this->RuanganModel->get_all();
         $this->load->view('headers/normal_header', $data);
         $this->load->view('pages/class_rr/l1');
         $this->load->view('footers/normal_footer');
@@ -82,23 +65,104 @@ class RuangRawat extends CI_Controller
         $this->load->view('footers/normal_footer');
     }
 
-    public function detail_ruangan($kode = null)
+    public function index()
     {
-        $data['title'] = 'MANPRO-RS | Ruang Rawat';
-        $data['page'] = 'lantai3';
-        $data['detail_ruangans'] = $this->RuanganModel->get_kode($kode);
-        $this->load->view('headers/normal_header', $data);
-        $this->load->view('pages/ruangan', $data);
-        $this->load->view('footers/normal_footer');
+      $this->load->helper('url');
+      $this->load->view('pages/ruangan');
     }
 
-    public function edit_ruangan($lookup)
+    public function ajax_list()
     {
-        $data['get_kode'] = $this->RuanganModel->get_kode($lookup);
+      $list = $this->ruangan->get_datatables();
+      $data = array();
+      $no = $_POST['start'];
+      foreach ($list as $ruangan) {
+        $no++;
+        $row = array();
+        $row[] = $no;
+        $row[] = $ruangan->kode;
+        $row[] = $ruangan->kelas;
+        $row[] = $ruangan->nama;
+        $row[] = $ruangan->status;
+        $row[] = $ruangan->harga;
+
+        //add html for action
+        $row[] = '<a class="btn btn-sm btn-primary" href="javascript:void(0)" title="Edit" onclick="edit_ruangan('."'".$ruangan->id."'".')"><i class="fas fa-edit"></i>&nbsp Edit</a>
+            <a class="btn btn-sm btn-danger" href="javascript:void(0)" title="Hapus" onclick="delete_ruangan('."'".$ruangan->id."'".')"><i class="fas fa-trash"></i>&nbsp Delete</a>';
+      
+        $data[] = $row;
+      }
+
+      $output = array(
+              "draw" => $_POST['draw'],
+              "recordsTotal" => $this->ruangan->count_all(),
+              "recordsFiltered" => $this->ruangan->count_filtered(),
+              "data" => $data,
+          );
+      //output to json format
+      echo json_encode($output);
     }
 
-    public function hapus_ruangan($where, $table)
+    public function ajax_list_bed()
     {
+      $list = $this->ruangan->get_datatables();
+      $data = array();
+      $no = $_POST['start'];
+      foreach ($list as $ruangan) {
+        $row = array();
+        $row[] = $ruangan->kode;
+        $row[] = $ruangan->status;
         
+        $data[] = $row;
+      }
+
+      $output = array(
+              "draw" => $_POST['draw'],
+              "recordsTotal" => $this->ruangan->count_all(),
+              "recordsFiltered" => $this->ruangan->count_filtered(),
+              "data" => $data,
+          );
+      //output to json format
+      echo json_encode($output);
     }
+
+
+    public function ajax_edit($id)
+    {
+      $data = $this->ruangan->get_by_id($id);
+      echo json_encode($data);
+    }
+
+    public function ajax_add()
+    {
+      $data = array(
+          'kode' => $this->input->post('kode'),
+          'kelas' => $this->input->post('kelas'),
+          'nama' => $this->input->post('nama'),
+          'status' => $this->input->post('status'),
+          'harga' => $this->input->post('harga'),
+        );
+      $insert = $this->ruangan->save($data);
+      echo json_encode(array("status" => TRUE));
+    }
+
+    public function ajax_update()
+    {
+      $data = array(
+          'kode' => $this->input->post('kode'),
+          'kelas' => $this->input->post('kelas'),
+          'nama' => $this->input->post('nama'),
+          'status' => $this->input->post('status'),
+          'harga' => $this->input->post('harga'),
+        );
+      $this->ruangan->update(array('id' => $this->input->post('id')), $data);
+      echo json_encode(array("status" => TRUE));
+    }
+
+    public function ajax_delete($id)
+    {
+      $this->ruangan->delete_by_id($id);
+      echo json_encode(array("statuss" => TRUE));
+    }
+
 }
