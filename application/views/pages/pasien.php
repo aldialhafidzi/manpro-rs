@@ -24,7 +24,9 @@
                                         <th>No. MR</th>
                                         <th>Nama</th>
                                         <th>No. Telp</th>
-                                        <th>Alamat</th>
+                                        <th>Kecamatan</th>
+                                        <th>Kelurahan</th>
+                                        <th>RT/RW</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -37,7 +39,9 @@
                                                 <td>' . $pasien->no_mr . '</td>
                                                 <td>' . $pasien->nama . '</td>
                                                 <td>' . $pasien->no_telp . '</td>
-                                                <td>' . $pasien->alamat . '</td>
+                                                <td>' . $pasien->kecamatan . '</td>
+                                                <td>' . $pasien->kelurahan . '</td>
+                                                <td class="text-center">' . $pasien->rt . $pasien->rw . '</td>
                                                 <td style="width:160px;text-align:center;">
                                                     <button value="' . $pasien->id . '" class="btn-hapusPasien btn btn-sm btn-danger">
                                                         <i class="far fa-trash-alt"></i> &nbsp; Hapus
