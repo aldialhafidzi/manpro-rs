@@ -345,6 +345,15 @@ to get the desired effect
                             </a>
                         </li>
 
+                        <li class="nav-item">
+                            <a href="<?= base_url() ?>admin/guides" class="nav-link <?= ($page == 'admin-guides') ? 'active' : '' ?>">
+                                <i class="nav-icon fas fa-book"></i>
+                                <p>
+                                    Guides
+                                </p>
+                            </a>
+                        </li>
+
                         <li class="nav-header"></li>
 
                         <li class="nav-item mb-5">

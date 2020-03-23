@@ -146,4 +146,14 @@ class Admin extends CI_Controller
         $this->load->view('pages/transaksi', $data);
         $this->load->view('footers/normal_footer');
     }
+
+    public function guides()
+    {
+        $data['title'] = 'MANPRO-RS | Guides';
+        $data['page'] = 'admin-guides';
+
+        $this->load->view('headers/normal_header', $data);
+        $this->load->view('pages/guides', $data);
+        $this->load->view('footers/normal_footer');
+    }
 }
