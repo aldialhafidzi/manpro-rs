@@ -179,29 +179,33 @@ to get the desired effect
                             </a>
                         </li>
                         <li class="nav-header">SHORTCUT</li>
-                        <li class="nav-item has-treeview <?= ($page == 'rawat_jalan' || $page == 'rawat_inap') ? 'menu-open' : '' ?>">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon far fa-plus-square"></i>
-                                <p>
-                                    Pendaftaran
-                                    <i class="right fas fa-angle-left"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="<?= base_url() ?>pendaftaran/rawat-jalan" class="nav-link <?= ($page == 'rawat_jalan') ? 'active' : '' ?>">
-                                        <i class="fas fa-ambulance nav-icon"></i>
-                                        <p>Rawat Jalan</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="<?= base_url() ?>pendaftaran/rawat-inap" class="nav-link <?= ($page == 'rawat_inap') ? 'active' : '' ?>">
-                                        <i class="fas fa-clinic-medical nav-icon"></i>
-                                        <p>Rawat Inap</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
+                        <?php if ($this->session->userdata('role_id') == '1' || $this->session->userdata('role_id') == '2' ) { ?>
+                            <li class="nav-item has-treeview <?= ($page == 'rawat_jalan' || $page == 'rawat_inap') ? 'menu-open' : '' ?>">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon far fa-plus-square"></i>
+                                    <p>
+                                        Pendaftaran
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="<?= base_url() ?>pendaftaran/rawat-jalan" class="nav-link <?= ($page == 'rawat_jalan') ? 'active' : '' ?>">
+                                            <i class="fas fa-ambulance nav-icon"></i>
+                                            <p>Rawat Jalan</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="<?= base_url() ?>pendaftaran/rawat-inap" class="nav-link <?= ($page == 'rawat_inap') ? 'active' : '' ?>">
+                                            <i class="fas fa-clinic-medical nav-icon"></i>
+                                            <p>Rawat Inap</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        <?php } ?>
+
+
 
                         <!-- <li class="nav-header">REKAM MEDIS</li> -->
                         <li class="nav-item has-treeview <?= ($page == 'rekam-jalan' || $page == 'rekam-inap') ? 'menu-open' : '' ?>">
@@ -255,95 +259,97 @@ to get the desired effect
                             </ul>
                         </li>
 
-                        <li class="nav-item">
-                            <a href="<?= base_url() ?>admin/poliklinik" class="nav-link <?= ($page == 'admin-poliklinik') ? 'active' : '' ?>">
-                                <i class="nav-icon fas fa-clinic-medical"></i>
-                                <p>
-                                    Poliklinik
-                                </p>
-                            </a>
-                        </li>
+                        <?php if ($this->session->userdata('role_id') == '1') { ?>
+                            <li class="nav-item">
+                                <a href="<?= base_url() ?>admin/poliklinik" class="nav-link <?= ($page == 'admin-poliklinik') ? 'active' : '' ?>">
+                                    <i class="nav-icon fas fa-clinic-medical"></i>
+                                    <p>
+                                        Poliklinik
+                                    </p>
+                                </a>
+                            </li>
 
-                        <li class="nav-item">
-                            <a href="<?= base_url() ?>admin/dokter" class="nav-link <?= ($page == 'admin-dokter') ? 'active' : '' ?>">
-                                <i class="nav-icon fas fa-user-nurse"></i>
-                                <p>
-                                    Dokter
-                                </p>
-                            </a>
-                        </li>
+                            <li class="nav-item">
+                                <a href="<?= base_url() ?>admin/dokter" class="nav-link <?= ($page == 'admin-dokter') ? 'active' : '' ?>">
+                                    <i class="nav-icon fas fa-user-nurse"></i>
+                                    <p>
+                                        Dokter
+                                    </p>
+                                </a>
+                            </li>
 
-                        <li class="nav-item">
-                            <a href="<?= base_url() ?>admin/pasien" class="nav-link <?= ($page == 'admin-pasien') ? 'active' : '' ?>">
-                                <i class="nav-icon fas fa-users"></i>
-                                <p>
-                                    Pasien
-                                </p>
-                            </a>
-                        </li>
+                            <li class="nav-item">
+                                <a href="<?= base_url() ?>admin/pasien" class="nav-link <?= ($page == 'admin-pasien') ? 'active' : '' ?>">
+                                    <i class="nav-icon fas fa-users"></i>
+                                    <p>
+                                        Pasien
+                                    </p>
+                                </a>
+                            </li>
 
-                        <li class="nav-item">
-                            <a href="<?= base_url() ?>admin/specialization" class="nav-link <?= ($page == 'admin-specialization') ? 'active' : '' ?>">
-                                <i class="nav-icon fas fa-user-tag"></i>
-                                <p>
-                                    Dokter Specialization
-                                </p>
-                            </a>
-                        </li>
+                            <li class="nav-item">
+                                <a href="<?= base_url() ?>admin/specialization" class="nav-link <?= ($page == 'admin-specialization') ? 'active' : '' ?>">
+                                    <i class="nav-icon fas fa-user-tag"></i>
+                                    <p>
+                                        Dokter Specialization
+                                    </p>
+                                </a>
+                            </li>
 
-                        <li class="nav-item">
-                            <a href="<?= base_url() ?>admin/ruangan" class="nav-link <?= ($page == 'admin-ruangan') ? 'active' : '' ?>">
-                                <i class="nav-icon fas fa-hospital-alt"></i>
-                                <p>
-                                    Ruangan
-                                </p>
-                            </a>
-                        </li>
+                            <li class="nav-item">
+                                <a href="<?= base_url() ?>admin/ruangan" class="nav-link <?= ($page == 'admin-ruangan') ? 'active' : '' ?>">
+                                    <i class="nav-icon fas fa-hospital-alt"></i>
+                                    <p>
+                                        Ruangan
+                                    </p>
+                                </a>
+                            </li>
 
-                        <li class="nav-item">
-                            <a href="<?= base_url() ?>admin/tindakan" class="nav-link <?= ($page == 'admin-tindakan') ? 'active' : '' ?>">
-                                <i class="nav-icon fas fa-medkit"></i>
-                                <p>
-                                    Tindakan
-                                </p>
-                            </a>
-                        </li>
+                            <li class="nav-item">
+                                <a href="<?= base_url() ?>admin/tindakan" class="nav-link <?= ($page == 'admin-tindakan') ? 'active' : '' ?>">
+                                    <i class="nav-icon fas fa-medkit"></i>
+                                    <p>
+                                        Tindakan
+                                    </p>
+                                </a>
+                            </li>
 
-                        <li class="nav-item">
-                            <a href="<?= base_url() ?>admin/penyakit" class="nav-link <?= ($page == 'admin-penyakit') ? 'active' : '' ?>">
-                                <i class="nav-icon fas fa-biohazard"></i>
-                                <p>
-                                    Penyakit
-                                </p>
-                            </a>
-                        </li>
+                            <li class="nav-item">
+                                <a href="<?= base_url() ?>admin/penyakit" class="nav-link <?= ($page == 'admin-penyakit') ? 'active' : '' ?>">
+                                    <i class="nav-icon fas fa-biohazard"></i>
+                                    <p>
+                                        Penyakit
+                                    </p>
+                                </a>
+                            </li>
 
-                        <li class="nav-item">
-                            <a href="<?= base_url() ?>admin/obat" class="nav-link <?= ($page == 'admin-obat') ? 'active' : '' ?>">
-                                <i class="nav-icon fas fa-capsules"></i>
-                                <p>
-                                    Obat
-                                </p>
-                            </a>
-                        </li>
+                            <li class="nav-item">
+                                <a href="<?= base_url() ?>admin/obat" class="nav-link <?= ($page == 'admin-obat') ? 'active' : '' ?>">
+                                    <i class="nav-icon fas fa-capsules"></i>
+                                    <p>
+                                        Obat
+                                    </p>
+                                </a>
+                            </li>
 
-                        <li class="nav-item">
-                            <a href="<?= base_url() ?>admin/user" class="nav-link <?= ($page == 'admin-user') ? 'active' : '' ?>">
-                                <i class="nav-icon far fa-user"></i>
-                                <p>
-                                    Users
-                                </p>
-                            </a>
-                        </li>
+                            <li class="nav-item">
+                                <a href="<?= base_url() ?>admin/user" class="nav-link <?= ($page == 'admin-user') ? 'active' : '' ?>">
+                                    <i class="nav-icon far fa-user"></i>
+                                    <p>
+                                        Users
+                                    </p>
+                                </a>
+                            </li>
 
-                        <li class="nav-item">
-                            <a href="<?= base_url() ?>admin/role" class="nav-link <?= ($page == 'admin-role') ? 'active' : '' ?>">
-                                <i class="nav-icon fas fa-users-cog"></i>
-                                <p>
-                                    User Roles
-                                </p>
-                            </a>
-                        </li>
+                            <li class="nav-item">
+                                <a href="<?= base_url() ?>admin/role" class="nav-link <?= ($page == 'admin-role') ? 'active' : '' ?>">
+                                    <i class="nav-icon fas fa-users-cog"></i>
+                                    <p>
+                                        User Roles
+                                    </p>
+                                </a>
+                            </li>
+                        <?php } ?>
 
                         <li class="nav-item">
                             <a href="<?= base_url() ?>admin/guides" class="nav-link <?= ($page == 'admin-guides') ? 'active' : '' ?>">
