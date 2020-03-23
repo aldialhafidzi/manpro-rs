@@ -219,7 +219,7 @@
                                 </div>
 
                                 <div class="form-group row mt-4 d-flex justify-content-center mb-0">
-                                    <button type="button" class="btn btn-default"> <i class="fas fa-sync-alt"></i> &nbsp; Reset</button>
+                                    <button type="button" class="btn btn-default btn-reset-form"> <i class="fas fa-sync-alt"></i> &nbsp; Reset</button>
                                     <button type="submit" class="btn btn-warning ml-1"> <i class="fas fa-save"></i> &nbsp; Simpan</button>
                                 </div>
                             </div>
@@ -421,6 +421,15 @@
                     };
                 }
             }
+        });
+
+        $('.btn-reset-form').click(function() {
+            $('#form_rawat_jalan').trigger("reset");
+            $('#selected-poliklinik').html('');
+            $('#selected-diagnosa').html('');
+            $('#poliklinik_id').empty();
+            $('#tipe_pasien').empty();
+            $("#diagnosa_id").empty();
         });
 
         $("#form_rawat_jalan").submit(function(e) {

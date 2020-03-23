@@ -14,8 +14,8 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-                        <div class="card-body">
-                            <table id="tableRekamJalan" class="table table-bordered">
+                        <div class="card-body table-responsive">
+                            <table id="tableRekamJalan" class="table table-hover text-nowrap table-bordered">
                                 <thead>
                                     <tr>
                                         <th style="width: 10px">#</th>

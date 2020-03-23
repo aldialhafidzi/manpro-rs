@@ -263,7 +263,7 @@
                                 </div>
 
                                 <div class="form-group row mt-4 d-flex justify-content-center mb-0">
-                                    <button type="button" class="btn btn-default"> <i class="fas fa-sync-alt"></i> &nbsp; Reset</button>
+                                    <button type="button" class="btn btn-default btn-reset-form"> <i class="fas fa-sync-alt"></i> &nbsp; Reset</button>
                                     <button type="submit" class="btn btn-warning ml-1"> <i class="fas fa-save"></i> &nbsp; Simpan</button>
                                 </div>
                             </div>
@@ -562,6 +562,16 @@
             }
         });
 
+        $('.btn-reset-form').click(function() {
+            $('#form_rawat_inap').trigger("reset");
+            $('#tipe_pasien').empty();
+            $('#diagnosa_id').empty();
+            $('#bed').empty();
+            $('#selected-diagnosa').html('');
+            $('#selected-kamar').html('');
+            $('#tarif_kamar').val('');
+            $('#text_tarif_kamar').html('Rp. -,');
+        });
 
         $("#form_rawat_inap").submit(function(e) {
             e.preventDefault();
@@ -610,7 +620,7 @@
                     $('#selected-diagnosa').html('');
                     $('#selected-kamar').html('');
                     $('#tarif_kamar').val('');
-                    $('#text_tarif_kamar').html('Rp. -,')
+                    $('#text_tarif_kamar').html('Rp. -,');
 
                     var a = document.createElement("a");
                     a.setAttribute('target', '_blank');

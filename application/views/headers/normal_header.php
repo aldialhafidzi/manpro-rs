@@ -252,7 +252,7 @@ to get the desired effect
                                 </li>
                                 <li class="nav-item">
                                     <a href="<?= base_url() ?>transaksi/rawat-inap" class="nav-link <?= ($page == 'transaksi-inap') ? 'active' : '' ?>">
-                                        <i class="fas fa-book-medical nav-icon"></i>
+                                        <i class="fas fa-procedures nav-icon"></i>
                                         <p>Transaksi Inap</p>
                                     </a>
                                 </li>

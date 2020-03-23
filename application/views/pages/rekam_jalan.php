@@ -14,8 +14,8 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-                        <div class="card-body">
-                            <table id="tableRekamJalan" class="table table-bordered">
+                        <div class="card-body table-responsive">
+                            <table id="tableRekamJalan" class="table table-hover text-nowrap table-bordered">
                                 <thead>
                                     <tr>
                                         <th style="width: 10px">#</th>
@@ -145,21 +145,22 @@
                         <button class="btn btn-sm btn-info btn-add-rekam-medis"> <i class="fas fa-plus"></i> &nbsp; Tambah Rekam Medis </button>
                     </div>
                 </div>
-                <table id="table_rincian_rm" class="table table-bordered mt-3">
-                    <thead>
-                        <tr>
-                            <td>No</td>
-                            <td>Tanggal</td>
-                            <td>Dokter</td>
-                            <td>Rawat</td>
-                            <td>Diagnosa</td>
-                            <td>-</td>
-                        </tr>
-                    </thead>
-                    <tbody id="rincian_rekam_medis">
-
-                    </tbody>
-                </table>
+                <div class="box-body table-responsive no-padding">
+                    <table id="table_rincian_rm" class="table table-bordered mt-3">
+                        <thead>
+                            <tr>
+                                <td>No</td>
+                                <td>Tanggal</td>
+                                <td>Dokter</td>
+                                <td>Rawat</td>
+                                <td>Diagnosa</td>
+                                <td>-</td>
+                            </tr>
+                        </thead>
+                        <tbody id="rincian_rekam_medis">
+                        </tbody>
+                    </table>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>

@@ -14,8 +14,8 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-                        <div class="card-body">
-                            <table id="tableRekaminap" class="table table-bordered">
+                        <div class="card-body table-responsive">
+                            <table id="tableRekaminap" class="table table-hover text-nowrap table-bordered">
                                 <thead>
                                     <tr>
                                         <th style="width: 10px">#</th>
@@ -145,7 +145,7 @@
                         <button class="btn btn-sm btn-info btn-add-rekam-medis"> <i class="fas fa-plus"></i> &nbsp; Tambah Rekam Medis </button>
                     </div>
                 </div>
-                <table id="table_rincian_rm" class="table table-bordered mt-3">
+                <table id="table_rincian_rm" class="table table-bordered mt-3 table-responsive">
                     <thead>
                         <tr>
                             <td>No</td>
