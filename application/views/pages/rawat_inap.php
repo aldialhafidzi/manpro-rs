@@ -5,7 +5,7 @@
                 <div class="col-sm-8">
                     <h5 class="m-0 text-dark title-warning"><i class="fas fa-clinic-medical nav-icon"></i> &nbsp;Pendaftaran Rawat Inap</h5>
                 </div>
-                <div class="col-sm-4 d-flex justify-content-end align-items-center position-relative">
+                <div class="col-sm-4 d-flex justify-content-end align-items-center position-relative mt-3 mt-sm-0">
                     <div class="form-group mb-0" style="width: 100%;">
                         <div class="input-group">
                             <div class="input-group-prepend">
