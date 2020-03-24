@@ -206,8 +206,8 @@ class Pendaftaran extends CI_Controller
     $this->pdf->load_html($html);
     $this->pdf->render();
     $output = $this->pdf->output();
-    file_put_contents('public/pdf/bukti-pendaftaran/' . date('Ymd HH mm ss') . $data['tr']->pasien->no_mr . '.pdf', $output);
-    return  base_url() . '/public/pdf/bukti-pendaftaran/' . date('Ymd HH mm ss') . $data['tr']->pasien->no_mr . '.pdf';
+    file_put_contents('public/pdf/bukti-pendaftaran/' . date('Y-m-d H-m-ss') . $data['tr']->pasien->no_mr . '.pdf', $output);
+    return  base_url() . '/public/pdf/bukti-pendaftaran/' . date('Y-m-d H-m-ss') . $data['tr']->pasien->no_mr . '.pdf';
   }
 
   public function generateBuktiPendaftaranRanap($data)
@@ -334,8 +334,8 @@ class Pendaftaran extends CI_Controller
     $this->pdf->load_html($html);
     $this->pdf->render();
     $output = $this->pdf->output();
-    file_put_contents('public/pdf/bukti-pendaftaran/' . date('Ymd HH mm ss') . $data['tr_with_pasien']->pasien->no_mr . '.pdf', $output);
-    return base_url() . '/public/pdf/bukti-pendaftaran/' . date('Ymd HH mm ss') . $data['tr_with_pasien']->pasien->no_mr . '.pdf';
+    file_put_contents('public/pdf/bukti-pendaftaran/' . date('Y-m-d H-m-ss') . $data['tr_with_pasien']->pasien->no_mr . '.pdf', $output);
+    return base_url() . '/public/pdf/bukti-pendaftaran/' . date('Y-m-d H-m-ss') . $data['tr_with_pasien']->pasien->no_mr . '.pdf';
   }
 
   public function index()
@@ -349,9 +349,10 @@ class Pendaftaran extends CI_Controller
 
   public function rawat_jalan()
   {
-    $data           = $this->nextTransactionRajal();
-    $data['title']  = 'MANPRO-RS | Pendaftaran';
-    $data['page']   = 'rawat_jalan';
+    $data                 = $this->nextTransactionRajal();
+    $data['tipe_pasien']  = $this->TipePasienModel->get_all();
+    $data['title']        = 'MANPRO-RS | Pendaftaran';
+    $data['page']         = 'rawat_jalan';
 
     $this->load->view('headers/normal_header', $data);
     $this->load->view('pages/rawat_jalan');
@@ -360,10 +361,10 @@ class Pendaftaran extends CI_Controller
 
   public function rawat_inap()
   {
-    $data           = $this->nextTransactionRanap();
-    $data['tipe_pasien'] = $this->TipePasienModel->get_all();
-    $data['title']  = 'MANPRO-RS | Pendaftaran';
-    $data['page']   = 'rawat_inap';
+    $data                 = $this->nextTransactionRanap();
+    $data['tipe_pasien']  = $this->TipePasienModel->get_all();
+    $data['title']        = 'MANPRO-RS | Pendaftaran';
+    $data['page']         = 'rawat_inap';
 
     $this->load->view('headers/normal_header', $data);
     $this->load->view('pages/rawat_inap');
@@ -376,7 +377,7 @@ class Pendaftaran extends CI_Controller
     $data['nextMR']     = $this->formatMR('00000');
     $data['lastPasien'] = $this->PasienModel->lastRecord();
     $data['lastPasien'] ? $data['nextMR'] = $this->formatMR($data['lastPasien']->id) : '';
-    $data['dob']        = date_create($this->input->post('tanggal_lahir', TRUE));
+    $data['dob']        = strtotime($this->input->post('tanggal_lahir', TRUE));
 
     // Data ini yang akan dimasukan ke table pasien
     $pasien = array(
@@ -391,7 +392,7 @@ class Pendaftaran extends CI_Controller
       'kelurahan'     => $this->input->post('kelurahan', TRUE),
       'rt'            => $this->input->post('rt', TRUE),
       'rw'            => $this->input->post('rw', TRUE),
-      'tanggal_lahir' => date_format($data['dob'], "Y-m-d"),
+      'tanggal_lahir' => date("Y-m-d", $data['dob']),
       'nik_pj'        => $this->input->post('nik_pj', TRUE),
       'no_telp_pj'    => $this->input->post('no_telp_pj', TRUE),
       'nama_pj'       => $this->input->post('nama_pj', TRUE),
@@ -405,8 +406,17 @@ class Pendaftaran extends CI_Controller
       'updated_at'    => date("Y-m-d"),
     );
 
+    $insert_or_update = NULL;
+
+    if ($this->input->post('pasien_id', TRUE) === '') {
+      $insert_or_update = $this->PasienModel->insert($pasien);
+    } else {
+      $pasien['no_mr']  = $this->input->post('no_mr', TRUE);
+      $insert_or_update = $this->PasienModel->update($pasien, $this->input->post('pasien_id', TRUE));
+    }
+
     // Script ini untuk menyimpan sekaligus mengecek status penyimpanan data pasien
-    if ($this->PasienModel->post($pasien)) {
+    if ($insert_or_update) {
       // Prepare data transaksi setelah berhasil menyimpan data pasien
       $data['lastPasien']     = $this->PasienModel->lastRecord();
       $data['nextBill']       = $this->formatBill('J', '00000');
@@ -475,6 +485,10 @@ class Pendaftaran extends CI_Controller
         );
 
         if ($this->DetailTransaksiModel->insert($data_detail_transaksi)) {
+
+          // Update total tarif transaksi
+          $this->TransaksiModel->update(array('total_tarif' => $this->input->post('tarif_awal', TRUE) + $data['jadwal']->tarif), $transaksi_id);
+          
           // Generate PDF untuk membuat bukti transaksi
           $transaksi['tr']                      = $this->TransaksiModel->with_pasien(array('with' => array('tipe_pasien')))->with_user()->get($transaksi_id);
           $transaksi['tr_with_jadwal_dokter']   = $this->TransaksiModel->with_detail_transaksi(array('with' => array('jadwal_dokter')))->get($transaksi_id);

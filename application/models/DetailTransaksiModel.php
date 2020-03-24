@@ -21,11 +21,11 @@ class DetailTransaksiModel extends MY_Model
     {
         $this->table = 'detail_transaksi';
         $this->db->select(array(
-            'detail_transaksi.id', 'detail_transaksi.created_at as tgl_rekam',
+            'detail_transaksi.id', 'detail_transaksi.created_at as tgl_rekam', 'detail_transaksi.tarif_pendaftaran', 'detail_transaksi.tarif_dokter', 'detail_transaksi.tarif_tindakan', 'detail_transaksi.tarif_kamar',  'transaksi.total_tarif',
             'penyakit.nama as diagnosa',
             'pasien.nama', 'pasien.no_mr', 'pasien.tanggal_lahir', 'pasien.no_telp', 'pasien.kelurahan', 'pasien.rt', 'pasien.rw',
             'dokter.nama as nama_dokter',
-            'transaksi.no_bill', 'transaksi.created_at as tanggal_transaksi', 'transaksi.jenis_rawat'
+            'transaksi.no_bill', 'transaksi.created_at as tanggal_transaksi', 'transaksi.jenis_rawat',
         ));
 
         $this->db->from($this->table);

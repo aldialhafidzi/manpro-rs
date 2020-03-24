@@ -31,16 +31,16 @@ class TransaksiModel extends MY_Model
         $this->table = 'transaksi';
         $this->order_column = array(null, 'pasien.no_mr', 'pasien.nama', 'pasien.no_telp');
         $this->db->select(array(
-            'detail_transaksi.id', 'detail_transaksi.created_at as tgl_rekam',
+            'transaksi.id', 'detail_transaksi.created_at as tgl_rekam',
             'pasien.nama', 'pasien.no_mr', 'pasien.tanggal_lahir', 'pasien.no_telp', 'pasien.kecamatan', 'pasien.kelurahan', 'pasien.rt', 'pasien.rw',
-            'transaksi.no_bill', 'transaksi.created_at as tanggal_transaksi', 'transaksi.jenis_rawat', 'transaksi.pasien_id'
+            'transaksi.no_bill', 'transaksi.created_at as tanggal_transaksi', 'transaksi.jenis_rawat', 'transaksi.pasien_id', 'transaksi.total_tarif',
         ));
 
         $this->db->from($this->table);
         $this->db->join('detail_transaksi', 'detail_transaksi.transaksi_id = transaksi.id');
         $this->db->join('pasien', 'pasien.id = transaksi.pasien_id');
         $this->db->where('transaksi.jenis_rawat', $tipe_rawat);
-        $this->db->group_by('transaksi.pasien_id');
+        $this->db->group_by('transaksi.no_bill');
 
         if (isset($_POST['search']['value']) && $_POST['search']['value'] !== '') {
             $this->db->group_start();
@@ -82,9 +82,9 @@ class TransaksiModel extends MY_Model
         $this->table = 'transaksi';
         $this->order_column = array(null, 'pasien.no_mr', 'pasien.nama', 'pasien.no_telp');
         $this->db->select(array(
-            'detail_transaksi.id', 'detail_transaksi.created_at as tgl_rekam',
+            'transaksi.id', 'detail_transaksi.created_at as tgl_rekam',
             'pasien.nama', 'pasien.no_mr', 'pasien.tanggal_lahir', 'pasien.no_telp', 'pasien.kecamatan', 'pasien.kelurahan', 'pasien.rt', 'pasien.rw',
-            'transaksi.no_bill', 'transaksi.created_at as tanggal_transaksi', 'transaksi.jenis_rawat',
+            'transaksi.no_bill', 'transaksi.created_at as tanggal_transaksi', 'transaksi.jenis_rawat', 'transaksi.total_tarif',
             'transaksi.pasien_id'
         ));
 
@@ -92,7 +92,7 @@ class TransaksiModel extends MY_Model
         $this->db->join('detail_transaksi', 'detail_transaksi.transaksi_id = transaksi.id');
         $this->db->where('transaksi.jenis_rawat', $tipe_rawat);
         $this->db->join('pasien', 'pasien.id = transaksi.pasien_id');
-        $this->db->group_by('transaksi.pasien_id');
+        $this->db->group_by('transaksi.no_bill');
         return $this->db->count_all_results();
     }
 }

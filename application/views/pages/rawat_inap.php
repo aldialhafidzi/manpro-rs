@@ -613,7 +613,7 @@
                     $('#no_reg').val(data.next_transaction.nextReg);
                     $('#tanggal_transaksi').val(data.next_transaction.tanggal);
 
-                    $('#tipe_pasien').empty();
+                    // $('#tipe_pasien').empty();
                     $('#diagnosa_id').empty();
                     $('#bed').empty();
 

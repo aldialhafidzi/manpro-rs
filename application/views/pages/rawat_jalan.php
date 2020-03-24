@@ -2,8 +2,22 @@
     <div class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
-                <div class="col-sm-12">
+                <div class="col-sm-8">
                     <h5 class="m-0 text-dark title-primary"><i class="fas fa-ambulance nav-icon"></i> &nbsp;Pendaftaran Rawat Jalan</h5>
+                </div>
+                <div class="col-sm-4 d-flex justify-content-end align-items-center position-relative mt-3 mt-sm-0">
+                    <div class="form-group mb-0" style="width: 100%;">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text icon-search" style="background-color: #28a745; color:#fff;">
+                                    <i class="fas fa-search"></i>
+                                </span>
+                            </div>
+                            <input id="cari_mr" name="cari_mr" type="text" class="form-control float-right" placeholder="Cari Nomor RM">
+                        </div>
+                    </div>
+
+                    <div id="select-nomor-rm" class="select-nomor-rm"></div>
                 </div>
             </div>
         </div>
@@ -178,7 +192,8 @@
                             <div class="card-body">
                                 <div class="form-group row">
                                     <small for="" class="col-5">No. MR</small>
-                                    <input id="no_mr" name="no_mr" type="text" disabled class="form-control form-control-sm col-7" value="<?= $nextMR ?>">
+                                    <input id="no_mr" name="no_mr" type="text" disabled class="form-control form-control-sm col-7" form="form_rawat_jalan" value="<?= $nextMR ?>">
+                                    <input type="hidden" id="pasien_id" name="pasien_id">
                                 </div>
                                 <div class="form-group row">
                                     <small for="" class="col-5">No. Bill</small>
@@ -204,6 +219,11 @@
                                 <div class="form-group row">
                                     <small for="" class="col-5">Tipe Pasien </small>
                                     <select required id="tipe_pasien" name="tipe_pasien" class="select-tipe-pasien form-control form-control-sm col-7">
+                                        <?php
+                                        foreach ($tipe_pasien as $key => $value) {
+                                            echo '<option value="' . $value->id . '">' . $value->nama . '</option>';
+                                        }
+                                        ?>
                                     </select>
                                 </div>
 
@@ -232,6 +252,170 @@
 </div>
 
 <script>
+    function clickItemNomorRM(id, nama, no_mr, tanggal_lahir, jenis_kelamin, nik, no_telp, kota, kecamatan, kelurahan, rt, rw, tipe_id, nama_pj, hubungan_pj, nik_pj, no_telp_pj, kota_pj, kecamatan_pj, kelurahan_pj, rt_pj, rw_pj) {
+        $('#pasien_id').val(id);
+        $('#nama').val(nama);
+        $('#no_mr').val(no_mr);
+        $('#tanggal_lahir').val(moment(tanggal_lahir).format('DD/MM/YYYY'));
+        $("#jenis_kelamin").select2("val", jenis_kelamin);
+        $('#nik').val(nik);
+        $('#no_telp').val(no_telp);
+        $('#kota').val(kota);
+        $('#kecamatan').val(kecamatan);
+        $('#kelurahan').val(kelurahan);
+        $('#rt').val(rt);
+        $('#rw').val(rw);
+        $("#tipe_pasien").select2("val", tipe_id);
+        $('#nama_pj').val(nama_pj);
+        $("#hub").val(hubungan_pj);
+        $('#nik_pj').val(nik_pj);
+        $('#no_telp_pj').val(no_telp_pj);
+        $('#kota_pj').val(kota_pj);
+        $('#kecamatan_pj').val(kecamatan_pj);
+        $('#kelurahan_pj').val(kelurahan_pj);
+        $('#rt_pj').val(rt_pj);
+        $('#rw_pj').val(rw_pj);
+    }
+
+    function cariNomorRekamMedis() {
+        var value = $('#cari_mr').val();
+        var html = ``;
+        $('#select-nomor-rm').html('');
+        $('.icon-search').html('<i class="fas fa-spinner fa-spin"></i>');
+        $.ajax({
+            url: `<?= base_url() ?>pasien/search?search=${value}`,
+            type: 'GET',
+            dataType: 'JSON',
+            success: function(data) {
+                data.forEach(element => {
+                    $('.icon-search').html('<i class="fas fa-search"></i>');
+                    html = html + `
+                        <div class="item-nomor-rm" onclick="clickItemNomorRM('${element.id}','${element.nama}', '${element.no_mr}', '${element.tanggal_lahir}', '${element.jenis_kelamin}', '${element.nik}', '${element.no_telp}', '${element.kota}', '${element.kecamatan}', '${element.kelurahan}', '${element.rt}', '${element.rw}', '${element.tipe_id}', '${element.nama_pj}', '${element.hubungan_pj}', '${element.nik_pj}', '${element.no_telp_pj}', '${element.kota_pj}', '${element.kecamatan_pj}', '${element.kelurahan_pj}', '${element.rt_pj}', '${element.rw_pj}')">
+                            <div class="row">
+                                <div class="col-12 text-bold" style="font-size: 18px;">
+                                    ${element.nama} - ${element.tipe_pasien.nama}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4">
+                                    <small>${element.no_mr}</small>
+                                </div>
+                                <div class="col-8 text-right font-italic">
+                                    <small>${moment(element.created_at).format('YYYY/MM/D')}</small>
+                                </div>
+                            </div>
+                        </div>
+                        `;
+                });
+                $('#select-nomor-rm').html(html);
+
+                $('.item-nomor-rm').click(function() {
+                    $('#select-nomor-rm').html('');
+                    $('#cari_mr').val('');
+                });
+            },
+            error: function(err) {
+                console.log(err);
+            }
+        });
+    }
+
+    function formatState(state) {
+        if (!state.id) {
+            return state.text;
+        }
+        var $state = $(
+            `<div class="row m-0 p-1">
+                    <div class="col-4"> ${moment(state.jam_awal, "HH:mm:ss").format('HH:mm')}  s/d  ${moment(state.jam_akhir, "HH:mm:ss").format('HH:mm')} </div>
+                    <div class="col-4"> ${state.text} </div>
+                    <div class="col-4"> ${state.dokter.nama} </div>
+                </div>`
+        );
+        return $state;
+    }
+
+    function formatRepoSelection(repo) {
+        if (repo.dokter) {
+            var tag_poli = `
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <td> Poliklinik </td>
+                            <td> Dokter </td>
+                            <td> Jadwal </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td> ${repo.text} </td>
+                            <td> ${repo.dokter.nama} </td>
+                            <td> ${moment(repo.jam_awal, "HH:mm:ss").format('HH:mm')}  s/d  ${moment(repo.jam_akhir, "HH:mm:ss").format('HH:mm')} </td>
+                        </tr>
+                    </tbody>
+                </table>`;
+
+            $('#selected-poliklinik').html(tag_poli);
+
+            var $repo = $(
+                `<span>
+                     ${moment(repo.jam_awal, "HH:mm:ss").format('HH:mm')}  s/d  ${moment(repo.jam_akhir, "HH:mm:ss").format('HH:mm')} -
+                     ${repo.text} -
+                     ${repo.dokter.nama}
+                </span>`
+            );
+            return $repo;
+        }
+        return `${repo.text}`;
+    }
+
+    function formatStateDiagnosa(state) {
+        if (!state.id) {
+            return state.text;
+        }
+        var $state = $(
+            `<div class="row m-0 p-1">
+                    <div class="col-4"> ${state.kode} </div>
+                    <div class="col-4"> ${state.text} </div>
+                    <div class="col-4"> ${state.type} </div>
+                </div>`
+        );
+        return $state;
+    }
+
+    function formatRepoSelectionDiagnosa(repo) {
+        if (repo.kode) {
+            var tag_poli = `
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <td> Kode </td>
+                            <td> Nama Penyakit </td>
+                            <td> Type </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td> ${repo.kode} </td>
+                            <td> ${repo.text} </td>
+                            <td> ${repo.type} </td>
+                        </tr>
+                    </tbody>
+                </table>`;
+
+            $('#selected-diagnosa').html(tag_poli);
+
+            var $repo = $(
+                `<span>
+                     ${repo.kode} -
+                     ${repo.text} -
+                     ${repo.type}
+                </span>`
+            );
+            return $repo;
+        }
+        return `${repo.text}`;
+    }
+
     $(document).ready(function() {
 
         $('#tanggal_lahir').daterangepicker({
@@ -273,107 +457,6 @@
                 }
             }
         });
-
-        $('.select-hubungan-keluarga').select2({
-            theme: 'bootstrap4',
-            minimumResultsForSearch: -1
-        });
-
-        function formatState(state) {
-            if (!state.id) {
-                return state.text;
-            }
-            var $state = $(
-                `<div class="row m-0 p-1">
-                    <div class="col-4"> ${moment(state.jam_awal, "HH:mm:ss").format('HH:mm')}  s/d  ${moment(state.jam_akhir, "HH:mm:ss").format('HH:mm')} </div>
-                    <div class="col-4"> ${state.text} </div>
-                    <div class="col-4"> ${state.dokter.nama} </div>
-                </div>`
-            );
-            return $state;
-        }
-
-        function formatRepoSelection(repo) {
-            if (repo.dokter) {
-                var tag_poli = `
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <td> Poliklinik </td>
-                            <td> Dokter </td>
-                            <td> Jadwal </td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td> ${repo.text} </td>
-                            <td> ${repo.dokter.nama} </td>
-                            <td> ${moment(repo.jam_awal, "HH:mm:ss").format('HH:mm')}  s/d  ${moment(repo.jam_akhir, "HH:mm:ss").format('HH:mm')} </td>
-                        </tr>
-                    </tbody>
-                </table>`;
-
-                $('#selected-poliklinik').html(tag_poli);
-
-                var $repo = $(
-                    `<span>
-                     ${moment(repo.jam_awal, "HH:mm:ss").format('HH:mm')}  s/d  ${moment(repo.jam_akhir, "HH:mm:ss").format('HH:mm')} -
-                     ${repo.text} -
-                     ${repo.dokter.nama}
-                </span>`
-                );
-                return $repo;
-            }
-            return `${repo.text}`;
-        }
-
-        function formatStateDiagnosa(state) {
-            if (!state.id) {
-                return state.text;
-            }
-            var $state = $(
-                `<div class="row m-0 p-1">
-                    <div class="col-4"> ${state.kode} </div>
-                    <div class="col-4"> ${state.text} </div>
-                    <div class="col-4"> ${state.type} </div>
-                </div>`
-            );
-            return $state;
-        }
-
-        function formatRepoSelectionDiagnosa(repo) {
-            if (repo.kode) {
-                var tag_poli = `
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <td> Kode </td>
-                            <td> Nama Penyakit </td>
-                            <td> Type </td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td> ${repo.kode} </td>
-                            <td> ${repo.text} </td>
-                            <td> ${repo.type} </td>
-                        </tr>
-                    </tbody>
-                </table>`;
-
-                $('#selected-diagnosa').html(tag_poli);
-
-                var $repo = $(
-                    `<span>
-                     ${repo.kode} -
-                     ${repo.text} -
-                     ${repo.type}
-                </span>`
-                );
-                return $repo;
-            }
-            return `${repo.text}`;
-        }
 
         $('.select-diagnosa').select2({
             theme: 'bootstrap4',
@@ -435,10 +518,16 @@
         $("#form_rawat_jalan").submit(function(e) {
             e.preventDefault();
             $(".app").loading();
+            var data = $("#form_rawat_jalan").serializeArray();
+            data.push({
+                name: "no_mr",
+                value: $('#no_mr').val()
+            });
             $.ajax({
                 url: '<?= base_url() ?>pendaftaran/rajal',
                 type: 'POST',
-                data: $("#form_rawat_jalan").serialize(),
+                dataType: 'JSON',
+                data: data,
                 success: function(data) {
                     $(".app").loading('stop');
                     toastr.options = {
@@ -468,7 +557,7 @@
                     $('#no_reg').val(data.next_transaction.nextReg);
                     $('#tanggal_transaksi').val(data.next_transaction.tanggal);
                     $('#poliklinik_id').empty();
-                    $('#tipe_pasien').empty();
+                    // $('#tipe_pasien').empty();
                     $("#diagnosa_id").empty();
 
                     var a = document.createElement("a");
@@ -483,6 +572,14 @@
                     toastr.error("Oops! Pasien gagal didaftarkan");
                 }
             });
+        });
+
+        $('#cari_mr').keyup(function() {
+            cariNomorRekamMedis();
+        });
+
+        $('#cari_mr').click(function() {
+            cariNomorRekamMedis();
         });
     });
 </script>

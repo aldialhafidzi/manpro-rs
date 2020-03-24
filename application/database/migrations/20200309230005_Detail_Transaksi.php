@@ -60,6 +60,11 @@ class Migration_Detail_Transaksi extends CI_Migration
                 'constraint' => 11,
                 'null' => TRUE,
             ),
+            'qty_obat' => array(
+                'type' => 'INT',
+                'constraint' => 11,
+                'null' => TRUE,
+            ),
             'tarif_obat' => array(
                 'type' => 'INT',
                 'constraint' => 11,

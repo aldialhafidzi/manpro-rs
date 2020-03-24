@@ -14,7 +14,11 @@ class Transaksi extends CI_Controller
             }
         }
 
+        $this->load->model('DokterModel');
+        $this->load->model('PoliklinikModel');
         $this->load->model('PasienModel');
+        $this->load->model('TipePasienModel');
+        $this->load->model('UserModel');
         $this->load->model('DetailTransaksiModel');
         $this->load->model('TransaksiModel');
     }
@@ -46,15 +50,13 @@ class Transaksi extends CI_Controller
         foreach ($fetch_data as $key => $row) {
             $sub_array = array();
             $sub_array[] = $key + 1;
+            $sub_array[] = $row->no_bill;
             $sub_array[] = $row->no_mr;
             $sub_array[] = $row->nama;
             $sub_array[] = $row->no_telp;
-            $sub_array[] = $row->kecamatan;
-            $sub_array[] = $row->kelurahan;
-            $sub_array[] = $row->rt;
-            $sub_array[] = $row->rw;
+            $sub_array[] = $row->total_tarif;
             $sub_array[] = '
-            <button class="btn btn-sm btn-info" onclick="showRekamMedisByPasienID(' . $row->pasien_id . ');">
+            <button class="btn btn-sm btn-info" onclick="showDetailTransaksiByTransaksiID(' . $row->id . ');">
                     <i class="far fa-eye"></i> &nbsp; Lihat
             </button>';
             $data[] = $sub_array;
@@ -76,15 +78,13 @@ class Transaksi extends CI_Controller
         foreach ($fetch_data as $key => $row) {
             $sub_array = array();
             $sub_array[] = $key + 1;
+            $sub_array[] = $row->no_bill;
             $sub_array[] = $row->no_mr;
             $sub_array[] = $row->nama;
             $sub_array[] = $row->no_telp;
-            $sub_array[] = $row->kecamatan;
-            $sub_array[] = $row->kelurahan;
-            $sub_array[] = $row->rt;
-            $sub_array[] = $row->rw;
+            $sub_array[] = $row->total_tarif;
             $sub_array[] = '
-            <button class="btn btn-sm btn-info" onclick="showRekamMedisByPasienID(' . $row->pasien_id . ');">
+            <button class="btn btn-sm btn-info" onclick="showDetailTransaksiByTransaksiID(' . $row->id . ');">
                     <i class="far fa-eye"></i> &nbsp; Lihat
             </button>';
             $data[] = $sub_array;
@@ -101,8 +101,32 @@ class Transaksi extends CI_Controller
 
     public function find()
     {
-        $data['transaksi'] = $this->DetailTransaksiModel->find($this->input->get('jenis_rawat', TRUE), $this->input->get('pasien_id', TRUE));
-        echo json_encode($data['transaksi']);
+        $data['transaksi'] = $this->TransaksiModel
+            ->with_pasien()
+            ->with_user()
+            ->where('id', $this->input->get('id', TRUE))->get();
+
+        $data['detail_transaksi'] = (array) $this->DetailTransaksiModel
+            ->with_jadwal_dokter()
+            ->with_penyakit()
+            ->with_tindakan()
+            ->with_obat()
+            ->with_ruangan()
+            ->with_kamar()
+            ->with_bed()
+            ->where('transaksi_id', $this->input->get('id', TRUE))->get_all();
+
+        foreach ($data['detail_transaksi'] as $item) {
+
+            if ($item->jadwal_dokter) {
+                $dokter         = $this->DokterModel->get($item->jadwal_dokter->dokter_id);
+                $poliklinik     = $this->PoliklinikModel->get($item->jadwal_dokter->poli_id);
+                $item->jadwal_dokter->dokter        = $dokter;
+                $item->jadwal_dokter->poliklinik    = $poliklinik;
+            }
+        }
+
+        echo json_encode($data);
     }
 
     public function delete()
