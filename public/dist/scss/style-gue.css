@@ -228,3 +228,8 @@ label:not(.form-check-label):not(.custom-file-label) {
 .modal-open-overflow-hide {
   overflow: hidden;
 }
+
+.select2-container {
+  display: block;
+  z-index: 999999;
+}

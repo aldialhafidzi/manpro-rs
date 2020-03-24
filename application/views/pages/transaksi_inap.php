@@ -313,9 +313,13 @@
                 $('#rw').val(data.transaksi.pasien.rw);
                 $('#rt').val(data.transaksi.pasien.rt);
                 $('#status_transaksi').html(`<span class="badge ${data.transaksi.status === 'REGISTERED' ? 'badge-secondary': 'badge-success'}">${data.transaksi.status}</span>`);
+                
                 if (data.transaksi.status === 'PAID') {
                     $('#cetak_transaksi').html('<i class="fas fa-print"></i> &nbsp; Print')
+                } else {
+                    $('#cetak_transaksi').html('<i class="fas fa-print"></i> &nbsp; Cetak Transaksi (Bayar)');
                 }
+
                 var list_ruangan = '';
                 var list_obat = '';
                 var list_tindakan = '';

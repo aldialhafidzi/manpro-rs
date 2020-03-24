@@ -279,6 +279,8 @@
                 $('#transaksi_id').val(data.transaksi.id);
                 if (data.transaksi.status === 'PAID') {
                     $('#cetak_transaksi').html('<i class="fas fa-print"></i> &nbsp; Print')
+                } else {
+                    $('#cetak_transaksi').html('<i class="fas fa-print"></i> &nbsp; Cetak Transaksi (Bayar)');
                 }
 
                 var list_obat = '';
