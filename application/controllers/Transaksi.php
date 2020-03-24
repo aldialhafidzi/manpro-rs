@@ -15,6 +15,7 @@ class Transaksi extends CI_Controller
         }
 
         $this->load->model('DokterModel');
+        $this->load->model('ObatModel');
         $this->load->model('PoliklinikModel');
         $this->load->model('PasienModel');
         $this->load->model('TipePasienModel');
@@ -55,6 +56,7 @@ class Transaksi extends CI_Controller
             $sub_array[] = $row->nama;
             $sub_array[] = $row->no_telp;
             $sub_array[] = $row->total_tarif;
+            $sub_array[] = $row->status;
             $sub_array[] = '
             <button class="btn btn-sm btn-info" onclick="showDetailTransaksiByTransaksiID(' . $row->id . ');">
                     <i class="far fa-eye"></i> &nbsp; Lihat
@@ -83,6 +85,7 @@ class Transaksi extends CI_Controller
             $sub_array[] = $row->nama;
             $sub_array[] = $row->no_telp;
             $sub_array[] = $row->total_tarif;
+            $sub_array[] = $row->status;
             $sub_array[] = '
             <button class="btn btn-sm btn-info" onclick="showDetailTransaksiByTransaksiID(' . $row->id . ');">
                     <i class="far fa-eye"></i> &nbsp; Lihat
@@ -118,7 +121,7 @@ class Transaksi extends CI_Controller
 
         foreach ($data['detail_transaksi'] as $item) {
 
-            if ($item->jadwal_dokter) {
+            if ($item->jadwal_dokter_id) {
                 $dokter         = $this->DokterModel->get($item->jadwal_dokter->dokter_id);
                 $poliklinik     = $this->PoliklinikModel->get($item->jadwal_dokter->poli_id);
                 $item->jadwal_dokter->dokter        = $dokter;
@@ -127,6 +130,43 @@ class Transaksi extends CI_Controller
         }
 
         echo json_encode($data);
+    }
+
+    public function tambah_obat()
+    {
+        $detail_transaksi = $this->DetailTransaksiModel->where('transaksi_id', $this->input->post('transaksi_id', TRUE))->get();
+
+        if ($detail_transaksi) {
+            foreach ($this->input->post('obat_id', TRUE) as $key => $item) {
+                $obat = $this->ObatModel->get($item);
+                $data = array(
+                    'transaksi_id'      => $this->input->post('transaksi_id', TRUE),
+                    'jadwal_dokter_id'  => $detail_transaksi->jadwal_dokter_id,
+                    'penyakit_id'       => $detail_transaksi->penyakit_id,
+                    'tarif_pendaftaran' => $detail_transaksi->tarif_pendaftaran,
+                    'tarif_dokter'      => $detail_transaksi->tarif_dokter,
+                    'obat_id'           => $item,
+                    'qty_obat'          => $this->input->post('qty_obat', TRUE)[$key],
+                    'tarif_obat'        => $obat->harga
+                );
+                $this->DetailTransaksiModel->insert($data);
+            }
+            return $this->output
+                ->set_content_type('application/json')
+                ->set_status_header(200)
+                ->set_output(json_encode(array(
+                    'status'            => '200',
+                    'message'           => 'success',
+                )));
+        }
+
+        return $this->output
+            ->set_content_type('application/json')
+            ->set_status_header(500)
+            ->set_output(json_encode(array(
+                'status'            => '500',
+                'message'           => 'error',
+            )));
     }
 
     public function delete()

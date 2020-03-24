@@ -24,6 +24,7 @@
                                         <th>Nama</th>
                                         <th>No. Telp</th>
                                         <th>Total Tarif</th>
+                                        <th>Status</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -67,6 +68,61 @@
     </div>
 </div>
 
+<div class="modal fade" id="modal_tambah_obat" tabindex="-1" role="dialog" aria-labelledby="modal_tambah_obatTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form id="form_add_obat" action="" method="POST">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Tambah Obat</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="padding: 1rem;">
+                    <table id="table_add_obat" class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <td>No</td>
+                                <td>Nama Obat</td>
+                                <td>Qty</td>
+                                <td>-</td>
+                            </tr>
+                        </thead>
+                        <tbody id="t_body_tambah_obat">
+                            <tr class="number-add-obat-0">
+                                <td class="numbering-add-obat text-center">1</td>
+                                <td class="position-relative">
+                                    <input type="hidden" name="obat_id[]" class="obat-id">
+                                    <input type="text" name="nama_obat[]" autocomplete="off" oninput="show_list_obat(0)" onclick="show_list_obat(0)" class="show-list-obat form-control form-control-sm">
+                                    <div class="select-menu-custom"></div>
+                                </td>
+                                <td style="width:20%;">
+                                    <input type="number" autocomplete="off" name="qty_obat[]" class="qty-obat form-control form-control-sm">
+                                </td>
+                                <td class="text-center" style="width:5%;">
+                                    <button onclick="delete_row_obat(0)" type="button" class="btn btn-sm btn-danger btn-hapus-obat"> <i class="fas fa-times"></i> </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="4" class="text-center">
+                                    <button id="add_row_obat" type="button" class="btn btn-info btn-sm"> <i class="fas fa-plus"></i> Add Row</button>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" id="transaksi_id" name="transaksi_id">
+                    <button type="button" class="btn" data-dismiss="modal">Kembali</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <div class="modal fade" id="modal_rekam_jalan" tabindex="-1" role="dialog" aria-labelledby="modal_rekam_jalanTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
@@ -84,7 +140,7 @@
                                 Status
                             </div>
                             <div class="col-7 pl-0">
-                                <span id="status_transaksi" class="badge badge-info">REGISTERED</span>
+                                <span id="status_transaksi">REGISTERED</span>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -149,7 +205,9 @@
                     </div>
                 </div>
                 <hr>
-                <p class="text-bold">Rincian Biaya</p>
+                <p class="text-bold position-relative">Biaya Obat
+                    <span id="tambah_obat" class="position-absolute text-normal add-items"> <i class="fas fa-plus"></i> Tambah Obat</span>
+                </p>
                 <table id="table_obat" class="table table-sm table-bordered mt-2">
                     <thead>
                         <tr>
@@ -169,17 +227,6 @@
                         </tr>
                     </tfoot>
                 </table>
-                <p class="text-bold">Diagnosa</p>
-                <table id="table_diagnosa" class="table table-sm table-bordered mt-2">
-                    <thead>
-                        <tr>
-                            <td>No</td>
-                            <td>Diagnosa</td>
-                        </tr>
-                    </thead>
-                    <tbody id="t_body_diagnosa">
-                    </tbody>
-                </table>
                 <hr>
                 <div class="row">
                     <div class="col-6"></div>
@@ -190,8 +237,8 @@
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
-                <button disabled type="button" class="btn btn-primary">Simpan</button>
+                <button type="button" class="btn" data-dismiss="modal">Kembali</button>
+                <button id="cetak_transaksi" print type="button" class="btn btn-success"> <i class="fas fa-print"></i> &nbsp; Cetak Transaksi (Bayar)</button>
             </div>
         </div>
     </div>
@@ -228,35 +275,15 @@
                 $('#kelurahan').val(data.transaksi.pasien.kelurahan);
                 $('#rw').val(data.transaksi.pasien.rw);
                 $('#rt').val(data.transaksi.pasien.rt);
-                $('#status_transaksi').html(data.transaksi.status);
+                $('#status_transaksi').html(`<span class="badge ${data.transaksi.status === 'REGISTERED' ? 'badge-secondary': 'badge-success'}">${data.transaksi.status}</span>`);
+                $('#transaksi_id').val(data.transaksi.id);
+                if (data.transaksi.status === 'PAID') {
+                    $('#cetak_transaksi').html('<i class="fas fa-print"></i> &nbsp; Print')
+                }
 
-                var list_diagnosa = '';
                 var list_obat = '';
-
-                var nama_penyakit = '';
-                var qty_diagnosa = 0;
                 var total_obat = 0;
                 data.detail_transaksi.forEach((item, i) => {
-
-                    if (data.detail_transaksi[i + 1]) {
-                        nama_penyakit = item.penyakit.nama;
-                        if (nama_penyakit !== data.detail_transaksi[i + 1].penyakit.nama) {
-                            qty_diagnosa++;
-                            list_diagnosa = list_diagnosa + `
-                                <tr>
-                                    <td class="text-center" width="5%">${qty_diagnosa}</td>
-                                    <td width="40%">${nama_penyakit}</td>
-                                </tr>`;
-                        }
-                    } else {
-                        nama_penyakit = item.penyakit.nama;
-                        qty_diagnosa++;
-                        list_diagnosa = list_diagnosa + `
-                                <tr>
-                                    <td class="text-center" width="5%">${qty_diagnosa}</td>
-                                    <td width="40%">${nama_penyakit}</td>
-                                </tr>`;
-                    }
 
                     if (item.obat) {
                         list_obat = list_obat + `
@@ -272,11 +299,8 @@
                         total_obat = total_obat + item.obat.harga * item.qty_obat;
                     }
 
-
-
                 });
                 list_obat !== '' ? $('#t_body_obat').html(list_obat) : $('#t_body_obat').html(`<tr> <td class="text-center">-</td> <td class="text-center">-</td><td class="text-center">-</td><td class="text-center">-</td></tr>`);
-                list_diagnosa !== '' ? $('#t_body_diagnosa').html(list_diagnosa) : $('#t_body_diagnosa').html(`<tr> <td class="text-center">-</td> <td class="text-center">-</td></tr>`);
 
                 $('#t_body_obat').html(list_obat);
                 $('#nama-poliklinik').val(data.detail_transaksi[0].jadwal_dokter.poliklinik.nama);
@@ -284,7 +308,7 @@
                 $('#tarif-dokter').val(`IDR ${numberWithCommas(data.detail_transaksi[0].tarif_dokter)},-`);
                 $('#tarif-pendaftaran').val(`IDR ${numberWithCommas(data.detail_transaksi[0].tarif_pendaftaran)},-`);
                 $('#total_obat').html(`IDR ${numberWithCommas(total_obat)},-`);
-                $('#total_biaya').html(`IDR ${numberWithCommas(total_obat + parseInt(data.transaksi.total_tarif))},- : TOTAL`);
+                $('#total_biaya').html(`IDR ${numberWithCommas(parseInt(total_obat = total_obat || 0) + parseInt(data.transaksi.total_tarif))},- : TOTAL`);
 
                 $('#modal_rekam_jalan').modal('show');
 
@@ -324,7 +348,138 @@
             "mRender": function(data, type, full) {
                 var formmatedvalue = 'IDR ' + data.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + ',-';
                 return formmatedvalue;
+            },
+        }, {
+            targets: 6,
+            className: 'text-center',
+            "mRender": function(data, type, full) {
+                var span = `<span class="badge ${data === 'REGISTERED'? 'badge-secondary' :'badge-success'}">${data}</span>`;
+                return span;
             }
         }]
+    });
+
+
+    var INIT_NUMBER_OBAT = 0;
+    var SHOW_LIST_OBAT = false;
+
+    function delete_row_obat(row) {
+        INIT_NUMBER_OBAT = INIT_NUMBER_OBAT - 1;
+        $('#t_body_tambah_obat').find('.number-add-obat-' + row).remove();
+        $('.numbering-add-obat').each(function(i) {
+            $(this).html(i + 1);
+            $(this).parent().removeClass();
+            $(this).parent().addClass(`number-add-obat-${i}`);
+            $(this).parent().find('.btn-hapus-obat').attr('onclick', `delete_row_obat(${i})`);
+            $(this).parent().find('.show-list-obat').attr('onclick', `show_list_obat(${i})`);
+            $(this).parent().find('.show-list-obat').attr('oninput', `show_list_obat(${i})`);
+        });
+    }
+
+    function selected_obat(id, nama, row) {
+        $('.number-add-obat-' + row).find('.show-list-obat').val(nama);
+        $('.number-add-obat-' + row).find('.obat-id').val(id);
+        $('.number-add-obat-' + row).find('.qty-obat').val(1);
+        $('.select-menu-custom').hide();
+    }
+
+    $(document).on('click', function(e) {
+        if ($(e.target).closest(".select-menu-custom").length === 0) {
+            if (!SHOW_LIST_OBAT) {
+                $('.select-menu-custom').hide();
+            } else {
+                SHOW_LIST_OBAT = false;
+            }
+        }
+    });
+
+    function show_list_obat(row) {
+        SHOW_LIST_OBAT = true;
+        $('.select-menu-custom').hide();
+        $('.number-add-obat-' + row).find('.select-menu-custom').show();
+        var value = $('.number-add-obat-' + row).find('.show-list-obat').val();
+        $.ajax({
+            url: `<?= base_url() ?>obat/search?search=${value}`,
+            type: 'GET',
+            dataType: 'JSON',
+            success: function(data) {
+                var html = '';
+                data.forEach(element => {
+                    $('.icon-search').html('<i class="fas fa-search"></i>');
+                    html = html + `
+                    <div class="item-menu-custom" onclick="selected_obat('${element.id}', '${element.nama}', '${row}')">
+                        <div class="text-bold">${element.nama}</div>
+                        <div class="row mt-2">
+                            <small class="col-6">Kode : ${element.kode}</small>
+                            <small class="col-6">Harga : IDR ${numberWithCommas(element.harga)}</small>
+                        </div>
+                    </div>`;
+                });
+
+                $('.number-add-obat-' + row).find('.select-menu-custom').html(html);
+            },
+            error: function(err) {
+                console.log(err);
+            }
+        });
+    }
+
+    $('#add_row_obat').click(function() {
+        INIT_NUMBER_OBAT = INIT_NUMBER_OBAT + 1;
+        var html = `
+        <tr class="number-add-obat-${INIT_NUMBER_OBAT}">
+            <td class="numbering-add-obat text-center">${INIT_NUMBER_OBAT + 1}</td>
+            <td class="position-relative">
+                <input type="hidden" name="obat_id[]" class="obat-id">
+                <input type="text" name="nama_obat[]" autocomplete="off" oninput="show_list_obat(${INIT_NUMBER_OBAT})" onclick="show_list_obat(${INIT_NUMBER_OBAT})" class="show-list-obat form-control form-control-sm">
+                <div class="select-menu-custom"></div>
+            </td>
+            <td style="width:20%;">
+                <input type="number" autocomplete="off" name="qty_obat[]" class="qty-obat form-control form-control-sm">
+            </td>
+            <td class="text-center" style="width:5%;">
+                <button type="button" class="btn btn-sm btn-danger btn-hapus-obat" onclick="delete_row_obat(${INIT_NUMBER_OBAT})"> <i class="fas fa-times"></i> </button>
+            </td>
+        </tr>`;
+        $("#table_add_obat > tbody").append(html);
+
+    });
+
+    $('#form_add_obat').submit(function(e) {
+        e.preventDefault();
+        $(".app").loading();
+        $.ajax({
+            url: `<?= base_url() ?>transaksi/tambah_obat`,
+            method: 'POST',
+            data: $('#form_add_obat').serializeArray(),
+            dataType: 'JSON',
+            success: function(data) {
+                showDetailTransaksiByTransaksiID($('#transaksi_id').val());
+                $(".app").loading('stop');
+                $('#modal_tambah_obat').modal('toggle');
+                toastr.success("Obat berhasil ditambahkan");
+            },
+            error: function(err) {
+                toastr.error("Oops! transaksi gagal di update");
+                $(".app").loading('stop');
+            }
+        })
+    });
+
+    $('#tambah_obat').click(function() {
+        $('#modal_rekam_jalan').modal('toggle');
+        $('#modal_tambah_obat').modal('toggle');
+        $('#modal_tambah_obat').addClass('modal-open-important');
+        $('.app').addClass('modal-open-overflow-hide');
+    });
+
+    $("#modal_tambah_obat").on('hide.bs.modal', function() {
+        $('#modal_rekam_jalan').modal('toggle');
+        $('#modal_rekam_jalan').addClass('modal-open-important');
+        $('.app').addClass('modal-open-overflow-hide');
+    });
+
+    $("#modal_rekam_jalan").on('hide.bs.modal', function() {
+        $('.app').removeClass('modal-open-overflow-hide');
     });
 </script>

@@ -34,6 +34,7 @@ class TransaksiModel extends MY_Model
             'transaksi.id', 'detail_transaksi.created_at as tgl_rekam',
             'pasien.nama', 'pasien.no_mr', 'pasien.tanggal_lahir', 'pasien.no_telp', 'pasien.kecamatan', 'pasien.kelurahan', 'pasien.rt', 'pasien.rw',
             'transaksi.no_bill', 'transaksi.created_at as tanggal_transaksi', 'transaksi.jenis_rawat', 'transaksi.pasien_id', 'transaksi.total_tarif',
+            'transaksi.status'
         ));
 
         $this->db->from($this->table);
@@ -85,7 +86,7 @@ class TransaksiModel extends MY_Model
             'transaksi.id', 'detail_transaksi.created_at as tgl_rekam',
             'pasien.nama', 'pasien.no_mr', 'pasien.tanggal_lahir', 'pasien.no_telp', 'pasien.kecamatan', 'pasien.kelurahan', 'pasien.rt', 'pasien.rw',
             'transaksi.no_bill', 'transaksi.created_at as tanggal_transaksi', 'transaksi.jenis_rawat', 'transaksi.total_tarif',
-            'transaksi.pasien_id'
+            'transaksi.pasien_id', 'transaksi.status'
         ));
 
         $this->db->from($this->table);

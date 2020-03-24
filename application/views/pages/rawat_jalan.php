@@ -252,6 +252,8 @@
 </div>
 
 <script>
+    var SHOW_LIST_PASIEN = false;
+
     function clickItemNomorRM(id, nama, no_mr, tanggal_lahir, jenis_kelamin, nik, no_telp, kota, kecamatan, kelurahan, rt, rw, tipe_id, nama_pj, hubungan_pj, nik_pj, no_telp_pj, kota_pj, kecamatan_pj, kelurahan_pj, rt_pj, rw_pj) {
         $('#pasien_id').val(id);
         $('#nama').val(nama);
@@ -278,10 +280,12 @@
     }
 
     function cariNomorRekamMedis() {
+        SHOW_LIST_PASIEN = true;
         var value = $('#cari_mr').val();
         var html = ``;
         $('#select-nomor-rm').html('');
         $('.icon-search').html('<i class="fas fa-spinner fa-spin"></i>');
+        $('.select-nomor-rm').show();
         $.ajax({
             url: `<?= base_url() ?>pasien/search?search=${value}`,
             type: 'GET',
@@ -580,6 +584,16 @@
 
         $('#cari_mr').click(function() {
             cariNomorRekamMedis();
+        });
+
+        $(document).on('click', function(e) {
+            if ($(e.target).closest(".select-nomor-rm").length === 0) {
+                if (!SHOW_LIST_PASIEN) {
+                    $('.select-nomor-rm').hide();
+                } else {
+                    SHOW_LIST_PASIEN = false;
+                }
+            }
         });
     });
 </script>
