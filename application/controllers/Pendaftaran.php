@@ -214,7 +214,7 @@ class Pendaftaran extends CI_Controller
   {
     $this->pdf->setPaper('A4', 'potrait');
 
-    $diagnosa_awal = ``;
+    $diagnosa_awal = '';
     foreach ($data['tr_with_detail_tr_penyakit']->detail_transaksi as $key => $value) {
       $diagnosa_awal = $diagnosa_awal . '
         <tr style="border:1px solid #d6d6d6;">
@@ -224,7 +224,7 @@ class Pendaftaran extends CI_Controller
       ';
     }
 
-    $book_kamar = ``;
+    $book_kamar = '';
     foreach ($data['tr_with_detail_tr_bed']->detail_transaksi as $key => $value) {
       $book_kamar = $book_kamar . '
         <tr style="border:1px solid #d6d6d6;">
