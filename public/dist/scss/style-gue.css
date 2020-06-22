@@ -121,6 +121,10 @@ label:not(.form-check-label):not(.custom-file-label) {
   border-color: unset;
 }
 
+.daterangepicker {
+  z-index: 9999999 !important;
+}
+
 .select-nomor-rm {
   position: absolute;
   max-height: 450px;
@@ -235,6 +239,7 @@ label:not(.form-check-label):not(.custom-file-label) {
 }
 
 @media (min-width: 992px) {
+
   .modal-lg,
   .modal-xl {
     max-width: 1024px !important;
