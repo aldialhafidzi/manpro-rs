@@ -227,6 +227,12 @@
                                     </select>
                                 </div>
 
+
+                                <div class="form-group row">
+                                    <small for="" class="col-5">No. Asuransi</small>
+                                    <input type="text" id="no_asuransi" name="no_asuransi" class="form-control form-control-sm col-7" value="">
+                                </div>
+
                                 <div class="form-group row">
                                     <small for="" class="col-5">Kasir</small>
                                     <input type="text" disabled class="form-control form-control-sm col-7" value="<?= $this->session->userdata('name') ?>">
@@ -254,8 +260,9 @@
 <script>
     var SHOW_LIST_PASIEN = false;
 
-    function clickItemNomorRM(id, nama, no_mr, tanggal_lahir, jenis_kelamin, nik, no_telp, kota, kecamatan, kelurahan, rt, rw, tipe_id, nama_pj, hubungan_pj, nik_pj, no_telp_pj, kota_pj, kecamatan_pj, kelurahan_pj, rt_pj, rw_pj) {
+    function clickItemNomorRM(id, no_asuransi, nama, no_mr, tanggal_lahir, jenis_kelamin, nik, no_telp, kota, kecamatan, kelurahan, rt, rw, tipe_id, nama_pj, hubungan_pj, nik_pj, no_telp_pj, kota_pj, kecamatan_pj, kelurahan_pj, rt_pj, rw_pj) {
         $('#pasien_id').val(id);
+        $('#no_asuransi').val(no_asuransi);
         $('#nama').val(nama);
         $('#no_mr').val(no_mr);
         $('#tanggal_lahir').val(moment(tanggal_lahir).format('DD/MM/YYYY'));
@@ -294,7 +301,7 @@
                 data.forEach(element => {
                     $('.icon-search').html('<i class="fas fa-search"></i>');
                     html = html + `
-                        <div class="item-nomor-rm" onclick="clickItemNomorRM('${element.id}','${element.nama}', '${element.no_mr}', '${element.tanggal_lahir}', '${element.jenis_kelamin}', '${element.nik}', '${element.no_telp}', '${element.kota}', '${element.kecamatan}', '${element.kelurahan}', '${element.rt}', '${element.rw}', '${element.tipe_id}', '${element.nama_pj}', '${element.hubungan_pj}', '${element.nik_pj}', '${element.no_telp_pj}', '${element.kota_pj}', '${element.kecamatan_pj}', '${element.kelurahan_pj}', '${element.rt_pj}', '${element.rw_pj}')">
+                        <div class="item-nomor-rm" onclick="clickItemNomorRM('${element.id}','${element.no_asuransi}','${element.nama}', '${element.no_mr}', '${element.tanggal_lahir}', '${element.jenis_kelamin}', '${element.nik}', '${element.no_telp}', '${element.kota}', '${element.kecamatan}', '${element.kelurahan}', '${element.rt}', '${element.rw}', '${element.tipe_id}', '${element.nama_pj}', '${element.hubungan_pj}', '${element.nik_pj}', '${element.no_telp_pj}', '${element.kota_pj}', '${element.kecamatan_pj}', '${element.kelurahan_pj}', '${element.rt_pj}', '${element.rw_pj}')">
                             <div class="row">
                                 <div class="col-12 text-bold" style="font-size: 18px;">
                                     ${element.nama} - ${element.tipe_pasien.nama}

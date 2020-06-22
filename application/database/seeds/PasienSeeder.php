@@ -16,6 +16,7 @@ class PasienSeeder extends Seeder
 
             $data = array(
                 'tipe_id' => $this->faker->randomElement($array = array(1, 2, 3, 4)),
+                'no_asuransi' => $this->faker->numberBetween($min = 10000000, $max = 99999999),
                 'no_mr' => '00 ' . $this->faker->month($max = 'now') . ' ' . $i,
                 'nama' => $this->faker->name,
                 'jenis_kelamin' => $this->faker->randomElement($array = array('P', 'L')),

@@ -53,12 +53,47 @@
                     </button>
                 </div>
                 <div class="modal-body" style="padding: 1rem;">
-                    <input type="hidden" name="pasien_id" id="pasien_id">
+                    <input type="hidden" name="transaksi_id" id="transaksi_id">
                     <label for="">Dokter</label>
-                    <select name="dokter" id="dokter" class="form-control mb-4"></select>
+                    <select name="jadwal_dokter_id" id="jadwal_dokter" class="form-control mb-4"></select>
 
                     <label for="" class="mt-4">Diagnosa</label>
                     <select name="diagnosa[]" multiple="multiple" id="diagnosa" class="form-control"></select>
+
+                    <label for="" class="mt-4">Tambah Obat</label>
+                    <table id="table_add_obat" class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <td>No</td>
+                                <td>Nama Obat</td>
+                                <td>Qty</td>
+                                <td>-</td>
+                            </tr>
+                        </thead>
+                        <tbody id="t_body_tambah_obat">
+                            <tr class="number-add-obat-0">
+                                <td class="numbering-add-obat text-center">1</td>
+                                <td class="position-relative">
+                                    <input type="hidden" name="obat_id[]" class="obat-id">
+                                    <input type="text" name="nama_obat[]" autocomplete="off" oninput="show_list_obat(0)" onclick="show_list_obat(0)" class="show-list-obat form-control form-control-sm">
+                                    <div class="select-menu-custom"></div>
+                                </td>
+                                <td style="width:20%;">
+                                    <input type="number" autocomplete="off" name="qty_obat[]" class="qty-obat form-control form-control-sm">
+                                </td>
+                                <td class="text-center" style="width:5%;">
+                                    <button onclick="delete_row_obat(0)" type="button" class="btn btn-sm btn-danger btn-hapus-obat"> <i class="fas fa-times"></i> </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="4" class="text-center">
+                                    <button id="add_row_obat" type="button" class="btn btn-info btn-sm"> <i class="fas fa-plus"></i> Tambah Lagi Obat</button>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn" data-dismiss="modal">Kembali</button>
@@ -97,7 +132,7 @@
     </div>
 </div>
 
-<div class="modal fade" id="modal_rekam_jalan" tabindex="-1" role="dialog" aria-labelledby="modal_rekam_jalanTitle" aria-hidden="true">
+<div class="modal fade" id="modal_rekam_jalan" tabindex="-1" role="dialog" aria-labelledby="modal_rekam_jalanTitle" aria-hidden="true" style="overflow-y: auto;">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -140,11 +175,11 @@
 
                     </div>
                 </div>
-                <div class="row">
+                <!-- <div class="row">
                     <div class="col-12">
                         <button class="btn btn-sm btn-info btn-add-rekam-medis"> <i class="fas fa-plus"></i> &nbsp; Tambah Rekam Medis </button>
                     </div>
-                </div>
+                </div> -->
                 <div class="box-body table-responsive no-padding">
                     <table id="table_rincian_rm" class="table table-bordered mt-3">
                         <thead>
@@ -154,7 +189,8 @@
                                 <td>Dokter</td>
                                 <td>Rawat</td>
                                 <td>Diagnosa</td>
-                                <td>-</td>
+                                <td>Obat</td>
+                                <td class="text-center">-</td>
                             </tr>
                         </thead>
                         <tbody id="rincian_rekam_medis">
@@ -164,7 +200,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
-                <button disabled type="button" class="btn btn-primary">Simpan</button>
+                <!-- <button disabled type="button" class="btn btn-primary">Simpan</button> -->
             </div>
         </div>
     </div>
@@ -172,6 +208,10 @@
 
 <script>
     var CURRENT_ROW = 0;
+
+    function numberWithCommas(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    }
 
     function showRekamMedisByPasienID(id) {
         $(".app").loading();
@@ -181,49 +221,70 @@
             type: 'GET',
             dataType: 'JSON',
             data: {
-                pasien_id: id
+                pasien_id: id,
+                jenis_rawat: 'RAWAT-JALAN'
             },
             success: function(data) {
                 $(".app").loading('stop');
                 var html = '';
-                var pasien = null;
-                data.forEach((element, i) => {
+                var transaksi = data.pasien_transaksi;
+                data.rekam.forEach((element, i) => {
                     CURRENT_ROW++;
-                    if (!pasien) {
-                        pasien = element.pasien;
+                    let list_dokter = '<ul>';
+                    let nama_dokter = '-';
+                    let nama_penyakit = '-';
+                    let jenis_rawat = element.jenis_rawat === 'RAWAT-JALAN' ? 'JALAN' : 'INAP';
+                    let list_penyakit = '<ul>';
+                    let obat = '<ul>';
+
+                    if (element.detail_transaksi) {
+                        element.detail_transaksi.forEach(dt => {
+                            if (dt.dokter) {
+                                if (nama_dokter !== dt.dokter.nama) {
+                                    nama_dokter = dt.dokter.nama;
+                                    list_dokter += `<li>${nama_dokter}</li>`;
+                                }
+                            }
+
+                            if (dt.penyakit) {
+                                if (nama_penyakit !== dt.penyakit.nama) {
+                                    nama_penyakit = dt.penyakit.nama;
+                                    list_penyakit += `<li>${nama_penyakit}</li>`;
+                                }
+                            }
+
+                            if (dt.obat) {
+                                obat += `<li>(${dt.qty_obat}x) ${dt.obat.nama}</li>`;
+                            }
+
+                        });
                     }
-                    let nama_dokter = element.dokter ? element.dokter.nama : '';
-                    let jenis_rawat = element.jenis_rawat === 'RAWAT-JALAN' ? 'Jalan' : 'Inap';
+
+                    list_dokter += '</ul>';
+                    obat += '</ul>';
+                    list_penyakit += '</u;>'
+
                     html = html + `
                         <tr>
                             <td class="text-center number" width="5%">${i + 1}</td>
-                            <td width="20%">${moment(element.tgl_rekam).format('D/MM/YYYY')}</td>
-                            <td width="35%">${nama_dokter}</td>
-                            <td class="text-center" width="15%">${jenis_rawat}</td>
-                            <td width="40%">${element.penyakit.nama}</td>
-                            <td width="5%"> <button class="btn btn-sm btn-danger hapus-row-${i}" onclick="deleteRekamMedis('${element.id}')" id="${element.id}" row="${i}"><i class="fas fa-times"></i></button> </td>
+                            <td width="10%">${moment(element.created_at).format('D/MM/YYYY')}</td>
+                            <td width="20%">${list_dokter}</td>
+                            <td class="text-center" width="10%">${jenis_rawat}</td>
+                            <td width="25%">${list_penyakit}</td>
+                            <td width="30">${obat}</td>
+                            <td width="10%"><button class="btn btn-sm btn-info btn-add-rekam-medis" onclick="tambah_rekam_medis('${element.id}')"><i class="fas fa-plus"></i></button> <button class="btn btn-sm btn-danger hapus-row-${i}" onclick="deleteRekamMedis('${element.id}')" id="${element.id}" row="${i}"><i class="fas fa-times"></i></button></td>
                         </tr>`
                 });
 
                 $('#rincian_rekam_medis').html(html);
-                data.forEach((element, i) => {
-                    if (!element.dokter) {
-                        $(`.select-dokter-${i}`).select2({
-                            theme: 'bootstrap4',
-                            minimumResultsForSearch: -1,
-                            placeholder: "Pilih Dokter",
-                            allowClear: true
-                        });
-                    }
-                });
-                $('#pasien_id').val(pasien.id);
-                $('#no_mr').val(pasien.no_mr);
-                $('#nama').val(pasien.nama);
-                $('#no_telp').val(pasien.no_telp);
-                $('#tanggal_lahir').val(pasien.tanggal_lahir);
-                $('#kelurahan').val(pasien.kelurahan);
-                $('#rw').val(pasien.rw);
-                $('#rt').val(pasien.rt);
+                $('#transaksi_id').val(transaksi.id);
+                $('#no_mr').val(transaksi.pasien.no_mr);
+                $('#nama').val(transaksi.pasien.nama);
+                $('#no_telp').val(transaksi.pasien.no_telp);
+                $('#tanggal_lahir').val(transaksi.pasien.tanggal_lahir);
+                $('#kelurahan').val(transaksi.pasien.kelurahan);
+                $('#rw').val(transaksi.pasien.rw);
+                $('#rt').val(transaksi.pasien.rt);
                 $('#modal_rekam_jalan').modal('show');
             },
             error: function(err) {
@@ -249,13 +310,121 @@
         },
     });
 
-    $('#dokter').select2({
+    var INIT_NUMBER_OBAT = 0;
+    var SHOW_LIST_OBAT = false;
+
+    function delete_row_obat(row) {
+        INIT_NUMBER_OBAT = INIT_NUMBER_OBAT - 1;
+        $('#t_body_tambah_obat').find('.number-add-obat-' + row).remove();
+        $('.numbering-add-obat').each(function(i) {
+            $(this).html(i + 1);
+            $(this).parent().removeClass();
+            $(this).parent().addClass(`number-add-obat-${i}`);
+            $(this).parent().find('.btn-hapus-obat').attr('onclick', `delete_row_obat(${i})`);
+            $(this).parent().find('.show-list-obat').attr('onclick', `show_list_obat(${i})`);
+            $(this).parent().find('.show-list-obat').attr('oninput', `show_list_obat(${i})`);
+        });
+    }
+
+    function selected_obat(id, nama, row) {
+        $('.number-add-obat-' + row).find('.show-list-obat').val(nama);
+        $('.number-add-obat-' + row).find('.obat-id').val(id);
+        $('.number-add-obat-' + row).find('.qty-obat').val(1);
+        $('.select-menu-custom').hide();
+    }
+
+    $(document).on('click', function(e) {
+        if ($(e.target).closest(".select-menu-custom").length === 0) {
+            if (!SHOW_LIST_OBAT) {
+                $('.select-menu-custom').hide();
+            } else {
+                SHOW_LIST_OBAT = false;
+            }
+        }
+    });
+
+    $('#add_row_obat').click(function() {
+        INIT_NUMBER_OBAT = INIT_NUMBER_OBAT + 1;
+        var html = `
+        <tr class="number-add-obat-${INIT_NUMBER_OBAT}">
+            <td class="numbering-add-obat text-center">${INIT_NUMBER_OBAT + 1}</td>
+            <td class="position-relative">
+                <input type="hidden" name="obat_id[]" class="obat-id">
+                <input type="text" name="nama_obat[]" autocomplete="off" oninput="show_list_obat(${INIT_NUMBER_OBAT})" onclick="show_list_obat(${INIT_NUMBER_OBAT})" class="show-list-obat form-control form-control-sm">
+                <div class="select-menu-custom"></div>
+            </td>
+            <td style="width:20%;">
+                <input type="number" autocomplete="off" name="qty_obat[]" class="qty-obat form-control form-control-sm">
+            </td>
+            <td class="text-center" style="width:5%;">
+                <button type="button" class="btn btn-sm btn-danger btn-hapus-obat" onclick="delete_row_obat(${INIT_NUMBER_OBAT})"> <i class="fas fa-times"></i> </button>
+            </td>
+        </tr>`;
+        $("#table_add_obat > tbody").append(html);
+
+    });
+
+    function show_list_obat(row) {
+        SHOW_LIST_OBAT = true;
+        $('.select-menu-custom').hide();
+        $('.number-add-obat-' + row).find('.select-menu-custom').show();
+        var value = $('.number-add-obat-' + row).find('.show-list-obat').val();
+        $.ajax({
+            url: `<?= base_url() ?>obat/search?search=${value}`,
+            type: 'GET',
+            dataType: 'JSON',
+            success: function(data) {
+                var html = '';
+                data.forEach(element => {
+                    $('.icon-search').html('<i class="fas fa-search"></i>');
+                    html = html + `
+                    <div class="item-menu-custom" onclick="selected_obat('${element.id}', '${element.nama}', '${row}')">
+                        <div class="text-bold">${element.nama}</div>
+                        <div class="row mt-2">
+                            <small class="col-6">Kode : ${element.kode}</small>
+                            <small class="col-6">Harga : IDR ${numberWithCommas(element.harga)}</small>
+                        </div>
+                    </div>`;
+                });
+
+                $('.number-add-obat-' + row).find('.select-menu-custom').html(html);
+            },
+            error: function(err) {
+                console.log(err);
+            }
+        });
+    }
+
+    function formatState(state) {
+        if (!state.id) {
+            return state.text;
+        }
+        var $state = $(
+            `<div class="row m-0 p-1">
+                    <div class="col-4"> ${moment(state.jam_awal, "HH:mm:ss").format('HH:mm')}  s/d  ${moment(state.jam_akhir, "HH:mm:ss").format('HH:mm')} </div>
+                    <div class="col-4"> ${state.text} </div>
+                    <div class="col-4"> ${state.dokter.nama} </div>
+                </div>`
+        );
+        return $state;
+    }
+
+    function formatRepoSelection(repo) {
+        if (repo.dokter) {
+            return `${moment(repo.jam_awal, "HH:mm:ss").format('HH:mm')}  s/d  ${moment(repo.jam_akhir, "HH:mm:ss").format('HH:mm')} - ${repo.text} - ${repo.dokter.nama}`;
+        }
+        return `${repo.text}`;
+    }
+
+    $('#jadwal_dokter').select2({
         theme: 'bootstrap4',
         tags: [],
-        placeholder: "Pilih dokter",
+        templateResult: formatState,
+        templateSelection: formatRepoSelection,
+        placeholder: "Pilih Dokter",
         allowClear: true,
         ajax: {
-            url: '<?= base_url() ?>dokter/search',
+            url: '<?= base_url() ?>poliklinik/search',
             dataType: 'JSON',
             method: 'GET',
             data: function(params) {
@@ -307,8 +476,28 @@
         $('#modal_rekam_jalan').modal('show');
     });
 
+    function tambah_rekam_medis(id) {
+        $('#transaksi_id').val(id);
+        $('#modal_rekam_jalan').modal('toggle');
+        $('#modal_add').modal('toggle');
+        $('#modal_add').addClass('modal-open-important');
+        $('.app').addClass('modal-open-overflow-hide');
+    }
+
     $('.btn-add-rekam-medis').click(function() {
-        $('#modal_rekam_jalan').modal('hide');
-        $('#modal_add').modal('show');
+        $('#modal_rekam_jalan').modal('toggle');
+        $('#modal_add').modal('toggle');
+        $('#modal_add').addClass('modal-open-important');
+        $('.app').addClass('modal-open-overflow-hide');
+    });
+
+    $("#modal_add").on('hide.bs.modal', function() {
+        $('#modal_rekam_jalan').modal('toggle');
+        $('#modal_rekam_jalan').addClass('modal-open-important');
+        $('.app').addClass('modal-open-overflow-hide');
+    });
+
+    $("#modal_rekam_jalan").on('hide.bs.modal', function() {
+        $('.app').removeClass('modal-open-overflow-hide');
     });
 </script>

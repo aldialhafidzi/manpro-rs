@@ -9,10 +9,12 @@ $route['logout'] = 'login/logout';
 $route['rekam-medis/rawat-jalan'] = 'RekamMedis/rawat_jalan';
 $route['rekam-medis/rawat-inap'] = 'RekamMedis/rawat_inap';
 
+$route['rekam-medis'] = 'RekamMedis/index';
 $route['rekam-medis/find'] = 'RekamMedis/find';
 $route['rekam-medis/delete'] = 'RekamMedis/delete';
 $route['rekam-medis/add'] = 'RekamMedis/add';
 $route['rekam-medis/add-inap'] = 'RekamMedis/add_inap';
+$route['rekam-medis/rekam-all'] = 'RekamMedis/getRekamMedis';
 $route['rekam-medis/rekam-jalan-all'] = 'RekamMedis/getRekamJalan';
 $route['rekam-medis/rekam-inap-all'] = 'RekamMedis/getRekamInap';
 

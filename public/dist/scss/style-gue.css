@@ -127,7 +127,7 @@ label:not(.form-check-label):not(.custom-file-label) {
   overflow: hidden;
   overflow-y: auto;
   width: calc(100% - 1rem);
-  z-index: 999;
+  z-index: 999999999;
   background-color: #e8e8e8;
   top: 0;
   margin-top: calc(3rem - 2px);
@@ -232,4 +232,11 @@ label:not(.form-check-label):not(.custom-file-label) {
 .select2-container {
   display: block;
   z-index: 999999;
+}
+
+@media (min-width: 992px) {
+  .modal-lg,
+  .modal-xl {
+    max-width: 1024px !important;
+  }
 }

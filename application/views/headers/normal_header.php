@@ -208,7 +208,7 @@ to get the desired effect
 
 
                         <!-- <li class="nav-header">REKAM MEDIS</li> -->
-                        <li class="nav-item has-treeview <?= ($page == 'rekam-jalan' || $page == 'rekam-inap') ? 'menu-open' : '' ?>">
+                        <li class="nav-item has-treeview <?= ($page == 'rekam-jalan' || $page == 'rekam-inap' || $page == 'rekam-medis') ? 'menu-open' : '' ?>">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-notes-medical"></i>
                                 <p>
@@ -227,6 +227,12 @@ to get the desired effect
                                     <a href="<?= base_url() ?>rekam-medis/rawat-inap" class="nav-link <?= ($page == 'rekam-inap') ? 'active' : '' ?>">
                                         <i class="fas fa-procedures nav-icon"></i>
                                         <p>Rekam Inap</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="<?= base_url() ?>rekam-medis" class="nav-link <?= ($page == 'rekam-medis') ? 'active' : '' ?>">
+                                        <i class="fas fa-users nav-icon"></i>
+                                        <p>All Data</p>
                                     </a>
                                 </li>
                             </ul>

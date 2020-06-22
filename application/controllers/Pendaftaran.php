@@ -382,6 +382,7 @@ class Pendaftaran extends CI_Controller
     // Data ini yang akan dimasukan ke table pasien
     $pasien = array(
       'tipe_id'       => $this->input->post('tipe_pasien', TRUE),
+      'no_asuransi'   => $this->input->post('no_asuransi', TRUE),
       'no_mr'         => $data['nextMR'],
       'nik'           => $this->input->post('nik', TRUE),
       'nama'          => $this->input->post('nama', TRUE),
@@ -409,8 +410,10 @@ class Pendaftaran extends CI_Controller
     $insert_or_update = NULL;
 
     if ($this->input->post('pasien_id', TRUE) === '') {
+      // Jika pasien baru
       $insert_or_update = $this->PasienModel->insert($pasien);
     } else {
+      // Jika pasien lama
       $pasien['no_mr']  = $this->input->post('no_mr', TRUE);
       $insert_or_update = $this->PasienModel->update($pasien, $this->input->post('pasien_id', TRUE));
     }
@@ -418,7 +421,7 @@ class Pendaftaran extends CI_Controller
     // Script ini untuk menyimpan sekaligus mengecek status penyimpanan data pasien
     if ($insert_or_update) {
       // Prepare data transaksi setelah berhasil menyimpan data pasien
-      $data['lastPasien']     = $this->PasienModel->lastRecord();
+      $data['lastPasien']     = $this->input->post('pasien_id', TRUE) === '' ? $this->PasienModel->lastRecord() : $this->PasienModel->get($this->input->post('pasien_id', TRUE));
       $data['nextBill']       = $this->formatBill('J', '00000');
       $data['nextReg']        = 1;
       $data['lastTransaksi']  = $this->TransaksiModel->lastRecord();
@@ -488,7 +491,7 @@ class Pendaftaran extends CI_Controller
 
           // Update total tarif transaksi
           $this->TransaksiModel->update(array('total_tarif' => $this->input->post('tarif_awal', TRUE) + $data['jadwal']->tarif), $transaksi_id);
-          
+
           // Generate PDF untuk membuat bukti transaksi
           $transaksi['tr']                      = $this->TransaksiModel->with_pasien(array('with' => array('tipe_pasien')))->with_user()->get($transaksi_id);
           $transaksi['tr_with_jadwal_dokter']   = $this->TransaksiModel->with_detail_transaksi(array('with' => array('jadwal_dokter')))->get($transaksi_id);

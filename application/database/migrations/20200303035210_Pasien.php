@@ -15,6 +15,11 @@ class Migration_Pasien extends CI_Migration
                 'type' => 'INT',
                 'constraint' => 11,
             ),
+            'no_asuransi' => array(
+                'type' => 'VARCHAR',
+                'constraint' => 30,
+                'unique' => TRUE,
+            ),
             'no_mr' => array(
                 'type' => 'VARCHAR',
                 'constraint' => 15,

@@ -3,7 +3,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h5 class="m-0 text-dark title-primary"> <i class="fas fa-ambulance nav-icon"></i> &nbsp; Rekam Inap</h5>
+                    <h5 class="m-0 text-dark title-primary"> <i class="fas fa-ambulance nav-icon"></i> &nbsp; Rekam Medis</h5>
                 </div>
             </div>
         </div>
@@ -15,7 +15,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body table-responsive">
-                            <table id="tableRekamInap" class="table table-hover text-nowrap table-bordered">
+                            <table id="tableRekam" class="table table-hover text-nowrap table-bordered">
                                 <thead>
                                     <tr>
                                         <th style="width: 10px">#</th>
@@ -123,7 +123,7 @@
             <div class="modal-footer">
                 <form action="<?= base_url() ?>rekam-medis/delete" method="POST">
                     <input type="hidden" id="delete_id" name="delete_id">
-                    <input type="hidden" id="jenis_rawat" name="jenis_rawat" value="RAWAT-INAP">
+                    <input type="hidden" id="jenis_rawat" name="jenis_rawat" value="RAWAT-JALAN">
                     <button type="submit" class="btn">Konfirmasi</button>
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Kembali</button>
                 </form>
@@ -132,7 +132,7 @@
     </div>
 </div>
 
-<div class="modal fade" id="modal_rekam_inap" tabindex="-1" role="dialog" aria-labelledby="modal_rekam_inapTitle" aria-hidden="true" style="overflow-y: auto;">
+<div class="modal fade" id="modal_rekam" tabindex="-1" role="dialog" aria-labelledby="modal_rekamTitle" aria-hidden="true" style="overflow-y: auto;">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -221,8 +221,7 @@
             type: 'GET',
             dataType: 'JSON',
             data: {
-                pasien_id: id,
-                jenis_rawat: 'RAWAT-INAP'
+                pasien_id: id
             },
             success: function(data) {
                 $(".app").loading('stop');
@@ -285,7 +284,7 @@
                 $('#kelurahan').val(transaksi.pasien.kelurahan);
                 $('#rw').val(transaksi.pasien.rw);
                 $('#rt').val(transaksi.pasien.rt);
-                $('#modal_rekam_inap').modal('show');
+                $('#modal_rekam').modal('show');
             },
             error: function(err) {
                 toastr.error("Oops! Pasien gagal didaftarkan");
@@ -294,7 +293,7 @@
         });
     }
 
-    $('#tableRekamInap').DataTable({
+    $('#tableRekam').DataTable({
         "paging": true,
         "lengthChange": false,
         "searching": true,
@@ -305,7 +304,7 @@
         "serverSide": true,
         "order": [],
         "ajax": {
-            "url": '<?= base_url() ?>rekam-medis/rekam-inap-all',
+            "url": '<?= base_url() ?>rekam-medis/rekam-all',
             "type": "POST",
         },
     });
@@ -464,40 +463,40 @@
 
     function deleteRekamMedis(id) {
         $('#modal_hapus').modal('show');
-        $('#modal_rekam_inap').modal('hide');
+        $('#modal_rekam').modal('hide');
         $('#delete_id').val(id);
     }
 
     $("#modal_hapus").on('hide.bs.modal', function() {
-        $('#modal_rekam_inap').modal('show');
+        $('#modal_rekam').modal('show');
     });
 
     $("#modal_add").on('hide.bs.modal', function() {
-        $('#modal_rekam_inap').modal('show');
+        $('#modal_rekam').modal('show');
     });
 
     function tambah_rekam_medis(id) {
         $('#transaksi_id').val(id);
-        $('#modal_rekam_inap').modal('toggle');
+        $('#modal_rekam').modal('toggle');
         $('#modal_add').modal('toggle');
         $('#modal_add').addClass('modal-open-important');
         $('.app').addClass('modal-open-overflow-hide');
     }
 
     $('.btn-add-rekam-medis').click(function() {
-        $('#modal_rekam_inap').modal('toggle');
+        $('#modal_rekam').modal('toggle');
         $('#modal_add').modal('toggle');
         $('#modal_add').addClass('modal-open-important');
         $('.app').addClass('modal-open-overflow-hide');
     });
 
     $("#modal_add").on('hide.bs.modal', function() {
-        $('#modal_rekam_inap').modal('toggle');
-        $('#modal_rekam_inap').addClass('modal-open-important');
+        $('#modal_rekam').modal('toggle');
+        $('#modal_rekam').addClass('modal-open-important');
         $('.app').addClass('modal-open-overflow-hide');
     });
 
-    $("#modal_rekam_inap").on('hide.bs.modal', function() {
+    $("#modal_rekam").on('hide.bs.modal', function() {
         $('.app').removeClass('modal-open-overflow-hide');
     });
 </script>
