@@ -9,8 +9,10 @@ application/logs/*
 !application/*/.htaccess
 
 composer.lock
+.gitignore
 
 public/pdf
+.gitignore
 
 user_guide_src/build/*
 user_guide_src/cilexer/build/*
