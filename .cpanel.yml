@@ -1,0 +1,4 @@
+deployment:
+    tasks:
+      - export DEPLOYPATH=/home/extreme1/public_html/
+      - /bin/cp .gitignore $DEPLOYPATH
