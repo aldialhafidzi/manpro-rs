@@ -28,6 +28,7 @@ $route['transaksi/transaksi-jalan-all'] = 'transaksi/getRekamJalan';
 $route['transaksi/transaksi-inap-all'] = 'transaksi/getRekamInap';
 
 $route['tipepasien/search'] = 'TipePasien/search';
+$route['tindakan/search'] = 'Tindakan/search';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

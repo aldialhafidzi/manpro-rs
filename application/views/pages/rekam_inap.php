@@ -59,7 +59,10 @@
 
                     <label for="" class="mt-4">Diagnosa</label>
                     <select name="diagnosa[]" multiple="multiple" id="diagnosa" class="form-control"></select>
-
+                  
+                    <label for="" class="mt-4">Tindakan</label>
+                    <select name="tindakan[]" multiple="multiple" id="tindakan" class="form-control"></select>
+                   
                     <label for="" class="mt-4">Tambah Obat</label>
                     <table id="table_add_obat" class="table table-bordered">
                         <thead>
@@ -190,6 +193,7 @@
                                 <td>Rawat</td>
                                 <td>Diagnosa</td>
                                 <td>Obat</td>
+                                <td>Tindakan</td>
                                 <td class="text-center">-</td>
                             </tr>
                         </thead>
@@ -230,12 +234,13 @@
                 var transaksi = data.pasien_transaksi;
                 data.rekam.forEach((element, i) => {
                     CURRENT_ROW++;
-                    let list_dokter = '<ul>';
+                    let list_dokter = '<ul class="list-in-table">';
                     let nama_dokter = '-';
                     let nama_penyakit = '-';
                     let jenis_rawat = element.jenis_rawat === 'RAWAT-JALAN' ? 'JALAN' : 'INAP';
-                    let list_penyakit = '<ul>';
-                    let obat = '<ul>';
+                    let list_penyakit = '<ul class="list-in-table">';
+                    let obat = '<ul class="list-in-table">';
+                    let tindakan = '<ul class="list-in-table">';
 
                     if (element.detail_transaksi) {
                         element.detail_transaksi.forEach(dt => {
@@ -257,22 +262,28 @@
                                 obat += `<li>(${dt.qty_obat}x) ${dt.obat.nama}</li>`;
                             }
 
+                            if (dt.tindakan) {
+                                tindakan += `<li>${dt.tindakan.nama}</li>`;
+                            }
+
                         });
                     }
 
                     list_dokter += '</ul>';
                     obat += '</ul>';
+                    tindakan += '</ul>';
                     list_penyakit += '</u;>'
 
                     html = html + `
                         <tr>
-                            <td class="text-center number" width="5%">${i + 1}</td>
-                            <td width="10%">${moment(element.created_at).format('D/MM/YYYY')}</td>
-                            <td width="20%">${list_dokter}</td>
-                            <td class="text-center" width="10%">${jenis_rawat}</td>
-                            <td width="25%">${list_penyakit}</td>
-                            <td width="30">${obat}</td>
-                            <td width="10%"><button class="btn btn-sm btn-info btn-add-rekam-medis" onclick="tambah_rekam_medis('${element.id}')"><i class="fas fa-plus"></i></button> <button class="btn btn-sm btn-danger hapus-row-${i}" onclick="deleteRekamMedis('${element.id}')" id="${element.id}" row="${i}"><i class="fas fa-times"></i></button></td>
+                            <td class="text-center number" width="5%"><small>${i + 1}</small></td>
+                            <td width="5%"><small>${moment(element.created_at).format('D/MM/YYYY')}</small></td>
+                            <td width="20%"><small>${list_dokter}</small></td>
+                            <td class="text-center" width="5%"><small>${jenis_rawat}</small></td>
+                            <td width="20%"><small>${list_penyakit}</small></td>
+                            <td width="30%"><small>${obat}</small></td>
+                            <td width="30%"><small>${tindakan}</small></td>
+                            <td width="20%"><button class="btn btn-sm btn-info btn-add-rekam-medis" onclick="tambah_rekam_medis('${element.id}')"><i class="fas fa-plus"></i></button> <button class="btn btn-sm btn-danger hapus-row-${i}" onclick="deleteRekamMedis('${element.id}')" id="${element.id}" row="${i}"><i class="fas fa-times"></i></button></td>
                         </tr>`
                 });
 
@@ -447,6 +458,28 @@
         allowClear: true,
         ajax: {
             url: '<?= base_url() ?>penyakit/search',
+            dataType: 'JSON',
+            method: 'GET',
+            data: function(params) {
+                return {
+                    search: params.term
+                }
+            },
+            processResults: function(data, page) {
+                return {
+                    results: data
+                };
+            }
+        }
+    });
+
+    $('#tindakan').select2({
+        theme: 'bootstrap4',
+        tags: [],
+        placeholder: "Pilih Tindakan",
+        allowClear: true,
+        ajax: {
+            url: '<?= base_url() ?>tindakan/search',
             dataType: 'JSON',
             method: 'GET',
             data: function(params) {

@@ -17,6 +17,7 @@ class RekamMedis extends CI_Controller
         $this->load->model('KamarModel');
         $this->load->model('RuanganModel');
         $this->load->model('PenyakitModel');
+        $this->load->model('TindakanModel');
         $this->load->model('BedModel');
         $this->load->model('JadwalDokterModel');
         $this->load->model('DokterModel');
@@ -215,6 +216,11 @@ class RekamMedis extends CI_Controller
                         $penyakit           = $this->PenyakitModel->get($dt->penyakit_id);
                         $dt->penyakit       = $penyakit;
                     }
+
+                    if ($dt->tindakan_id) {
+                        $tindakan           = $this->TindakanModel->get($dt->tindakan_id);
+                        $dt->tindakan       = $tindakan;
+                    }
                 }
             }
         }
@@ -252,6 +258,19 @@ class RekamMedis extends CI_Controller
             $check =  $this->DetailTransaksiModel->insert($data);
         }
 
+        foreach ($this->input->post('tindakan') as $key => $value) {
+            $data = array(
+                'transaksi_id' => $this->input->post('transaksi_id', TRUE),
+                'jadwal_dokter_id' => $this->input->post('jadwal_dokter_id', TRUE),
+                'tindakan_id' => $value,
+                'tarif_tindakan' => 0,
+                'tarif_pendaftaran' => 0,
+                'created_at' => date('Y-m-d'),
+                'updated_at' => date('Y-m-d')
+            );
+            $check =  $this->DetailTransaksiModel->insert($data);
+        }
+
 
         if ($check) {
             $this->session->set_flashdata('success', 'Rekam medis berhasil ditambahkan');
@@ -278,10 +297,10 @@ class RekamMedis extends CI_Controller
 
         if ($check) {
             $this->session->set_flashdata('success', 'Rekam medis berhasil ditambahkan');
-            redirect(base_url("/rekam-medis/rawat-inap"));
+            redirect($_SERVER['HTTP_REFERER']);
         }
         $this->session->set_flashdata('error', 'Rekam medis gagal ditambahkan');
-        redirect(base_url("/rekam-medis/rawat-inap"));
+        redirect($_SERVER['HTTP_REFERER']);
     }
 
     public function delete()

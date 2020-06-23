@@ -125,6 +125,20 @@ label:not(.form-check-label):not(.custom-file-label) {
   z-index: 9999999 !important;
 }
 
+.list-in-table {
+  padding-inline-start: 10px !important;
+}
+
+
+.btn-oval {
+  border-radius: 50%;
+}
+
+.btn-oval .fas {
+  width: 12px;
+  height: 10px;
+}
+
 .select-nomor-rm {
   position: absolute;
   max-height: 450px;

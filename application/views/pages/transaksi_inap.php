@@ -313,7 +313,7 @@
                 $('#rw').val(data.transaksi.pasien.rw);
                 $('#rt').val(data.transaksi.pasien.rt);
                 $('#status_transaksi').html(`<span class="badge ${data.transaksi.status === 'REGISTERED' ? 'badge-secondary': 'badge-success'}">${data.transaksi.status}</span>`);
-                
+
                 if (data.transaksi.status === 'PAID') {
                     $('#cetak_transaksi').html('<i class="fas fa-print"></i> &nbsp; Print')
                 } else {
@@ -328,6 +328,8 @@
                 var total_ruangan = 0;
                 var total_tindakan = 0;
                 var counter_obat = 0;
+                var counter_tindakan = 0;
+                var counter_ruangan = 0;
                 data.detail_transaksi.forEach((item, i) => {
 
                     if (item.obat) {
@@ -346,25 +348,27 @@
                     }
 
                     if (item.ruangan) {
+                        counter_ruangan = counter_ruangan + 1;
                         list_ruangan = list_ruangan + `
                             <tr>
-                                <td class="text-center" width="5%">${i + 1}</td>
+                                <td class="text-center" width="5%">${counter_ruangan}</td>
                                 <td width="10%">${item.ruangan.nama}</td>
                                 <td width="5%">${item.kamar.kode}</td>
                                 <td width="10%" class="text-center">${moment(item.tanggal_masuk).format('YYYY/MM/DD')}</td>
-                                <td width="10%" class="text-center">${item.tanggal_keluar ? moment(item.tanggal_keluar).format('YYYY/MM/DD') : '-'}</td>
-                                <td width="5%" class="text-center">${item.tanggal_keluar ? numberWithCommas(parseInt(moment.duration(moment(item.tanggal_keluar).diff(moment(item.tanggal_masuk))).asHours())) : '-'} jam</td>
+                                <td width="10%" class="text-center">${item.tanggal_keluar ? moment(item.tanggal_keluar).format('YYYY/MM/DD') : '<button class="btn btn-sm btn-warning">Belum Keluar</button>'}</td>
+                                <td width="5%" class="text-center">${numberWithCommas(parseInt(moment.duration(item.tanggal_keluar ? moment(item.tanggal_keluar).diff(moment(item.tanggal_masuk)) : moment().diff(moment(item.tanggal_masuk))).asHours())) } jam</td>
                                 <td width="10%" class="text-right">${'IDR '+ numberWithCommas(item.ruangan.harga)},-</td>
-                                <td width="15%" class="text-right">${'IDR '+ numberWithCommas(parseInt(moment.duration(moment(item.tanggal_keluar).diff(moment(item.tanggal_masuk))).asHours()) * item.ruangan.harga)},-</td>
+                                <td width="15%" class="text-right">${'IDR '+ numberWithCommas(parseInt(moment.duration(item.tanggal_keluar ? moment(item.tanggal_keluar).diff(moment(item.tanggal_masuk)) : moment().diff(moment(item.tanggal_masuk))).asHours()) * item.ruangan.harga)},-</td>
                             </tr>
                         `;
-                        total_ruangan = total_ruangan + parseInt(item.ruangan.harga * parseInt(moment.duration(moment(item.tanggal_keluar).diff(moment(item.tanggal_masuk))).asHours()));
+                        total_ruangan = total_ruangan + parseInt(moment.duration(item.tanggal_keluar ? moment(item.tanggal_keluar).diff(moment(item.tanggal_masuk)) : moment().diff(moment(item.tanggal_masuk))).asHours()) * item.ruangan.harga;
                     }
 
                     if (item.tindakan) {
+                        counter_tindakan = counter_tindakan + 1;
                         list_tindakan = list_tindakan + `
                             <tr>
-                                <td class="text-center" width="5%">${i + 1}</td>
+                                <td class="text-center" width="5%">${counter_tindakan}</td>
                                 <td width="10%" class="text-center">${item.tindakan.kode}</td>
                                 <td width="10%">${item.tindakan.nama}</td>
                                 <td width="10%" class="text-right">IDR ${numberWithCommas(item.tindakan.harga)},-</td>
