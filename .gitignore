@@ -9,16 +9,24 @@ application/logs/*
 !application/*/.htaccess
 
 composer.lock
-.gitignore
-
-public/pdf
-.gitignore
 
 user_guide_src/build/*
 user_guide_src/cilexer/build/*
 user_guide_src/cilexer/dist/*
 user_guide_src/cilexer/pycilexer.egg-info/*
 #/vendor/
+/public/pdf
+/application/config/config.php
+/aplication/config/database.php
+COCOMO_MANPRO-RS_PENDAFTARAN_REKAM_MEDIS.xlsx
+DDS_MANPRO-RS_PENDAFTARAN_REKAM_MEDIS_.pdf
+ERD_PENDAFTARAN_REKAM_MEDIS.pdf
+GANT_CHART_MANPRO-RS_PENDAFTARAN_REKAM_MEDIS.xlsx
+KURVA_S_MANPRO-RS_PENDAFTARAN_REKAM_MEDIS.xlsx
+MYSQL-MANPRO-DATA.sql
+NW_MANPRO-RS_PENDAFTARAN_REKAM_MEDIS.zip
+TRD_PENDAFTARAN_REKAM_MEDIS.pdf
+.gitignore
 
 # IDE Files
 #-------------------------
