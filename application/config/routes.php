@@ -32,3 +32,10 @@ $route['tindakan/search'] = 'Tindakan/search';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+
+// Randy
+$route['ruangrawat/ruangan'] = 'RuangRawat/ruangan';
+$route['ruangrawat/ruang_rawat'] = 'RuangRawat/ruang_rawat';
+$route['ruangrawat/lantai1'] = 'RuangRawat/lantai1';
+$route['ruangrawat/lantai2'] = 'RuangRawat/lantai2';
+$route['ruangrawat/lantai3'] = 'RuangRawat/lantai3';
