@@ -33,17 +33,20 @@ class RuangRawat extends CI_Controller
     {
         $data['title'] = 'MANPRO-RS | Ruang Rawat';
         $data['page'] = 'ruang_rawat';
+        $data['detail_ruangan'] = $this->ruangan->get_detail_ruangan();
         $this->load->view('headers/normal_header', $data);
-        $this->load->view('pages/ruang_rawat');
+        $this->load->view('pages/ruang_rawat', $data);
         $this->load->view('footers/normal_footer');
+
     }
 
     public function lantai1()
     {
         $data['title'] = 'MANPRO-RS | Ruang Rawat';
         $data['page'] = 'lantai1';
+        $data['detail_ruangan'] = $this->ruangan->get_detail_ruangan();
         $this->load->view('headers/normal_header', $data);
-        $this->load->view('pages/class_rr/l1');
+        $this->load->view('pages/class_rr/l1', $data );
         $this->load->view('footers/normal_footer');
     }
 
@@ -80,15 +83,16 @@ class RuangRawat extends CI_Controller
         $no++;
         $row = array();
         $row[] = $no;
-        $row[] = $ruangan->kode;
+        $row[] = $ruangan->kode_ruangan;
         $row[] = $ruangan->kelas;
         $row[] = $ruangan->nama;
         $row[] = $ruangan->status;
         $row[] = $ruangan->harga;
 
         //add html for action
-        $row[] = '<a class="btn btn-sm btn-primary" href="javascript:void(0)" title="Edit" onclick="edit_ruangan('."'".$ruangan->id."'".')"><i class="fas fa-edit"></i>&nbsp Edit</a>
-            <a class="btn btn-sm btn-danger" href="javascript:void(0)" title="Hapus" onclick="delete_ruangan('."'".$ruangan->id."'".')"><i class="fas fa-trash"></i>&nbsp Delete</a>';
+        $row[] = '<a class="btn btn-sm btn-secondary" href="javascript:void(0)" title="lihat" onclick="lihat_ruangan('."'".$ruangan->id."'".')"><i class="fas fa-eye"></i></a>
+                  <a class="btn btn-sm btn-primary" href="javascript:void(0)" title="Edit" onclick="edit_ruangan('."'".$ruangan->id."'".')"><i class="fas fa-edit"></i></a>
+                  <a class="btn btn-sm btn-danger" href="javascript:void(0)" title="Hapus" onclick="delete_ruangan('."'".$ruangan->id."'".')"><i class="fas fa-trash"></i></a>';
       
         $data[] = $row;
       }
@@ -110,7 +114,7 @@ class RuangRawat extends CI_Controller
       $no = $_POST['start'];
       foreach ($list as $ruangan) {
         $row = array();
-        $row[] = $ruangan->kode;
+        $row[] = $ruangan->kode_ruangan;
         $row[] = $ruangan->status;
         
         $data[] = $row;
@@ -132,11 +136,17 @@ class RuangRawat extends CI_Controller
       $data = $this->ruangan->get_by_id($id);
       echo json_encode($data);
     }
+    
+    public function ajax_lihat($id)
+    {
+      $data = $this->ruangan->get_by_id($id);
+      echo json_encode($data);
+    }
 
     public function ajax_add()
     {
       $data = array(
-          'kode' => $this->input->post('kode'),
+          'kode_ruangan' => $this->input->post('kode_ruangan'),
           'kelas' => $this->input->post('kelas'),
           'nama' => $this->input->post('nama'),
           'status' => $this->input->post('status'),
@@ -149,7 +159,7 @@ class RuangRawat extends CI_Controller
     public function ajax_update()
     {
       $data = array(
-          'kode' => $this->input->post('kode'),
+          'kode_ruangan' => $this->input->post('kode_ruangan'),
           'kelas' => $this->input->post('kelas'),
           'nama' => $this->input->post('nama'),
           'status' => $this->input->post('status'),

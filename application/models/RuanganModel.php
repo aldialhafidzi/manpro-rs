@@ -2,8 +2,8 @@
 class RuanganModel extends CI_Model
 {   
     var $table = 'ruangan';
-	var $column_order = array('kode','nama','kelas','harga','status','created_at','updated_at',null); //set column field database for datatable orderable
-    var $column_search = array('kode','nama','status'); //set column field database for datatable searchable just firstname , lastname , address are searchable
+	var $column_order = array('kode_ruangan','nama','kelas','harga','status','created_at','updated_at',null); //set column field database for datatable orderable
+    var $column_search = array('kode_ruangan','nama','status'); //set column field database for datatable searchable just firstname , lastname , address are searchable
     var $order = array('id' => 'asc');
 
     public function __construct()
@@ -50,6 +50,19 @@ class RuanganModel extends CI_Model
 			$order = $this->order;
 			$this->db->order_by(key($order), $order[key($order)]);
 		}
+	}
+
+	function get_detail_ruangan()
+	{
+		$this->db->select('detail_transaksi.transaksi_id, pasien.no_mr, pasien.nama, pasien.no_telp, ruangan.kode_ruangan, kamar.kode, bed.kode');
+		$this->db->from('bed');
+		$this->db->join('kamar', 'bed.kamar_id=kamar.id');
+		$this->db->join('ruangan', 'kamar.ruangan_id=ruangan.id');
+		$this->db->join('detail_transaksi', 'ruangan.id=detail_transaksi.ruangan_id');
+		$this->db->join('transaksi', 'detail_transaksi.transaksi_id=transaksi.id');
+		$this->db->join('pasien', 'transaksi.pasien_id=pasien.id');
+		$query = $this->db->get();
+		return $query->result();
 	}
 
 	function get_datatables()
