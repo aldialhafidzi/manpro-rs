@@ -103,7 +103,7 @@
                   dataType: "JSON",
                   success: function(data) {
 
-                    $('[name="kode_ruangan"]').val(data.kode_ruangan);
+                    $('[name="kode"]').val(data.kode);
                     $('[name="kelas"]').val(data.kelas);
                     $('[name="nama"]').val(data.nama);
                     $('[name="status"]').val(data.status);
@@ -133,7 +133,7 @@
                   dataType: "JSON",
                   success: function(data) {
 
-                    $('[name="kode_ruangan"]').val(data.kode_ruangan);
+                    $('[name="kode"]').val(data.kode);
                     $('[name="kelas"]').val(data.kelas);
                     $('[name="nama"]').val(data.nama);
                     $('[name="status"]').val(data.status);
@@ -237,7 +237,7 @@
                       <div class="form-group">
                         <label class="control-label col-xs-3">Kode Ruangan</label>
                         <div class="col-xs-8">
-                          <input name="kode_ruangan" class="form-control" type="text" placeholder="Kode ruangan...">
+                          <input name="kode" class="form-control" type="text" placeholder="Kode ruangan...">
                         </div>
                       </div>
 

@@ -83,7 +83,7 @@ class RuangRawat extends CI_Controller
         $no++;
         $row = array();
         $row[] = $no;
-        $row[] = $ruangan->kode_ruangan;
+        $row[] = $ruangan->kode;
         $row[] = $ruangan->kelas;
         $row[] = $ruangan->nama;
         $row[] = $ruangan->status;
@@ -114,7 +114,7 @@ class RuangRawat extends CI_Controller
       $no = $_POST['start'];
       foreach ($list as $ruangan) {
         $row = array();
-        $row[] = $ruangan->kode_ruangan;
+        $row[] = $ruangan->kode;
         $row[] = $ruangan->status;
         
         $data[] = $row;
@@ -146,7 +146,7 @@ class RuangRawat extends CI_Controller
     public function ajax_add()
     {
       $data = array(
-          'kode_ruangan' => $this->input->post('kode_ruangan'),
+          'kode' => $this->input->post('kode'),
           'kelas' => $this->input->post('kelas'),
           'nama' => $this->input->post('nama'),
           'status' => $this->input->post('status'),
@@ -159,13 +159,13 @@ class RuangRawat extends CI_Controller
     public function ajax_update()
     {
       $data = array(
-          'kode_ruangan' => $this->input->post('kode_ruangan'),
+          'kode' => $this->input->post('kode'),
           'kelas' => $this->input->post('kelas'),
           'nama' => $this->input->post('nama'),
           'status' => $this->input->post('status'),
           'harga' => $this->input->post('harga'),
         );
-      $this->ruangan->update(array('id' => $this->input->post('id')), $data);
+      $this->ruangan->update_data(array('id' => $this->input->post('id')), $data);
       echo json_encode(array("status" => TRUE));
     }
 

@@ -542,7 +542,7 @@
                     <div class="form-group">
                       <label class="control-label col-xs-3">Kode Ruangan</label>
                       <div class="col-xs-6">
-                        <input name="kode_ruangan" class="form-control" type="text" placeholder="Kode ruangan..." disabled>
+                        <input name="kode" class="form-control" type="text" placeholder="Kode ruangan..." disabled>
                       </div>
                     </div>
 

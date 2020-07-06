@@ -2,7 +2,7 @@
 class RuanganModel extends MY_Model
 {   
     var $table = 'ruangan';
-	var $column_order = array('kode','nama','kelas','harga','status','created_at','updated_at',null); //set column field database for datatable orderable
+	var $column_order = array('id','kode','nama','kelas','harga','status','created_at','updated_at',null); //set column field database for datatable orderable
     var $column_search = array('kode','nama','status'); //set column field database for datatable searchable just firstname , lastname , address are searchable
     var $order = array('id' => 'asc');
 
@@ -106,11 +106,11 @@ class RuanganModel extends MY_Model
 		return $this->db->insert_id();
 	}
 
-	// public function update($where, $data)
-	// {
-	// 	$this->db->update($this->table, $data, $where);
-	// 	return $this->db->affected_rows();
-	// }
+	public function update_data($where, $data)
+	{
+		$this->db->update($this->table, $data, $where);
+		return $this->db->affected_rows();
+	}
 
 	public function delete_by_id($id)
 	{
