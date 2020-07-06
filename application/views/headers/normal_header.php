@@ -179,7 +179,7 @@ to get the desired effect
                             </a>
                         </li>
                         <li class="nav-header">SHORTCUT</li>
-                        <?php if ($this->session->userdata('role_id') == '1' || $this->session->userdata('role_id') == '2' ) { ?>
+                        <?php if ($this->session->userdata('role_id') == '1' || $this->session->userdata('role_id') == '2') { ?>
                             <li class="nav-item has-treeview <?= ($page == 'rawat_jalan' || $page == 'rawat_inap') ? 'menu-open' : '' ?>">
                                 <a href="#" class="nav-link">
                                     <i class="nav-icon far fa-plus-square"></i>
@@ -209,6 +209,7 @@ to get the desired effect
 
                         <!-- <li class="nav-header">REKAM MEDIS</li> -->
                         <li class="nav-item has-treeview <?= ($page == 'rekam-jalan' || $page == 'rekam-inap' || $page == 'rekam-medis') ? 'menu-open' : '' ?>">
+                        <li class="nav-item has-treeview">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-notes-medical"></i>
                                 <p>
@@ -274,6 +275,29 @@ to get the desired effect
                                     </p>
                                 </a>
                             </li>
+                            <li class="nav-item has-treeview">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fa fa-clinic-medical"></i>
+                                    <p>
+                                        Ruangan
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="<?= base_url() ?>ruangrawat/ruangan" class="nav-link <?= ($page == 'ruangan') ? 'active' : '' ?>">
+                                            <i class="fas fa-ambulance nav-icon"></i>
+                                            <p>List Ruangan</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="<?= base_url() ?>ruangrawat/ruang_rawat" class="nav-link <?= ($page == 'ruang_rawat') ? 'active' : '' ?>">
+                                            <i class="fas fa-clinic-medical nav-icon"></i>
+                                            <p>Ruang Rawat</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
 
                             <li class="nav-item">
                                 <a href="<?= base_url() ?>admin/dokter" class="nav-link <?= ($page == 'admin-dokter') ? 'active' : '' ?>">
@@ -325,6 +349,14 @@ to get the desired effect
                                     <i class="nav-icon fas fa-biohazard"></i>
                                     <p>
                                         Penyakit
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?= base_url() ?>admin/tindakan" class="nav-link <?= ($page == 'admin-tindakan') ? 'active' : '' ?>">
+                                    <i class="nav-icon fas fa-medkit"></i>
+                                    <p>
+                                        Tindakan
                                     </p>
                                 </a>
                             </li>
