@@ -25,8 +25,8 @@
                             <input id="kode" name="kode" type="text" class="form-control form-control-sm col-9">
                         </div>
                         <div class="form-group row">
-                            <label for="nameRole" class="col-3">Nama</label>
-                            <input id="nameRole" name="nameRole" type="text" class="form-control form-control-sm col-9">
+                            <label for="name" class="col-3">Nama</label>
+                            <input id="name" name="name" type="text" class="form-control form-control-sm col-9">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -128,7 +128,7 @@
     function initBuatRole() {
         $('#exampleModalLongTitle').html('Buat Role');
         $('#kode').val('');
-        $('#nameRole').val('');
+        $('#name').val('');
         $('#role_id').val('');
         $('#modal_add').modal('show');
     }
@@ -150,7 +150,7 @@
             success: function(data) {
                 $('#exampleModalLongTitle').html('Update Role');
                 $('#kode').val(data.kode);
-                $('#nameRole').val(data.name);
+                $('#name').val(data.name);
                 $('#role_id').val(data.id);
                 $('#modal_add').modal('show');
             },
