@@ -178,14 +178,30 @@ to get the desired effect
                         </li>
 
                         <?php if ($this->session->userdata('role_id') == '1') { ?>
-                            <li class="nav-item">
-                                <a href="<?= base_url() ?>admin/poliklinik" class="nav-link <?= ($page == 'admin-poliklinik') ? 'active' : '' ?>">
-                                    <i class="nav-icon fas fa-clinic-medical"></i>
+                            <li class="nav-item has-treeview <?= ($page == 'admin-poliklinik' || $page == 'admin-poliklinik-jadwal') ? 'menu-open' : '' ?>">
+                                <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-clinic-medical"></i>
                                     <p>
                                         Poliklinik
+                                        <i class="right fas fa-angle-left"></i>
                                     </p>
                                 </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="<?= base_url() ?>admin/poliklinik" class="nav-link <?= ($page == 'admin-poliklinik') ? 'active' : '' ?>">
+                                            <i class="fas fa-user-injured nav-icon"></i>
+                                            <p>List Poliklinik</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="<?= base_url() ?>admin/jadwal-poliklinik" class="nav-link <?= ($page == 'admin-poliklinik-jadwal') ? 'active' : '' ?>">
+                                            <i class="fas fa-procedures nav-icon"></i>
+                                            <p>Jadwal Poliklinik</p>
+                                        </a>
+                                    </li>
+                                </ul>
                             </li>
+
                             <li class="nav-item has-treeview <?= ($page == 'ruangan' || $page == 'ruang_rawat') ? 'menu-open' : '' ?>">
                                 <a href="#" class="nav-link">
                                     <i class="nav-icon fas fa-hospital-alt"></i>

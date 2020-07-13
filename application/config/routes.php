@@ -27,6 +27,11 @@ $route['transaksi/rawat-inap'] = 'transaksi/rawat_inap';
 $route['transaksi/transaksi-jalan-all'] = 'transaksi/getRekamJalan';
 $route['transaksi/transaksi-inap-all'] = 'transaksi/getRekamInap';
 
+$route['admin/jadwal-poliklinik'] = 'Admin/jadwal_poliklinik';
+$route['jadwal-poliklinik/get'] = 'JadwalPoliklinik/get';
+$route['jadwal-poliklinik/delete'] = 'JadwalPoliklinik/delete';
+$route['jadwal-poliklinik/create'] = 'JadwalPoliklinik/create';
+
 $route['tipepasien/search'] = 'TipePasien/search';
 $route['tindakan/search'] = 'Tindakan/search';
 

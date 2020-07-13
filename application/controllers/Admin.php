@@ -18,6 +18,7 @@ class Admin extends CI_Controller
         $this->load->model('RoleModel');
         $this->load->model('SpecializationModel');
         $this->load->model('PoliklinikModel');
+        $this->load->model('JadwalDokterModel');
         $this->load->model('DokterModel');
         $this->load->model('PasienModel');
         $this->load->model('PenyakitModel');
@@ -65,6 +66,18 @@ class Admin extends CI_Controller
         $data['polikliniks'] = $this->PoliklinikModel->get_all();
         $this->load->view('headers/normal_header', $data);
         $this->load->view('pages/poliklinik', $data);
+        $this->load->view('footers/normal_footer');
+    }
+    
+    public function jadwal_poliklinik()
+    {
+        $data['title'] = 'MANPRO-RS | Jadwal Poliklinik';
+        $data['page'] = 'admin-poliklinik-jadwal';
+        $data['jadwalPolikliniks'] = $this->JadwalDokterModel->with_poliklinik()->with_dokter()->get_all();
+        $data['polikliniks'] = $this->PoliklinikModel->get_all();
+        $data['dokters'] = $this->DokterModel->get_all();
+        $this->load->view('headers/normal_header', $data);
+        $this->load->view('pages/jadwal_poliklinik', $data);
         $this->load->view('footers/normal_footer');
     }
 
