@@ -40,7 +40,7 @@
                                                 <td>' . $item->pasien->no_mr . '</td>
                                                 <td>' . $item->pasien->nama . '</td>
                                                 <td>' . $item->jenis_rawat . '</td>
-                                                <td> Rp. ' . $item->total_tarif . '</td>
+                                                <td> IDR ' . $item->total_tarif . '</td>
                                                 <td>' . $item->status . '</td>
                                                 <td style="width:160px;text-align:center;">
                                                     <button value="' . $item->id . '" class="btn-hapusTransaksi btn btn-sm btn-danger">

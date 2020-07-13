@@ -96,7 +96,7 @@
                                                 <td class="text-center"> ' . ($key + 1) . '</td>
                                                 <td class="text-uppercase">' . $item->kode . '</td>
                                                 <td>' . $item->nama . '</td>
-                                                <td> Rp. ' . $item->harga . '</td>
+                                                <td> IDR ' . number_format($item->harga) . '</td>
                                                 <td style="width:160px;text-align:center;">
                                                     <button value="' . $item->id . '" class="btn-hapusTindakan btn btn-sm btn-danger" onclick="deleteTindakan(' . $item->id . ')">
                                                         <i class="far fa-trash-alt"></i> &nbsp; Hapus

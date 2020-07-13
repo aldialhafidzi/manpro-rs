@@ -102,7 +102,7 @@
                                                 <td class="text-uppercase">' . $item->kode . '</td>
                                                 <td>' . $item->nama . '</td>
                                                 <td>' . $item->jenis . '</td>
-                                                <td> Rp. ' . $item->harga . '</td>
+                                                <td> IDR ' . number_format($item->harga) . '</td>
                                                 <td style="width:160px;text-align:center;">
                                                     <button value="' . $item->id . '" class="btn-hapusObat btn btn-sm btn-danger" onclick="deleteObat(' . $item->id . ')">
                                                         <i class="far fa-trash-alt"></i> &nbsp; Hapus

@@ -240,7 +240,7 @@
 
                                 <div class="form-group row">
                                     <small for="" class="col-5">Biaya Pendaftaran</small>
-                                    <h4 class="text-primary">Rp. 20.000,-</h4>
+                                    <h4 class="text-primary">IDR 20.000,-</h4>
                                     <input type="hidden" id="tarif_awal" name="tarif_awal" value="20000">
                                 </div>
 

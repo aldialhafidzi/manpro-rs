@@ -257,13 +257,13 @@
 
                                 <div class="form-group row">
                                     <small for="" class="col-5">Biaya Pendaftaran</small>
-                                    <h4 id="text_tarif_awal" class="text-primary text-right">Rp. 20.000,-</h4>
+                                    <h4 id="text_tarif_awal" class="text-primary text-right">IDR 20.000,-</h4>
                                     <input type="hidden" id="tarif_awal" name="tarif_awal" value="20000">
                                 </div>
 
                                 <div class="form-group row">
                                     <small for="" class="col-5">Tarif Kamar</small>
-                                    <h4 id="text_tarif_kamar" class="text-primary text-right">Rp. ,-</h4>
+                                    <h4 id="text_tarif_kamar" class="text-primary text-right">IDR ,-</h4>
                                     <input type="hidden" id="tarif_kamar" name="tarif_kamar" value="">
                                 </div>
 
@@ -523,7 +523,7 @@
 
         $('.select-kamar').on("select2:select", function(e) {
             $('#tarif_kamar').val(e.params.data.harga);
-            $('#text_tarif_kamar').text('Rp. ' + numberWithCommas(e.params.data.harga) + ',-');
+            $('#text_tarif_kamar').text('IDR ' + numberWithCommas(e.params.data.harga) + ',-');
         });
 
         $('.select-kamar').select2({
@@ -580,7 +580,7 @@
             $('#selected-diagnosa').html('');
             $('#selected-kamar').html('');
             $('#tarif_kamar').val('');
-            $('#text_tarif_kamar').html('Rp. -,');
+            $('#text_tarif_kamar').html('IDR -,');
         });
 
         $("#form_rawat_inap").submit(function(e) {
@@ -630,7 +630,7 @@
                     $('#selected-diagnosa').html('');
                     $('#selected-kamar').html('');
                     $('#tarif_kamar').val('');
-                    $('#text_tarif_kamar').html('Rp. -,');
+                    $('#text_tarif_kamar').html('IDR -,');
 
                     var a = document.createElement("a");
                     a.setAttribute('target', '_blank');

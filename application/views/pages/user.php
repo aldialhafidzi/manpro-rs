@@ -135,21 +135,20 @@
                                         <th>Username</th>
                                         <th>Name</th>
                                         <th>DoB</th>
-                                        <th>Created At</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
                                     foreach ($users as $key => $user) {
+                                        $dob = new DateTime($user->dob);
                                         echo '
                                             <tr>
                                                 <td class="text-center"> ' . ($key + 1) . '</td>
                                                 <td class="text-uppercase">' . $user->roles->name . '</td>
                                                 <td>' . $user->username . '</td>
                                                 <td>' . $user->name . '</td>
-                                                <td>' . $user->dob . '</td>
-                                                <td>' . $user->created_at . '</td>
+                                                <td>' . $dob->format('d M Y') . '</td>
                                                 <td style="width:160px;text-align:center;">
                                                     <button value="' . $user->id . '" class="btn-hapusUser btn btn-sm btn-danger" onclick="deleteUser(' . $user->id . ')">
                                                         <i class="far fa-trash-alt"></i> &nbsp; Hapus
