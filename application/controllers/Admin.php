@@ -42,6 +42,7 @@ class Admin extends CI_Controller
         $data['title'] = 'MANPRO-RS | List User';
         $data['page'] = 'admin-user';
         $data['users'] = $this->UserModel->with_roles()->get_all();
+        $data['roles'] = $this->RoleModel->get_all();
         $this->load->view('headers/normal_header', $data);
         $this->load->view('pages/user', $data);
         $this->load->view('footers/normal_footer');
