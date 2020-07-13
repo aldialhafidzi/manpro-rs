@@ -48,7 +48,7 @@ class Poliklinik extends CI_Controller
         $this->load->view('headers/normal_header', $data);
         // $this->load->view('sidebar/sidebar', $data);
         $data['jadwal_poli'] = $this->m_jadwal_poli->tampil_data()->result();
-// echo json_encode($data['jadwal_poli']); die;
+        // echo json_encode($data['jadwal_poli']); die;
         $this->load->view('pages/poliklinik/jadwal_poli', $data);
         $this->load->view('footers/normal_footer');
     }
@@ -743,5 +743,45 @@ class Poliklinik extends CI_Controller
             }
         }
         echo json_encode($list);
+    }
+
+    public function get()
+    {
+        $data = $this->PoliklinikModel->get($this->input->get('poliklinik_id'));
+        echo json_encode($data);
+    }
+
+    public function delete()
+    {
+        if ($this->PoliklinikModel->where('id', $this->input->post('delete_id', TRUE))->delete()) {
+            $this->session->set_flashdata('success', 'Data poliklinik berhasil dihapus');
+            redirect(base_url("/admin/poliklinik"));
+        }
+        $this->session->set_flashdata('error', 'Data poliklinik gagal dihapus');
+        redirect(base_url("/admin/poliklinik"));
+    }
+
+    public function create()
+    {
+        $poliklinik = array(
+            'kode' => $this->input->post('kode', TRUE),
+            'nama' => $this->input->post('nama', TRUE),
+            'lokasi' => $this->input->post('lokasi', TRUE)
+        );
+
+        if ($this->input->post('poliklinik_id', TRUE)) {
+            if ($this->PoliklinikModel->update($poliklinik, $this->input->post('poliklinik_id', TRUE))) {
+                $this->session->set_flashdata('success', 'Poliklinik berhasil diupdate');
+            } else {
+                $this->session->set_flashdata('error', 'Poliklinik gagal diupdate');
+            }
+        } else {
+            if ($this->PoliklinikModel->insert($poliklinik)) {
+                $this->session->set_flashdata('success', 'Poliklinik berhasil ditambahkan');
+            } else {
+                $this->session->set_flashdata('error', 'Poliklinik gagal ditambahkan');
+            }
+        }
+        redirect(base_url("/admin/poliklinik"));
     }
 }
