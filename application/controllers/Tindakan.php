@@ -51,4 +51,45 @@ class Tindakan extends CI_Controller
         }
         echo json_encode($list);
     }
+
+
+    public function get()
+    {
+        $data = $this->TindakanModel->get($this->input->get('tindakan_id'));
+        echo json_encode($data);
+    }
+
+    public function delete()
+    {
+        if ($this->TindakanModel->where('id', $this->input->post('delete_id', TRUE))->delete()) {
+            $this->session->set_flashdata('success', 'Data tindakan berhasil dihapus');
+            redirect(base_url("/admin/tindakan"));
+        }
+        $this->session->set_flashdata('error', 'Data tindakan gagal dihapus');
+        redirect(base_url("/admin/tindakan"));
+    }
+
+    public function create()
+    {
+        $tindakan = array(
+            'kode' => $this->input->post('kode', TRUE),
+            'nama' => $this->input->post('nama', TRUE),
+            'harga' => $this->input->post('harga', TRUE)
+        );
+
+        if ($this->input->post('tindakan_id', TRUE)) {
+            if ($this->TindakanModel->update($tindakan, $this->input->post('tindakan_id', TRUE))) {
+                $this->session->set_flashdata('success', 'tindakan berhasil diupdate');
+            } else {
+                $this->session->set_flashdata('error', 'tindakan gagal diupdate');
+            }
+        } else {
+            if ($this->TindakanModel->insert($tindakan)) {
+                $this->session->set_flashdata('success', 'tindakan berhasil ditambahkan');
+            } else {
+                $this->session->set_flashdata('error', 'tindakan gagal ditambahkan');
+            }
+        }
+        redirect(base_url("/admin/tindakan"));
+    }
 }

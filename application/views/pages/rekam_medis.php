@@ -234,7 +234,7 @@
                 data.rekam.forEach((element, i) => {
                     CURRENT_ROW++;
                     let list_dokter = '<ul class="list-in-table">';
-                    let nama_dokter = '-';
+                    let namater = '-';
                     let nama_penyakit = '-';
                     let jenis_rawat = element.jenis_rawat === 'RAWAT-JALAN' ? 'JALAN' : 'INAP';
                     let list_penyakit = '<ul class="list-in-table">';
@@ -244,9 +244,9 @@
                     if (element.detail_transaksi) {
                         element.detail_transaksi.forEach(dt => {
                             if (dt.dokter) {
-                                if (nama_dokter !== dt.dokter.nama) {
-                                    nama_dokter = dt.dokter.nama;
-                                    list_dokter += `<li>${nama_dokter}</li>`;
+                                if (namater !== dt.dokter.nama) {
+                                    namater = dt.dokter.nama;
+                                    list_dokter += `<li>${namater}</li>`;
                                 }
                             }
 

@@ -15498,7 +15498,7 @@ EOT;
     approach us with offers to donate.
 
     International donations are gratefully accepted, but we cannot make
-    any statements concerning tax treatment of donations received from
+    any statements concerning tax tindakan of donations received from
     outside the United States.  U.S. laws alone swamp our small staff.
 
     Please check the Project Gutenberg Web pages for current donation

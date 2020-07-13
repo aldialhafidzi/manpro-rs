@@ -53,4 +53,45 @@ class Dokter extends CI_Controller
         }
         echo json_encode($list);
     }
+
+
+    public function get()
+    {
+        $data = $this->DokterModel->get($this->input->get('dokter_id'));
+        echo json_encode($data);
+    }
+
+    public function delete()
+    {
+        if ($this->DokterModel->where('id', $this->input->post('delete_id', TRUE))->delete()) {
+            $this->session->set_flashdata('success', 'Data dokter berhasil dihapus');
+            redirect(base_url("/admin/dokter"));
+        }
+        $this->session->set_flashdata('error', 'Data dokter gagal dihapus');
+        redirect(base_url("/admin/dokter"));
+    }
+
+    public function create()
+    {
+        $dokter = array(
+            'kode' => $this->input->post('kode', TRUE),
+            'nama' => $this->input->post('nama', TRUE),
+            'harga' => $this->input->post('harga', TRUE)
+        );
+
+        if ($this->input->post('dokter_id', TRUE)) {
+            if ($this->DokterModel->update($dokter, $this->input->post('dokter_id', TRUE))) {
+                $this->session->set_flashdata('success', 'dokter berhasil diupdate');
+            } else {
+                $this->session->set_flashdata('error', 'dokter gagal diupdate');
+            }
+        } else {
+            if ($this->DokterModel->insert($dokter)) {
+                $this->session->set_flashdata('success', 'dokter berhasil ditambahkan');
+            } else {
+                $this->session->set_flashdata('error', 'dokter gagal ditambahkan');
+            }
+        }
+        redirect(base_url("/admin/dokter"));
+    }
 }

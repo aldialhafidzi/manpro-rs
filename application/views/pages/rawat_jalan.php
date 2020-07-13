@@ -35,7 +35,7 @@
                             <div class="card-body">
                                 <div class="form-group row">
                                     <label for="" class="col-sm-12 col-md-3">Nama</label>
-                                    <input autocomplete="off" id="nama" name="nama" required type="text" class="form-control col-sm-12 col-md-9" placeholder="Nama lengkap pasien">
+                                    <input onkeypress='return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32))' autocomplete="off" id="nama" name="nama" required minlength="2" type="text" class="form-control col-sm-12 col-md-9" placeholder="Nama lengkap pasien">
                                 </div>
                                 <div class="form-group row">
                                     <label for="" class="col-sm-12 col-md-3">Tanggal / Lahir</label>

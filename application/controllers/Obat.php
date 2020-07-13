@@ -48,4 +48,45 @@ class Obat extends CI_Controller
 
         echo json_encode((array) $data);
     }
+
+    public function get()
+    {
+        $data = $this->ObatModel->get($this->input->get('obat_id'));
+        echo json_encode($data);
+    }
+
+    public function delete()
+    {
+        if ($this->ObatModel->where('id', $this->input->post('delete_id', TRUE))->delete()) {
+            $this->session->set_flashdata('success', 'Data obat berhasil dihapus');
+            redirect(base_url("/admin/obat"));
+        }
+        $this->session->set_flashdata('error', 'Data obat gagal dihapus');
+        redirect(base_url("/admin/obat"));
+    }
+
+    public function create()
+    {
+        $obat = array(
+            'kode' => $this->input->post('kode', TRUE),
+            'nama' => $this->input->post('nama', TRUE),
+            'jenis' => $this->input->post('jenis', TRUE),
+            'harga' => $this->input->post('harga', TRUE)
+        );
+
+        if ($this->input->post('obat_id', TRUE)) {
+            if ($this->ObatModel->update($obat, $this->input->post('obat_id', TRUE))) {
+                $this->session->set_flashdata('success', 'Obat berhasil diupdate');
+            } else {
+                $this->session->set_flashdata('error', 'Obat gagal diupdate');
+            }
+        } else {
+            if ($this->ObatModel->insert($obat)) {
+                $this->session->set_flashdata('success', 'Obat berhasil ditambahkan');
+            } else {
+                $this->session->set_flashdata('error', 'Obat gagal ditambahkan');
+            }
+        }
+        redirect(base_url("/admin/obat"));
+    }
 }

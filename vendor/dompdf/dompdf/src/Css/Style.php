@@ -1705,7 +1705,7 @@ class Style
      of several styles of an element, changes in inherit(), merge() and _parse_properties()
      are sufficient [helpers var $_important_props, __construct(), important_set(), important_get()]
 
-     Only for combined attributes extra treatment needed. See below.
+     Only for combined attributes extra tindakan needed. See below.
 
      div { border: 1px red; }
      div { border: solid; } // Not combined! Only one occurrence of same style per context
@@ -1722,7 +1722,7 @@ class Style
      div { border: 1px red; !important }
      div a { border-style: solid; } // Need to override because not set
 
-     Special treatment:
+     Special tindakan:
      At individual property like border-top-width need to check whether overriding value is also !important.
      Also store the !important condition for later overrides.
      Since not known who is initiating the override, need to get passed !important as parameter.

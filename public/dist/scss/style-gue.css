@@ -236,7 +236,7 @@ label:not(.form-check-label):not(.custom-file-label) {
 }
 
 .modal-backdrop.show:nth-of-type(even) {
-  z-index: 1051 !important;
+  z-index: 1040 !important;
 }
 
 .modal-open-important {

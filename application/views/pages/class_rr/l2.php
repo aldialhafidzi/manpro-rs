@@ -285,7 +285,7 @@
         </div>
 
       </div>
-      <?php?>
+      <?php ?>
       <div class="modal fade" id="ruang_rawat_info" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
         <div class="modal-dialog" style="max-width: 700px">
           <div class="modal-content" style="width: 700px">

@@ -72,6 +72,7 @@ class Admin extends CI_Controller
         $data['title'] = 'MANPRO-RS | List Dokter';
         $data['page'] = 'admin-dokter';
         $data['dokters'] = $this->DokterModel->with_specialization()->with_poliklinik()->get_all();
+        $data['specializations'] = $this->SpecializationModel->get_all();
         $this->load->view('headers/normal_header', $data);
         $this->load->view('pages/dokter', $data);
         $this->load->view('footers/normal_footer');
@@ -82,6 +83,7 @@ class Admin extends CI_Controller
         $data['title'] = 'MANPRO-RS | List Pasien';
         $data['page'] = 'admin-pasien';
         $data['pasiens'] = $this->PasienModel->get_all();
+        $data['categories'] = $this->TipePasienModel->get_all();
         $this->load->view('headers/normal_header', $data);
         $this->load->view('pages/pasien', $data);
         $this->load->view('footers/normal_footer');
