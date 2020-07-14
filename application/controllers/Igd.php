@@ -14,7 +14,7 @@ class Igd extends CI_Controller
             }
         }
 
-        $this->load->model('m_igd');
+        $this->load->model('M_igd');
     }
     public function index()
     {
@@ -31,9 +31,9 @@ class Igd extends CI_Controller
         $data['page'] = 'pendaftaranigd';
 
         $where = array('id' => $id);
-        $data['idbedigd'] = $this->m_igd->edit_data($where, 'igd_bed')->result();
-        $data['idpasienbaru'] = $this->m_igd->idpasienbaru() + 1;
-        $data['idrekam'] = $this->m_igd->idrekambaru() + 1;
+        $data['idbedigd'] = $this->M_igd->edit_data($where, 'igd_bed')->result();
+        $data['idpasienbaru'] = $this->M_igd->idpasienbaru() + 1;
+        $data['idrekam'] = $this->M_igd->idrekambaru() + 1;
 
         $this->load->view('headers/normal_header', $data);
         $this->load->view('pages/pendaftaranigd', $data);
@@ -55,7 +55,7 @@ class Igd extends CI_Controller
 
         );
 
-        $this->m_igd->input_datatr($data, 'igd_transaksi');
+        $this->M_igd->input_datatr($data, 'igd_transaksi');
         redirect('igd/rekammedisdetail/' . $id_rekam_medis);
         //var_dump($_POST);die();
     }
@@ -64,7 +64,7 @@ class Igd extends CI_Controller
     {
         $data['title'] = 'MANPRO-RS | IGD';
         $data['page'] = 'rekammedisawal';
-        $data['pasien'] = $this->m_igd->pasien();
+        $data['pasien'] = $this->M_igd->pasien();
         $this->load->view('headers/normal_header', $data);
         $this->load->view('pages/rekammedisawal');
         $this->load->view('footers/normal_footer');
@@ -122,7 +122,7 @@ class Igd extends CI_Controller
     {
         $data['title'] = 'MANPRO-RS | IGD';
         $data['page'] = 'inventoryobatigd';
-        $data['obat'] = $this->m_igd->tampil_dataobat();
+        $data['obat'] = $this->M_igd->tampil_dataobat();
         //  var_dump($data);die();
         $this->load->view('headers/normal_header', $data);
         $this->load->view('pages/inventoryobatigd', $data);
@@ -133,7 +133,7 @@ class Igd extends CI_Controller
     {
         $data['title'] = 'MANPRO-RS | IGD';
         $data['page'] = 'inventoryobatigd';
-        $data['tindakan'] = $this->m_igd->tampil_datatindakan();
+        $data['tindakan'] = $this->M_igd->tampil_datatindakan();
         $this->load->view('headers/normal_header', $data);
         $this->load->view('pages/inventorytindakanigd', $data);
         $this->load->view('footers/normal_footer');
@@ -143,7 +143,7 @@ class Igd extends CI_Controller
     {
         $data['title'] = 'MANPRO-RS | IGD';
         $data['page'] = 'jadwaligd';
-        $data['jadwaldokter'] = $this->m_igd->tampil_datajadwaldokter();
+        $data['jadwaldokter'] = $this->M_igd->tampil_datajadwaldokter();
         $this->load->view('headers/normal_header', $data);
         $this->load->view('pages/jadwaldokterigd', $data);
         $this->load->view('footers/normal_footer');
@@ -153,7 +153,7 @@ class Igd extends CI_Controller
     {
         $data['title'] = 'MANPRO-RS | IGD';
         $data['page'] = 'jadwaligd';
-        $data['jadwalperawat'] = $this->m_igd->tampil_datajadwalperawat();
+        $data['jadwalperawat'] = $this->M_igd->tampil_datajadwalperawat();
         $this->load->view('headers/normal_header', $data);
         $this->load->view('pages/jadwalperawatigd', $data);
         $this->load->view('footers/normal_footer');
@@ -176,8 +176,8 @@ class Igd extends CI_Controller
 
         $where = array('id' => $id);
 
-        $data['detail'] = $this->m_igd->beddetail($id);
-        $data['detail2'] = $this->m_igd->beddetailtransaksi($id);
+        $data['detail'] = $this->M_igd->beddetail($id);
+        $data['detail2'] = $this->M_igd->beddetailtransaksi($id);
         //var_dump($data2);die();
 
         $this->load->view('headers/normal_header', $data);
@@ -196,14 +196,14 @@ class Igd extends CI_Controller
 
         $where = array('id_rekam_medis' => $id_rekam_medis);
 
-        $data['detail'] = $this->m_igd->rm2($id_rekam_medis);
-        $data['detailtransaksi'] = $this->m_igd->rm($id_rekam_medis);
-        $data['pasien'] = $this->m_igd->rm3($id_rekam_medis);
-        $data['transaksi'] = $this->m_igd->rm4($id_rekam_medis);
-        $data['total'] = $this->m_igd->total($id_rekam_medis);
-        $data['obat'] = $this->m_igd->tampil_dataobat();
-        $data['tindakan'] = $this->m_igd->tampil_datatindakan();
-        // $data['detail2'] = $this->m_igd->beddetailtransaksi($id);
+        $data['detail'] = $this->M_igd->rm2($id_rekam_medis);
+        $data['detailtransaksi'] = $this->M_igd->rm($id_rekam_medis);
+        $data['pasien'] = $this->M_igd->rm3($id_rekam_medis);
+        $data['transaksi'] = $this->M_igd->rm4($id_rekam_medis);
+        $data['total'] = $this->M_igd->total($id_rekam_medis);
+        $data['obat'] = $this->M_igd->tampil_dataobat();
+        $data['tindakan'] = $this->M_igd->tampil_datatindakan();
+        // $data['detail2'] = $this->M_igd->beddetailtransaksi($id);
         // var_dump($data);die();
 
         $this->load->view('headers/normal_header', $data);
@@ -218,10 +218,10 @@ class Igd extends CI_Controller
     {
         $data['title'] = 'MANPRO-RS | IGD';
         $data['page'] = 'bedigd';
-        // $data['bedigd'] =$this->m_igd->tampil_data()->result(); 
-        $data['count'] = $this->m_igd->countbed();
-        $data['count2'] = $this->m_igd->countbed2();
-        $data['join2'] = $this->m_igd->duatable();
+        // $data['bedigd'] =$this->M_igd->tampil_data()->result(); 
+        $data['count'] = $this->M_igd->countbed();
+        $data['count2'] = $this->M_igd->countbed2();
+        $data['join2'] = $this->M_igd->duatable();
         $this->load->view('headers/normal_header', $data);
         $this->load->view('pages/bedigd', $data);
         $this->load->view('footers/normal_footer');
@@ -238,14 +238,14 @@ class Igd extends CI_Controller
         $where = array(
             'id' => $id
         );
-        $this->m_igd->kosongkan($where, $data, 'igd_bed');
+        $this->M_igd->kosongkan($where, $data, 'igd_bed');
         redirect('igd/bedigd');
     }
 
     public function daftarigd()
 
     {
-        $id_pasien                   = $this->m_igd->idpasienbaru() + 1;
+        $id_pasien                   = $this->M_igd->idpasienbaru() + 1;
         $nama                        = $this->input->post('nama');
         $jenis_kelamin               = $this->input->post('jenis_kelamin');
         $tanggal_lahir               = $this->input->post('tanggal_lahir');
@@ -289,11 +289,11 @@ class Igd extends CI_Controller
         );
 
 
-        $this->m_igd->input_daftarigd($data, 'igd_pasien');
-        $this->m_igd->input_daftarigd2($where, $data2, 'igd_bed');
+        $this->M_igd->input_daftarigd($data, 'igd_pasien');
+        $this->M_igd->input_daftarigd2($where, $data2, 'igd_bed');
 
 
-        $this->m_igd->input_daftarigd3($data3, 'igd_rekam_medis');
+        $this->M_igd->input_daftarigd3($data3, 'igd_rekam_medis');
 
         redirect('igd/bedigd');
     }
@@ -302,13 +302,13 @@ class Igd extends CI_Controller
     {
         $where = array('id_rekam_medis' => $id_rekam_medis);
 
-        $data['detail'] = $this->m_igd->rm2($id_rekam_medis);
-        $data['detailtransaksi'] = $this->m_igd->rm($id_rekam_medis);
-        $data['pasien'] = $this->m_igd->rm3($id_rekam_medis);
-        $data['transaksi'] = $this->m_igd->rm4($id_rekam_medis);
-        $data['total'] = $this->m_igd->total($id_rekam_medis);
-        $data['obat'] = $this->m_igd->tampil_dataobat();
-        $data['tindakan'] = $this->m_igd->tampil_datatindakan();
+        $data['detail'] = $this->M_igd->rm2($id_rekam_medis);
+        $data['detailtransaksi'] = $this->M_igd->rm($id_rekam_medis);
+        $data['pasien'] = $this->M_igd->rm3($id_rekam_medis);
+        $data['transaksi'] = $this->M_igd->rm4($id_rekam_medis);
+        $data['total'] = $this->M_igd->total($id_rekam_medis);
+        $data['obat'] = $this->M_igd->tampil_dataobat();
+        $data['tindakan'] = $this->M_igd->tampil_datatindakan();
 
         $this->load->view('print', $data);
     }
@@ -317,13 +317,13 @@ class Igd extends CI_Controller
     {
         $where = array('id_rekam_medis' => $id_rekam_medis);
 
-        $data['detail'] = $this->m_igd->rm2($id_rekam_medis);
-        $data['detailtransaksi'] = $this->m_igd->rm($id_rekam_medis);
-        $data['pasien'] = $this->m_igd->rm3($id_rekam_medis);
-        $data['transaksi'] = $this->m_igd->rm4($id_rekam_medis);
-        $data['total'] = $this->m_igd->total($id_rekam_medis);
-        $data['obat'] = $this->m_igd->tampil_dataobat();
-        $data['tindakan'] = $this->m_igd->tampil_datatindakan();
+        $data['detail'] = $this->M_igd->rm2($id_rekam_medis);
+        $data['detailtransaksi'] = $this->M_igd->rm($id_rekam_medis);
+        $data['pasien'] = $this->M_igd->rm3($id_rekam_medis);
+        $data['transaksi'] = $this->M_igd->rm4($id_rekam_medis);
+        $data['total'] = $this->M_igd->total($id_rekam_medis);
+        $data['obat'] = $this->M_igd->tampil_dataobat();
+        $data['tindakan'] = $this->M_igd->tampil_datatindakan();
 
         $this->load->view('print2', $data);
     }
