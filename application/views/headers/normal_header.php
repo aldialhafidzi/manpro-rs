@@ -236,7 +236,7 @@ to get the desired effect
                             </li>
 
                             <li class="nav-item">
-                                <a href="<?= base_url() ?>admin/dokter" class="nav-link <?= ($page == 'admin-perawat') ? 'active' : '' ?>">
+                                <a href="<?= base_url() ?>admin/perawat" class="nav-link <?= ($page == 'admin-perawat') ? 'active' : '' ?>">
                                     <i class="nav-icon fas fa-user-nurse"></i>
                                     <p>
                                         Perawat
