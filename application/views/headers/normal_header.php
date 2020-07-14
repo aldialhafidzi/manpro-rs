@@ -195,7 +195,7 @@ to get the desired effect
                                     </li>
                                     <li class="nav-item">
                                         <a href="<?= base_url() ?>admin/jadwal-poliklinik" class="nav-link <?= ($page == 'admin-poliklinik-jadwal') ? 'active' : '' ?>">
-                                            <i class="fas fa-procedures nav-icon"></i>
+                                            <i class="fas fa-calendar-alt nav-icon"></i>
                                             <p>Jadwal Poliklinik</p>
                                         </a>
                                     </li>
@@ -221,6 +221,42 @@ to get the desired effect
                                         <a href="<?= base_url() ?>ruangrawat/ruang_rawat" class="nav-link <?= ($page == 'ruang_rawat') ? 'active' : '' ?>">
                                             <i class="fas fa-clinic-medical nav-icon"></i>
                                             <p>Ruang Rawat</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li class="nav-item has-treeview <?= ($page == 'bedigd' || $page == 'rekammedisawal' || $page == 'jadwaligd' || $page == 'inventoryobatigd')  ? 'menu-open' : '' ?>">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon far fa-plus-square"></i>
+                                    <p>
+                                        IGD
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview ">
+                                    <li class="nav-item">
+                                        <a href="<?= base_url() ?>igd/bedigd" class="nav-link <?= ($page == 'bedigd') ? 'active' : '' ?>">
+                                            <i class="fas fa-ambulance nav-icon"></i>
+                                            <p>List IGD</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="<?= base_url() ?>igd/rekammedisawal" class="nav-link <?= ($page == 'rekammedisawal') ? 'active' : '' ?>">
+                                            <i class="fas fa-stethoscope"></i>
+                                            <p>Rekam Medis IGD</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="<?= base_url() ?>igd/jadwaldokterigd" class="nav-link <?= ($page == 'jadwaligd') ? 'active' : '' ?>">
+                                            <i class="fas fa-calendar-alt"></i>
+                                            <p>Jadwal</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="<?= base_url() ?>igd/inventoryobatigd" class="nav-link <?= ($page == 'inventoryobatigd') ? 'active' : '' ?>">
+                                            <i class="fas fa-database"></i>
+                                            <p>Inventory</p>
                                         </a>
                                     </li>
                                 </ul>
