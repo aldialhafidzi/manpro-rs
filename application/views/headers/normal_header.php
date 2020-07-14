@@ -180,7 +180,7 @@ to get the desired effect
                         <?php if ($this->session->userdata('role_id') == '1') { ?>
                             <li class="nav-item has-treeview <?= ($page == 'admin-poliklinik' || $page == 'admin-poliklinik-jadwal') ? 'menu-open' : '' ?>">
                                 <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-clinic-medical"></i>
+                                    <i class="nav-icon fas fa-clinic-medical"></i>
                                     <p>
                                         Poliklinik
                                         <i class="right fas fa-angle-left"></i>
@@ -231,6 +231,15 @@ to get the desired effect
                                     <i class="nav-icon fas fa-user-nurse"></i>
                                     <p>
                                         Dokter
+                                    </p>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="<?= base_url() ?>admin/dokter" class="nav-link <?= ($page == 'admin-perawat') ? 'active' : '' ?>">
+                                    <i class="nav-icon fas fa-user-nurse"></i>
+                                    <p>
+                                        Perawat
                                     </p>
                                 </a>
                             </li>

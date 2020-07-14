@@ -8,6 +8,7 @@ class JadwalDokterModel extends MY_Model
         $this->soft_deletes = false;
         $this->has_one['poliklinik'] = array('PoliklinikModel', 'id', 'poli_id');
         $this->has_one['dokter'] = array('DokterModel', 'id', 'dokter_id');
+        $this->has_one['perawat'] = array('PerawatModel', 'id', 'perawat_id');
         $this->has_many['detail_transaksi'] = array('DetailTransaksiModel', 'jadwal_dokter_id', 'id');
         parent::__construct();
     }
