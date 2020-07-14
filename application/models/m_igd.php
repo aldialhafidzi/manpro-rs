@@ -1,6 +1,6 @@
 <?php
 
-class M_igd extends CI_Model
+class m_igd extends CI_Model
 {
     public function tampil_data()
     {
