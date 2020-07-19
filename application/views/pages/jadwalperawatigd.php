@@ -49,8 +49,7 @@
                   <td><?php echo $nomer->nama ?></td>
                   <td><?php echo $nomer->waktu ?></td>
 
-        <td><a href="#" class="btn btn-danger active btn-sm" role="button" aria-pressed="true">Hapus </a></td>
-              
+<td onclick="javascript: return confirm('Anda yakin hapus?')"><?php echo anchor ('igd/hapusjadwalperawatigd/'.$nomer->id_jadwalperawat, '<div class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></div>') ?></td>
                 </tr>
                 <?php endforeach; ?>
               </tbody>
@@ -73,10 +72,10 @@
         </button>
       </div>
       <div class="modal-body">
-        <form method="post" action="<?php echo base_url().'igd/jadwalperawatigd'; ?>">
+        <form method="post" action="<?php echo base_url().'igd/tambah_jadwalperawatigd'; ?>">
         <div class="form-group">
           <label>Perawat</label>
-            <select name="hari" id="hari" class="form-control">
+            <select name="nama" id="hari" class="form-control">
                 <option>Pilih Perawat</option>
                 <option>Cindy</option>
                 <option>Sinta Alvina</option>

@@ -649,6 +649,137 @@ class Pendaftaran extends CI_Controller
           )));
       }
     }
+    
+
+
+    // Script ini untuk memberikan response error ke client yang melakukan request
+    return $this->output
+      ->set_content_type('application/json')
+      ->set_status_header(500)
+      ->set_output(json_encode(array(
+        'status' => '500',
+      )));
+  }
+
+  public function raigd()
+  {
+    // Check apakah pasien_id sudah terdaftar
+    $data['pasien'] = $this->PasienModel->where('id', $this->input->post('pasien_id', TRUE))->get();
+    if (!$data['pasien']) {
+      return $this->output
+        ->set_content_type('application/json')
+        ->set_status_header(500)
+        ->set_output(json_encode(array(
+          'status' => '500',
+          'message' => 'Pasien belum terdaftar'
+        )));
+    }
+
+    $data['bed'] = $this->BedModel->with_kamar(array('with' => array('ruangan')))->where('id', $this->input->post('bed_id', TRUE))->get();
+    if (!$data['bed']) {
+      return $this->output
+        ->set_content_type('application/json')
+        ->set_status_header(500)
+        ->set_output(json_encode(array(
+          'status' => '500',
+          'message' => 'Kamar tidak ditemukan'
+        )));
+    }
+
+    $data['nextBill']       = $this->formatBill('I', '00000');
+    $data['nextReg']        = 1;
+    $data['lastTransaksi']  = $this->TransaksiModel->lastRecord();
+
+    if ($data['lastTransaksi']) {
+      $data['nextBill']   = $this->formatBill('I', $data['lastTransaksi']->id);
+
+      $current_time       = strtotime($data['lastTransaksi']->created_at);
+      $current_date       = date("Y-m-d", $current_time);
+
+      // Reset nomor register rawat inap setiap ganti tanggal
+      if ($current_date === date("Y-m-d")) {
+        $data['nextReg']    = $data['lastTransaksi']->no_reg + 1;
+      }
+    }
+
+    // Data ini akan dimasukan ke table transaksi
+    $data_transaksi = array(
+      'pasien_id'     => $data['pasien']->id,
+      'user_id'       => $this->session->userdata('id'),
+      'no_bill'       => $data['nextBill'],
+      'no_reg'        => $data['nextReg'],
+      'total_tarif'   => $this->input->post('tarif_awal', TRUE),
+      'jenis_rawat'   => 'RAWAT-INAP',
+      'status'        => 'REGISTERED',
+      'created_at'    => date("Y-m-d"),
+      'updated_at'    => date("Y-m-d"),
+    );
+
+    // Script ini untuk menyimpan sekaligus mengecek status penyimpanan data transaksi
+    $transaksi_id = $this->TransaksiModel->post($data_transaksi);
+    if ($transaksi_id) {
+
+      // Jika pasien memiliki diagnosa awal maka masukan ke table rekam medis
+      $data['penyakit']     = $this->PenyakitModel->where('id', $this->input->post('diagnosa_id', TRUE))->get();
+      if ($data['penyakit']) {
+        $this->RekamMedisModel->insert(array(
+          'penyakit_id' => $data['penyakit']->id,
+          'pasien_id'   => $data['pasien']->id,
+          'jenis_rawat' => 'RAWAT-INAP',
+          'created_at'  => date("Y-m-d"),
+          'updated_at'  => date("Y-m-d"),
+        ));
+      }
+
+      // Prepare data untuk dimasukan ke dalam detail transaksi
+      $data_detail_transaksi = array(
+        'transaksi_id'      => $transaksi_id,
+        'penyakit_id'       => $data['penyakit'] ? $data['penyakit']->id : NULL,
+        'tindakan_id'       => NULL,
+        'obat_id'           => NULL,
+        'bed_id'            => $data['bed']->id,
+        'kamar_id'          => $data['bed']->kamar->id,
+        'ruangan_id'        => $data['bed']->kamar->ruangan->id,
+        'tarif_kamar'       => $data['bed']->kamar->ruangan->harga,
+        'tarif_pendaftaran' => $this->input->post('tarif_awal', TRUE),
+        'tarif_dokter'      => NULL,
+        'tarif_tindakan'    => NULL,
+        'tanggal_masuk'     => date('Y-m-d'),
+        'tanggal_keluar'    => NULL,
+        'created_at'        => date("Y-m-d"),
+        'updated_at'        => date("Y-m-d")
+      );
+
+      if ($this->DetailTransaksiModel->insert($data_detail_transaksi)) {
+        // Generate PDF untuk membuat bukti transaksi
+        $transaksi['tr_with_pasien'] = $this->TransaksiModel->with_pasien(array('with' => array('tipe_pasien')))->get($transaksi_id);
+        $transaksi['tr_with_user'] = $this->TransaksiModel->with_user()->get($transaksi_id);
+        $transaksi['tr_with_detail_tr_penyakit'] = $this->TransaksiModel->with_detail_transaksi(array('with' => array('penyakit')))->get($transaksi_id);
+        $transaksi['tr_with_detail_tr_bed'] = $this->TransaksiModel->with_detail_transaksi(array('with' => array('bed')))->get($transaksi_id);
+
+        foreach ($transaksi['tr_with_detail_tr_bed']->detail_transaksi as $key => $value) {
+          $kamar = $this->KamarModel->where('id', $value->bed->kamar_id)->get();
+          $ruangan = $this->RuanganModel->where('id', $kamar->ruangan_id)->get();
+          $value->bed->kamar = $kamar;
+          $value->bed->ruangan = $ruangan;
+        }
+
+        $download_url          = $this->generateBuktiPendaftaranRanap($transaksi);
+
+        // Script ini untuk memberikan response success ke client yang melakukan request
+        $data                  = $this->nextTransactionRanap();
+        return $this->output
+          ->set_content_type('application/json')
+          ->set_status_header(200)
+          ->set_output(json_encode(array(
+            'status'            => '200',
+            'message'           => 'success',
+            'download_url'      => $download_url,
+            'next_transaction'  => $data
+          )));
+      }
+    }
+    
 
 
     // Script ini untuk memberikan response error ke client yang melakukan request

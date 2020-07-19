@@ -14,6 +14,10 @@ class M_igd extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
+
+
+
+
     public function input_datatr($data)
     {
         $this->db->insert('igd_transaksi', $data);
@@ -32,6 +36,11 @@ class M_igd extends CI_Model
     {
         return $this->db->get('igd_inventory')->result();
     }
+    public function input_obat($data)
+    {
+        $this->db->insert('igd_inventory', $data);
+    }
+
 
     public function tampil_pasien()
     {
@@ -42,9 +51,21 @@ class M_igd extends CI_Model
     {
         return $this->db->get('igd_jadwaldokter')->result();
     }
+
+    public function input_jadwaldokter($data)
+    {
+        $this->db->insert('igd_jadwaldokter', $data);
+    }
+
+
     public function tampil_datajadwalperawat()
     {
         return $this->db->get('igd_jadwalperawat')->result();
+    }
+
+    public function input_jadwalperawat($data)
+    {
+        $this->db->insert('igd_jadwalperawat', $data);
     }
 
     public function countbed()
@@ -88,6 +109,12 @@ class M_igd extends CI_Model
         $sql = "SELECT MAX(id_pasien) as idpasien from igd_pasien";
         $result = $this->db->query($sql);
         return $result->row()->idpasien;
+    }
+
+    public function update_data($where, $data, $table)
+    {
+        $this->db->where($where);
+        $this->db->update($table, $data);
     }
 
     public function idrekambaru()
@@ -186,7 +213,7 @@ class M_igd extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('igd_transaksi');
-        $this->db->join('obat', 'igd_transaksi.layanan=obat.id_obat', 'LEFT');
+        // $this->db->join('obat', 'igd_transaksi.layanan=obat.id_obat', 'LEFT');
         $this->db->join('igd_inventory', 'igd_transaksi.layanan=igd_inventory.id_inventory', 'LEFT');
         $this->db->where('id_rekam_medis', $id_rekam_medis);
         $query = $this->db->get();
@@ -216,7 +243,7 @@ class M_igd extends CI_Model
         //    return $result;
     }
 
-    // public function beddetail($id = id) 
+    // public function beddetail($id ) 
     // {
     //  $this->db->select('*');
     //  $this->db->from('igd_bed');

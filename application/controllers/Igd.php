@@ -13,7 +13,6 @@ class Igd extends CI_Controller
                 redirect('/');
             }
         }
-
         $this->load->model('M_igd');
     }
     public function index()
@@ -24,6 +23,8 @@ class Igd extends CI_Controller
         $this->load->view('pages/bedigd');
         $this->load->view('footers/normal_footer');
     }
+
+
 
     public function pendaftaranigd($id)
     {
@@ -129,6 +130,122 @@ class Igd extends CI_Controller
         $this->load->view('footers/normal_footer');
     }
 
+    public function inventoryedit($id_inventory)
+    {
+
+
+        $where = array('id_inventory' => $id_inventory);
+        $data['obat'] = $this->M_igd->edit_data($where, 'igd_inventory')->result();
+        $data['title'] = 'MANPRO-RS | IGD';
+        $data['page'] = 'inventoryobatigd';
+
+        //  var_dump($data);die();
+        $this->load->view('headers/normal_header', $data);
+        $this->load->view('pages/editobat', $data);
+        $this->load->view('footers/normal_footer');
+    }
+
+    public function inventoryedit2($id_inventory)
+    {
+
+
+        $where = array('id_inventory' => $id_inventory);
+        $data['obat'] = $this->M_igd->edit_data($where, 'igd_inventory')->result();
+        $data['title'] = 'MANPRO-RS | IGD';
+        $data['page'] = 'inventoryobatigd';
+
+        //  var_dump($data);die();
+        $this->load->view('headers/normal_header', $data);
+        $this->load->view('pages/edittindakan', $data);
+        $this->load->view('footers/normal_footer');
+    }
+    public function updateinventory()
+    {
+        $id_inventory = $this->input->post('id_inventory');
+        $nama_inv = $this->input->post('nama_inv');
+        $harga_inv = $this->input->post('harga_inv');
+
+        $data = array(
+            'nama_inv' => $nama_inv,
+            'harga_inv' => $harga_inv,
+
+        );
+        $where = array(
+            'id_inventory' => $id_inventory
+        );
+        $this->M_igd->update_data($where, $data, 'igd_inventory');
+        redirect('igd/inventoryobatigd');
+    }
+
+    public function updateinventory2()
+    {
+        $id_inventory = $this->input->post('id_inventory');
+        $nama_inv = $this->input->post('nama_inv');
+        $harga_inv = $this->input->post('harga_inv');
+
+        $data = array(
+            'nama_inv' => $nama_inv,
+            'harga_inv' => $harga_inv,
+
+        );
+        $where = array(
+            'id_inventory' => $id_inventory
+        );
+        $this->M_igd->update_data($where, $data, 'igd_inventory');
+        redirect('igd/inventorytindakanigd');
+    }
+
+
+    public function tambah_obatigd()
+    {
+        $nama_inv       = $this->input->post('nama_inv');
+        $harga_inv        = $this->input->post('harga_inv');
+
+
+
+        $data = array(
+            'nama_inv'      => $nama_inv,
+            'harga_inv'       => $harga_inv,
+            'jenis' => "obat",
+
+        );
+
+        $this->M_igd->input_obat($data, 'igd_inventory');
+        redirect('igd/inventoryobatigd');
+    }
+
+    public function tambah_tindakanigd()
+    {
+        $nama_inv       = $this->input->post('nama_inv');
+        $harga_inv        = $this->input->post('harga_inv');
+
+
+
+        $data = array(
+            'nama_inv'      => $nama_inv,
+            'harga_inv'       => $harga_inv,
+            'jenis' => "Tindakan",
+
+        );
+
+        $this->M_igd->input_obat($data, 'igd_inventory');
+        redirect('igd/inventorytindakanigd');
+    }
+
+    public function hapusinvigd($id_inventory)
+    {
+        $where = array('id_inventory' => $id_inventory);
+        $this->M_igd->hapus_data($where, 'igd_inventory');
+        redirect('igd/inventoryobatigd');
+    }
+
+    public function hapusinvigd2($id_inventory)
+    {
+        $where = array('id_inventory' => $id_inventory);
+        $this->M_igd->hapus_data($where, 'igd_inventory');
+        redirect('igd/inventorytindakanigd');
+    }
+
     public function inventorytindakanigd()
     {
         $data['title'] = 'MANPRO-RS | IGD';
@@ -149,6 +266,33 @@ class Igd extends CI_Controller
         $this->load->view('footers/normal_footer');
     }
 
+
+
+    public function tambah_jadwaldokterigd()
+    {
+        $hari       = $this->input->post('hari');
+        $waktu        = $this->input->post('waktu');
+        $nama  = $this->input->post('nama');
+
+
+        $data = array(
+            'hari'      => $hari,
+            'waktu'       => $waktu,
+            'nama' => $nama,
+
+        );
+
+        $this->M_igd->input_jadwaldokter($data, 'igd_jadwaldokter');
+        redirect('igd/jadwaldokterigd');
+    }
+
+    public function hapusjadwaldokterigd($id_jadwaldokter)
+    {
+        $where = array('id_jadwaldokter' => $id_jadwaldokter);
+        $this->M_igd->hapus_data($where, 'igd_jadwaldokter');
+        redirect('igd/jadwaldokterigd');
+    }
+
     public function jadwalperawatigd()
     {
         $data['title'] = 'MANPRO-RS | IGD';
@@ -159,6 +303,15 @@ class Igd extends CI_Controller
         $this->load->view('footers/normal_footer');
     }
 
+
+
+
+    public function hapusjadwalperawatigd($id_jadwalperawat)
+    {
+        $where = array('id_jadwalperawat' => $id_jadwalperawat);
+        $this->M_igd->hapus_data($where, 'igd_jadwalperawat');
+        redirect('igd/jadwalperawatigd');
+    }
 
     public function jadwaligd()
     {
@@ -200,6 +353,7 @@ class Igd extends CI_Controller
         $data['detailtransaksi'] = $this->M_igd->rm($id_rekam_medis);
         $data['pasien'] = $this->M_igd->rm3($id_rekam_medis);
         $data['transaksi'] = $this->M_igd->rm4($id_rekam_medis);
+        // var_dump($data); die;
         $data['total'] = $this->M_igd->total($id_rekam_medis);
         $data['obat'] = $this->M_igd->tampil_dataobat();
         $data['tindakan'] = $this->M_igd->tampil_datatindakan();

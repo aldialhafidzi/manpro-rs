@@ -13,7 +13,7 @@
         </div>
     </div>
     <div class="col-md-12">
-
+<a target="_blank" class="btn btn-primary" href="<?php echo base_url()?>/igd/print2/"><i class="fa fa-plus"></i> Buat Surat Sakit</a>
                         <p><small mr-sm-2>Silahkan cari Bed untuk daftar IGD</small></p></div>
 
                         <table class="table table-sm">

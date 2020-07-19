@@ -18,8 +18,8 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
-      <a class="nav-item nav-link active" href="http://[::1]/manproigd/igd/jadwaldokterigd">DOKTER<span class="sr-only">(current)</span></a>
-      <a class="nav-item nav-link" href="http://[::1]/manproigd/igd/jadwalperawatigd">PERAWAT</a>
+      <a class="nav-item nav-link active" href="<?php echo base_url()?>/igd/jadwaldokterigd">DOKTER<span class="sr-only">(current)</span></a>
+      <a class="nav-item nav-link" href="<?php echo base_url()?>/igd/jadwalperawatigd">PERAWAT</a>
       
     </div>
   </div>
@@ -49,7 +49,7 @@
                   <td><?php echo $nomer->nama ?></td>
                   <td><?php echo $nomer->waktu ?></td>
 
-        <td><a href="#" class="btn btn-danger active btn-sm" role="button" aria-pressed="true">Hapus </a></td>
+                        <td onclick="javascript: return confirm('Anda yakin hapus?')"><?php echo anchor ('igd/hapusjadwaldokterigd/'.$nomer->id_jadwaldokter, '<div class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></div>') ?></td>
               
                 </tr>
                 <?php endforeach; ?>
@@ -73,10 +73,10 @@
         </button>
       </div>
       <div class="modal-body">
-        <form method="post" action="<?php echo base_url().'igd/jadwaldokterigd'; ?>">
+        <form method="post" action="<?php echo base_url().'igd/tambah_jadwaldokterigd'; ?>">
         <div class="form-group">
           <label>Dokter</label>
-            <select name="hari" id="hari" class="form-control">
+            <select name="nama" id="nama" class="form-control">
                 <option>Pilih Dokter</option>
                 <option>Nurly Hestika Wardhani, dr, MG</option>
                 <option>Dyah Hajuni Ambarsari, drg, Sp</option>

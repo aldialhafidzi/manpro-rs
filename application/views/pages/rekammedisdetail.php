@@ -49,7 +49,7 @@
         <p>Alamat : <?php echo $nomer->alamat ?> Telp.<?php echo $nomer->no_telp ?></p>
       </div>
                   <div class="col-3">
-        <a class="btn btn-primary" href="http://[::1]/manproigd/index.php/igd/print2/<?php echo $nomer->id_rekam_medis?>"><i class="fa fa-envelope o"></i> Buat Surat Sakit</a>
+        <a target="_blank" class="btn btn-primary" href="<?php echo base_url()?>/igd/print2/<?php echo $nomer->id_rekam_medis?>"><i class="fa fa-envelope o"></i> Buat Surat Sakit</a>
 
             </div>
     </div>
@@ -151,7 +151,7 @@
       </div>
        </div>
         </form>
-                <a href="http://[::1]/manproigd/index.php/igd/print/<?php echo $nomer->id_rekam_medis?>" class="btn btn-primary"><i class="fa fa-plus "></i> <i class="fa fa-print"></i>Print </a>
+                <a target="_blank" href="<?php echo base_url()?>/igd/print/<?php echo $nomer->id_rekam_medis?>" class="btn btn-primary"><i class="fa fa-plus "></i> <i class="fa fa-print"></i>Print </a>
      
 
 

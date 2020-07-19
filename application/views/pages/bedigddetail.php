@@ -95,7 +95,7 @@
       </div>
     </div>
 
-<a class="btn btn-success" href="http://[::1]/manproigd/index.php/igd/rekammedisdetail/<?php echo $nomer->id_rekam_medis?>" role="button"><i class="fa fa-heartbeat"></i>Detail Rekam Medis</a>
+<a class="btn btn-success" href="<?php echo base_url()?>/igd/rekammedisdetail/<?php echo $nomer->id_rekam_medis?>" role="button"><i class="fa fa-heartbeat"></i>Detail Rekam Medis</a>
 
 <?php } ?>
 

@@ -18,8 +18,8 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
-      <a class="nav-item nav-link active" href="http://[::1]/manproigd/igd/inventoryobatigd">OBAT <span class="sr-only">(current)</span></a>
-      <a class="nav-item nav-link" href="http://[::1]/manproigd/igd/inventorytindakanigd">TINDAKAN</a>
+      <a class="nav-item nav-link active" href="<?php echo base_url()?>/igd/inventoryobatigd">OBAT <span class="sr-only">(current)</span></a>
+      <a class="nav-item nav-link" href="<?php echo base_url()?>/igd/inventorytindakanigd">TINDAKAN</a>
       
     </div>
   </div>
@@ -39,15 +39,17 @@
                 </tr>
               </thead>
               <tbody>
-                      <?php 
+
+                      <?php  $no = 1;
       
       foreach ($obat as $nomer): ?>
+
                 <tr>
-                  <th scope="row"><?php echo $nomer->nama_inv ?></th>
+                  <th scope="row"><?php echo $no++ ?></th>
                   <td><?php echo $nomer->nama_inv ?></td>
                   <td><?php echo "Rp. " . number_format($nomer->harga_inv, 0, ".", ".") ?></td>
-                  <td><a href="<?= base_url() ?>igd/rekammedisawaldetail" class="btn btn-primary btn-lg active btn-sm" role="button" aria-pressed="true">Ubah</a>
-        <a href="#" class="btn btn-danger active btn-sm" role="button" aria-pressed="true">Hapus </a></td>
+              <td><?php echo anchor('igd/inventoryedit/'.$nomer->id_inventory,'<div class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></div>') ?></td>
+       <td onclick="javascript: return confirm('Anda yakin hapus?')"><?php echo anchor ('igd/hapusinvigd/'.$nomer->id_inventory, '<div class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></div>') ?></td>
               
                 </tr>
                 <?php endforeach; ?>
@@ -63,14 +65,14 @@
         </button>
       </div>
       <div class="modal-body">
-        <form method="post" action="<?php echo base_url().'Poliklinik/tambah_aksi_obat'?>">
+        <form method="post" action="<?php echo base_url().'igd/tambah_obatigd'?>">
           <div class="form-grup">
             <label>Nama Obat</label>
-            <input type="text" name="nama_drugs" class="form-control">
+            <input type="text" name="nama_inv" class="form-control">
           </div>
           <div class="form-grup">
             <label>Harga</label>
-            <input type="text" name="merk" class="form-control">
+            <input type="text" name="harga_inv" class="form-control">
           </div>
 
           <div class="modal-footer">
