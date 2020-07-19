@@ -92,7 +92,7 @@ class Pendaftaran extends CI_Controller
     return $data;
   }
 
-    public function nextTransactionRaigd()
+  public function nextTransactionRaigd()
   {
     $data['tanggal'] = date('d/m/Y');
 
@@ -512,14 +512,14 @@ class Pendaftaran extends CI_Controller
     $this->load->view('footers/normal_footer');
   }
 
-    public function rawat_igd()
+  public function rawat_igd()
   {
     $data                 = $this->nextTransactionRaigd();
     $data['tipe_pasien']  = $this->TipePasienModel->get_all();
     $data['title']        = 'MANPRO-RS | Pendaftaran';
     $data['page']         = 'rawat_igd';
-    $data['tersedia']         = $this->BedModel->where('status',1)->count_rows();
-    $data['terisi']         = $this->BedModel->where('status',0)->count_rows();
+    $data['tersedia']         = $this->BedModel->where('status', 1)->count_rows();
+    $data['terisi']         = $this->BedModel->where('status', 0)->count_rows();
 
     $this->load->view('headers/normal_header', $data);
     $this->load->view('pages/rawat_igd');
@@ -779,7 +779,7 @@ class Pendaftaran extends CI_Controller
 
         // Update Bed Status
         $this->BedModel->update(array('status' => 1), $data['bed']->id);
-        
+
         // Generate PDF untuk membuat bukti transaksi
         $transaksi['tr_with_pasien'] = $this->TransaksiModel->with_pasien(array('with' => array('tipe_pasien')))->get($transaksi_id);
         $transaksi['tr_with_user'] = $this->TransaksiModel->with_user()->get($transaksi_id);
@@ -808,7 +808,7 @@ class Pendaftaran extends CI_Controller
           )));
       }
     }
-    
+
 
 
     // Script ini untuk memberikan response error ke client yang melakukan request
@@ -942,7 +942,7 @@ class Pendaftaran extends CI_Controller
           )));
       }
     }
-    
+
 
 
     // Script ini untuk memberikan response error ke client yang melakukan request

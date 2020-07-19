@@ -30,6 +30,7 @@ class Admin extends CI_Controller
         $this->load->model('RuanganModel');
         $this->load->model('TipePasienModel');
         $this->load->model('TransaksiModel');
+        $this->load->model('Wilayah_2020Model');
     }
     public function index()
     {
@@ -193,5 +194,83 @@ class Admin extends CI_Controller
         $this->load->view('headers/normal_header', $data);
         $this->load->view('pages/guides', $data);
         $this->load->view('footers/normal_footer');
+    }
+
+    public function search_kota()
+    {
+        $data =  $this->Wilayah_2020Model->kota($this->input->get('search', TRUE));
+        $list = array();
+        if ($data) {
+            foreach ($data as $key => $value) {
+                $list[$key]['id'] = $value['kode'];
+                $list[$key]['text'] = $value['nama'];
+                $list[$key]['kode'] = $value['kode'];
+            }
+        }
+        echo json_encode($list);
+    }
+
+    public function search_kecamatan()
+    {
+        $data =  $this->Wilayah_2020Model->kecamatan($this->input->get('search', TRUE));
+        $list = array();
+        if ($data) {
+            foreach ($data as $key => $value) {
+                $list[$key]['id'] = $value['kode'];
+                $list[$key]['text'] = $value['nama'];
+                $list[$key]['kode'] = $value['kode'];
+            }
+        }
+        echo json_encode($list);
+    }
+
+    public function search_kelurahan()
+    {
+        $data =  $this->Wilayah_2020Model->kelurahan($this->input->get('search', TRUE));
+        $list = array();
+        if ($data) {
+            foreach ($data as $key => $value) {
+                $list[$key]['id'] = $value['kode'];
+                $list[$key]['text'] = $value['nama'];
+                $list[$key]['kode'] = $value['kode'];
+            }
+        }
+        echo json_encode($list);
+    }
+
+    public function wilayah()
+    {
+        echo json_encode($this->Wilayah_2020Model->where('kode', $this->input->get('kode', TRUE))->get());
+    }
+
+    public function provinsi()
+    {
+        echo json_encode($this->Wilayah_2020Model->provinsi());
+    }
+
+    public function kota()
+    {
+        echo json_encode($this->Wilayah_2020Model->kota());
+    }
+
+    public function testing()
+    {
+        $kelurahan = $this->Wilayah_2020Model->kelurahan();
+        foreach ($kelurahan as $key => $value) {
+            $new_code = str_replace(".", "", $value['kode']);
+            $this->Wilayah_2020Model->where('kode', $value['kode'])->update(array('kode' => $new_code));
+            echo 'good' . $key;
+        }
+        echo "Success";
+    }
+
+    public function kecamatan()
+    {
+        echo json_encode($this->Wilayah_2020Model->kecamatan());
+    }
+
+    public function kelurahan()
+    {
+        echo json_encode($this->Wilayah_2020Model->kelurahan());
     }
 }

@@ -41,7 +41,7 @@ class TipePasien extends CI_Controller
     {
         $data =  $this->TipePasienModel->like(array(
             "nama" => $this->input->get('search', TRUE)
-        ))->get_all();
+        ))->limit(10, $offset = 0)->get_all();
 
         $list = array();
         if ($data) {
