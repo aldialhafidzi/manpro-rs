@@ -126,156 +126,159 @@
 <div class="modal fade" id="modal_rekam_inap" tabindex="-1" role="dialog" aria-labelledby="modal_rekam_inapTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Rincian Transaksi Ranap</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body" style="padding: 1rem;">
-                <div class="row mb-3">
-                    <div class="col-6">
-                        <div class="form-group row">
-                            <div class="col-5">
-                                Status
-                            </div>
-                            <div class="col-7 pl-0">
-                                <div id="status_transaksi">
-                                    <span class="badge badge-secondary">REGISTERED</span>
+            <form action="<?= base_url() ?>transaksi/save" method="POST">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Rincian Transaksi Ranap</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="padding: 1rem;">
+                    <div class="row mb-3">
+                        <div class="col-6">
+                            <div class="form-group row">
+                                <div class="col-5">
+                                    Status
+                                </div>
+                                <div class="col-7 pl-0">
+                                    <div id="status_transaksi">
+                                        <span class="badge badge-secondary">REGISTERED</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="" class="col-5">No. Transaksi</label>
-                            <input disabled id="no_bill" name="no_bill" type="text" class="form-control form-control-sm col-7">
-                        </div>
-                        <div class="form-group row">
-                            <label for="" class="col-5">Tanggal Transaksi</label>
-                            <input disabled id="tanggal_transaksi" name="tanggal_transaksi" type="text" class="form-control form-control-sm col-7">
+                            <div class="form-group row">
+                                <label for="" class="col-5">No. Transaksi</label>
+                                <input disabled id="no_bill" name="no_bill" type="text" class="form-control form-control-sm col-7">
+                            </div>
+                            <div class="form-group row">
+                                <label for="" class="col-5">Tanggal Transaksi</label>
+                                <input disabled id="tanggal_transaksi" name="tanggal_transaksi" type="text" class="form-control form-control-sm col-7">
+                            </div>
+
+                            <hr>
+
+                            <div class="form-group row">
+                                <label for="" class="col-5">Pendaftaran</label>
+                                <input disabled id="tarif-pendaftaran" name="tarif-pendaftaran" type="text" class="form-control form-control-sm col-7">
+                            </div>
                         </div>
 
-                        <hr>
+                        <div class="col-6">
+                            <div class="form-group row">
+                                <label for="" class="col-4">No. MR</label>
+                                <input disabled id="no_mr" name="no_mr" type="text" class="form-control form-control-sm col-8">
+                            </div>
+                            <div class="form-group row">
+                                <label for="" class="col-4">Nama</label>
+                                <input disabled id="nama" name="nama" type="text" class="form-control form-control-sm col-8">
+                            </div>
+                            <div class="form-group row">
+                                <label for="" class="col-4">Tanggal Lahir</label>
+                                <input disabled id="tanggal_lahir" name="tanggal_lahir" type="text" class="form-control form-control-sm col-8">
+                            </div>
+                            <div class="form-group row">
+                                <label for="" class="col-4">No Telp</label>
+                                <input disabled id="no_telp" name="no_telp" type="text" class="form-control form-control-sm col-8">
+                            </div>
+                            <div class="form-group row">
+                                <label for="" class="col-4">Kelurahan</label>
+                                <input disabled id="kelurahan" name="kelurahan" type="text" class="form-control form-control-sm col-8">
+                            </div>
+                            <div class="form-group row">
+                                <label for="" class="col-4">RT/RW</label>
+                                <input disabled id="rt" name="rt" type="text" class="form-control form-control-sm col-3"> &nbsp;/&nbsp;
+                                <input disabled id="rw" name="rw" type="text" class="form-control form-control-sm col-3">
+                            </div>
 
-                        <div class="form-group row">
-                            <label for="" class="col-5">Pendaftaran</label>
-                            <input disabled id="tarif-pendaftaran" name="tarif-pendaftaran" type="text" class="form-control form-control-sm col-7">
+                        </div>
+                    </div>
+                    <hr>
+                    <p class="text-bold position-relative">Penggunaan Ruangan
+                        <span id="tambah_Ruangan" class="position-absolute text-normal add-items"> <i class="fas fa-plus"></i> Tambah Ruangan</span>
+                    </p>
+                    <table id="table_ruangan" class="table table-sm table-bordered mt-2">
+                        <thead>
+                            <tr>
+                                <td>No</td>
+                                <td>Ruangan</td>
+                                <td>Kamar</td>
+                                <td>Masuk</td>
+                                <td>Keluar</td>
+                                <td>Waktu</td>
+                                <td>Tarif / Jam</td>
+                                <td>Subtotal</td>
+                            </tr>
+                        </thead>
+                        <tbody id="t_body_ruangan"></tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="7" class="text-center text-bold">Total Ruangan</td>
+                                <td id="total_ruangan" class="text-bold text-right">IDR ,-</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <hr>
+                    <p class="text-bold position-relative">Biaya Tindakan
+                        <span id="tambah_tindakan" class="position-absolute text-normal add-items"> <i class="fas fa-plus"></i> Tambah Tindakan</span>
+                    </p>
+                    <table id="table_tindakan" class="table table-sm table-bordered mt-2">
+                        <thead>
+                            <tr>
+                                <td>No</td>
+                                <td>Kode</td>
+                                <td>Tindakan</td>
+                                <td>Tarif</td>
+                            </tr>
+                        </thead>
+                        <tbody id="t_body_tindakan"></tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="3" class="text-center text-bold">Total Tindakan</td>
+                                <td id="total_tindakan" class="text-bold text-right">IDR ,-</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+
+                    <hr>
+
+                    <p class="text-bold position-relative">Biaya Obat
+                        <span id="tambah_obat" class="position-absolute text-normal add-items"> <i class="fas fa-plus"></i> Tambah Obat</span>
+                    </p>
+                    <table id="table_obat" class="table table-sm table-bordered mt-2">
+                        <thead>
+                            <tr>
+                                <td>No</td>
+                                <td>Kode</td>
+                                <td>Obat</td>
+                                <td>Qty</td>
+                                <td>Harga</td>
+                                <td>Subtotal</td>
+                            </tr>
+                        </thead>
+                        <tbody id="t_body_obat"></tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="5" class="text-center text-bold">Total Obat</td>
+                                <td id="total_obat" class="text-bold text-right">IDR ,-</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+
+                    <hr>
+                    <div class="row">
+                        <div class="col-6"></div>
+                        <div class="col-6">
+                            <h5 class="title-warning-right" style="width: 100%;" id="total_biaya">IDR 100.000.000 ,-</h5>
                         </div>
                     </div>
 
-                    <div class="col-6">
-                        <div class="form-group row">
-                            <label for="" class="col-4">No. MR</label>
-                            <input disabled id="no_mr" name="no_mr" type="text" class="form-control form-control-sm col-8">
-                        </div>
-                        <div class="form-group row">
-                            <label for="" class="col-4">Nama</label>
-                            <input disabled id="nama" name="nama" type="text" class="form-control form-control-sm col-8">
-                        </div>
-                        <div class="form-group row">
-                            <label for="" class="col-4">Tanggal Lahir</label>
-                            <input disabled id="tanggal_lahir" name="tanggal_lahir" type="text" class="form-control form-control-sm col-8">
-                        </div>
-                        <div class="form-group row">
-                            <label for="" class="col-4">No Telp</label>
-                            <input disabled id="no_telp" name="no_telp" type="text" class="form-control form-control-sm col-8">
-                        </div>
-                        <div class="form-group row">
-                            <label for="" class="col-4">Kelurahan</label>
-                            <input disabled id="kelurahan" name="kelurahan" type="text" class="form-control form-control-sm col-8">
-                        </div>
-                        <div class="form-group row">
-                            <label for="" class="col-4">RT/RW</label>
-                            <input disabled id="rt" name="rt" type="text" class="form-control form-control-sm col-3"> &nbsp;/&nbsp;
-                            <input disabled id="rw" name="rw" type="text" class="form-control form-control-sm col-3">
-                        </div>
-
-                    </div>
                 </div>
-                <hr>
-                <p class="text-bold position-relative">Penggunaan Ruangan
-                    <span id="tambah_Ruangan" class="position-absolute text-normal add-items"> <i class="fas fa-plus"></i> Tambah Ruangan</span>
-                </p>
-                <table id="table_ruangan" class="table table-sm table-bordered mt-2">
-                    <thead>
-                        <tr>
-                            <td>No</td>
-                            <td>Ruangan</td>
-                            <td>Kamar</td>
-                            <td>Masuk</td>
-                            <td>Keluar</td>
-                            <td>Waktu</td>
-                            <td>Tarif / Jam</td>
-                            <td>Subtotal</td>
-                        </tr>
-                    </thead>
-                    <tbody id="t_body_ruangan"></tbody>
-                    <tfoot>
-                        <tr>
-                            <td colspan="7" class="text-center text-bold">Total Ruangan</td>
-                            <td id="total_ruangan" class="text-bold text-right">IDR ,-</td>
-                        </tr>
-                    </tfoot>
-                </table>
-                <hr>
-                <p class="text-bold position-relative">Biaya Tindakan
-                    <span id="tambah_tindakan" class="position-absolute text-normal add-items"> <i class="fas fa-plus"></i> Tambah Tindakan</span>
-                </p>
-                <table id="table_tindakan" class="table table-sm table-bordered mt-2">
-                    <thead>
-                        <tr>
-                            <td>No</td>
-                            <td>Kode</td>
-                            <td>Tindakan</td>
-                            <td>Tarif</td>
-                        </tr>
-                    </thead>
-                    <tbody id="t_body_tindakan"></tbody>
-                    <tfoot>
-                        <tr>
-                            <td colspan="3" class="text-center text-bold">Total Tindakan</td>
-                            <td id="total_tindakan" class="text-bold text-right">IDR ,-</td>
-                        </tr>
-                    </tfoot>
-                </table>
-
-                <hr>
-
-                <p class="text-bold position-relative">Biaya Obat
-                    <span id="tambah_obat" class="position-absolute text-normal add-items"> <i class="fas fa-plus"></i> Tambah Obat</span>
-                </p>
-                <table id="table_obat" class="table table-sm table-bordered mt-2">
-                    <thead>
-                        <tr>
-                            <td>No</td>
-                            <td>Kode</td>
-                            <td>Obat</td>
-                            <td>Qty</td>
-                            <td>Harga</td>
-                            <td>Subtotal</td>
-                        </tr>
-                    </thead>
-                    <tbody id="t_body_obat"></tbody>
-                    <tfoot>
-                        <tr>
-                            <td colspan="5" class="text-center text-bold">Total Obat</td>
-                            <td id="total_obat" class="text-bold text-right">IDR ,-</td>
-                        </tr>
-                    </tfoot>
-                </table>
-
-                <hr>
-                <div class="row">
-                    <div class="col-6"></div>
-                    <div class="col-6">
-                        <h5 class="title-warning-right" style="width: 100%;" id="total_biaya">IDR 100.000.000 ,-</h5>
-                    </div>
+                <div class="modal-footer">
+                    <input type="hidden" id="cetak_transaksi_id" name="transaksi_id">
+                    <button type="button" class="btn" data-dismiss="modal">Kembali</button>
+                    <button id="cetak_transaksi" print type="submit" class="btn btn-success"> <i class="fas fa-print"></i> &nbsp; Cetak Transaksi (Bayar)</button>
                 </div>
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn" data-dismiss="modal">Kembali</button>
-                <button id="cetak_transaksi" print type="button" class="btn btn-success"> <i class="fas fa-print"></i> &nbsp; Cetak Transaksi (Bayar)</button>
-            </div>
+            </form>
         </div>
     </div>
 </div>
@@ -303,6 +306,7 @@
             success: function(data) {
                 $(".app").loading('stop');
                 $('#transaksi_id').val(data.transaksi.id);
+                $('#cetak_transaksi_id').val(data.transaksi.id);
                 $('#no_mr').val(data.transaksi.pasien.no_mr);
                 $('#no_bill').val(data.transaksi.no_bill);
                 $('#tanggal_transaksi').val(moment(data.transaksi.created_at).format('D/MM/YYYY  - HH:MM:SS'));

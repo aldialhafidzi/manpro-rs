@@ -126,125 +126,132 @@
 <div class="modal fade" id="modal_rekam_jalan" tabindex="-1" role="dialog" aria-labelledby="modal_rekam_jalanTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Rincian Transaksi Rajal</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body" style="padding: 1rem;">
-                <div class="row mb-3">
-                    <div class="col-6">
-                        <div class="form-group row">
-                            <div class="col-5">
-                                Status
-                            </div>
-                            <div class="col-7 pl-0">
-                                <span id="status_transaksi">REGISTERED</span>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label for="" class="col-5">No. Transaksi</label>
-                            <input disabled id="no_bill" name="no_bill" type="text" class="form-control form-control-sm col-7">
-                        </div>
-                        <div class="form-group row">
-                            <label for="" class="col-5">Tanggal Transaksi</label>
-                            <input disabled id="tanggal_transaksi" name="tanggal_transaksi" type="text" class="form-control form-control-sm col-7">
-                        </div>
-
-                        <hr>
-
-                        <div class="form-group row">
-                            <label for="" class="col-5">Poliklinik</label>
-                            <input disabled id="nama-poliklinik" name="nama-poliklinik" type="text" class="form-control form-control-sm col-7">
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="" class="col-5">Dokter</label>
-                            <input disabled id="nama-dokter" name="nama-dokter" type="text" class="form-control form-control-sm col-7">
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="" class="col-5">Tarif Dokter</label>
-                            <input disabled id="tarif-dokter" name="tarif-dokter" type="text" class="form-control form-control-sm col-7">
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="" class="col-5">Pendaftaran</label>
-                            <input disabled id="tarif-pendaftaran" name="tarif-pendaftaran" type="text" class="form-control form-control-sm col-7">
-                        </div>
-                    </div>
-
-                    <div class="col-6">
-                        <div class="form-group row">
-                            <label for="" class="col-4">No. MR</label>
-                            <input disabled id="no_mr" name="no_mr" type="text" class="form-control form-control-sm col-8">
-                        </div>
-                        <div class="form-group row">
-                            <label for="" class="col-4">Nama</label>
-                            <input disabled id="nama" name="nama" type="text" class="form-control form-control-sm col-8">
-                        </div>
-                        <div class="form-group row">
-                            <label for="" class="col-4">Tanggal Lahir</label>
-                            <input disabled id="tanggal_lahir" name="tanggal_lahir" type="text" class="form-control form-control-sm col-8">
-                        </div>
-                        <div class="form-group row">
-                            <label for="" class="col-4">No Telp</label>
-                            <input disabled id="no_telp" name="no_telp" type="text" class="form-control form-control-sm col-8">
-                        </div>
-                        <div class="form-group row">
-                            <label for="" class="col-4">Kelurahan</label>
-                            <input disabled id="kelurahan" name="kelurahan" type="text" class="form-control form-control-sm col-8">
-                        </div>
-                        <div class="form-group row">
-                            <label for="" class="col-4">RT/RW</label>
-                            <input disabled id="rt" name="rt" type="text" class="form-control form-control-sm col-3"> &nbsp;/&nbsp;
-                            <input disabled id="rw" name="rw" type="text" class="form-control form-control-sm col-3">
-                        </div>
-
-                    </div>
+            <form action="<?= base_url() ?>transaksi/save" method="POST">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Rincian Transaksi Rajal</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-                <hr>
-                <p class="text-bold position-relative">Biaya Obat
-                    <span id="tambah_obat" class="position-absolute text-normal add-items"> <i class="fas fa-plus"></i> Tambah Obat</span>
-                </p>
-                <table id="table_obat" class="table table-sm table-bordered mt-2">
-                    <thead>
-                        <tr>
-                            <td>No</td>
-                            <td>Kode</td>
-                            <td>Obat</td>
-                            <td>Qty</td>
-                            <td>Harga</td>
-                            <td>Subtotal</td>
-                        </tr>
-                    </thead>
-                    <tbody id="t_body_obat"></tbody>
-                    <tfoot>
-                        <tr>
-                            <td colspan="5" class="text-center text-bold">Total Obat</td>
-                            <td id="total_obat" class="text-bold text-right">IDR ,-</td>
-                        </tr>
-                    </tfoot>
-                </table>
-                <hr>
-                <div class="row">
-                    <div class="col-6"></div>
-                    <div class="col-6">
-                        <h5 class="title-warning-right" style="width: 100%;" id="total_biaya">IDR 100.000.000 ,-</h5>
-                    </div>
-                </div>
+                <div class="modal-body" style="padding: 1rem;">
+                    <div class="row mb-3">
+                        <div class="col-6">
+                            <div class="form-group row">
+                                <div class="col-5">
+                                    Status
+                                </div>
+                                <div class="col-7 pl-0">
+                                    <span id="status_transaksi">REGISTERED</span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="" class="col-5">No. Transaksi</label>
+                                <input disabled id="no_bill" name="no_bill" type="text" class="form-control form-control-sm col-7">
+                            </div>
+                            <div class="form-group row">
+                                <label for="" class="col-5">Tanggal Transaksi</label>
+                                <input disabled id="tanggal_transaksi" name="tanggal_transaksi" type="text" class="form-control form-control-sm col-7">
+                            </div>
 
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn" data-dismiss="modal">Kembali</button>
-                <button id="cetak_transaksi" print type="button" class="btn btn-success"> <i class="fas fa-print"></i> &nbsp; Cetak Transaksi (Bayar)</button>
-            </div>
+                            <hr>
+
+                            <div class="form-group row">
+                                <label for="" class="col-5">Poliklinik</label>
+                                <input disabled id="nama-poliklinik" name="nama-poliklinik" type="text" class="form-control form-control-sm col-7">
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="" class="col-5">Dokter</label>
+                                <input disabled id="nama-dokter" name="nama-dokter" type="text" class="form-control form-control-sm col-7">
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="" class="col-5">Tarif Dokter</label>
+                                <input disabled id="tarif-dokter" name="tarif-dokter" type="text" class="form-control form-control-sm col-7">
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="" class="col-5">Pendaftaran</label>
+                                <input disabled id="tarif-pendaftaran" name="tarif-pendaftaran" type="text" class="form-control form-control-sm col-7">
+                            </div>
+                        </div>
+
+                        <div class="col-6">
+                            <div class="form-group row">
+                                <label for="" class="col-4">No. MR</label>
+                                <input disabled id="no_mr" name="no_mr" type="text" class="form-control form-control-sm col-8">
+                            </div>
+                            <div class="form-group row">
+                                <label for="" class="col-4">Nama</label>
+                                <input disabled id="nama" name="nama" type="text" class="form-control form-control-sm col-8">
+                            </div>
+                            <div class="form-group row">
+                                <label for="" class="col-4">Tanggal Lahir</label>
+                                <input disabled id="tanggal_lahir" name="tanggal_lahir" type="text" class="form-control form-control-sm col-8">
+                            </div>
+                            <div class="form-group row">
+                                <label for="" class="col-4">No Telp</label>
+                                <input disabled id="no_telp" name="no_telp" type="text" class="form-control form-control-sm col-8">
+                            </div>
+                            <div class="form-group row">
+                                <label for="" class="col-4">Kelurahan</label>
+                                <input disabled id="kelurahan" name="kelurahan" type="text" class="form-control form-control-sm col-8">
+                            </div>
+                            <div class="form-group row">
+                                <label for="" class="col-4">RT/RW</label>
+                                <input disabled id="rt" name="rt" type="text" class="form-control form-control-sm col-3"> &nbsp;/&nbsp;
+                                <input disabled id="rw" name="rw" type="text" class="form-control form-control-sm col-3">
+                            </div>
+
+                        </div>
+                    </div>
+                    <hr>
+                    <p class="text-bold position-relative">Biaya Obat
+                        <span id="tambah_obat" class="position-absolute text-normal add-items"> <i class="fas fa-plus"></i> Tambah Obat</span>
+                    </p>
+                    <table id="table_obat" class="table table-sm table-bordered mt-2">
+                        <thead>
+                            <tr>
+                                <td>No</td>
+                                <td>Kode</td>
+                                <td>Obat</td>
+                                <td>Qty</td>
+                                <td>Harga</td>
+                                <td>Subtotal</td>
+                            </tr>
+                        </thead>
+                        <tbody id="t_body_obat"></tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="5" class="text-center text-bold">Total Obat</td>
+                                <td id="total_obat" class="text-bold text-right">IDR ,-</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <hr>
+                    <div class="row">
+                        <div class="col-6"></div>
+                        <div class="col-6">
+                            <h5 class="title-warning-right" style="width: 100%;" id="total_biaya">IDR 100.000.000 ,-</h5>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" id="cetak_transaksi_id" name="transaksi_id">
+                    <button type="button" class="btn" data-dismiss="modal">Kembali</button>
+                    <button id="cetak_transaksi" print type="submit" formtarget="_blank" class="btn btn-success"> <i class="fas fa-print"></i> &nbsp; Cetak Transaksi (Bayar)</button>
+                </div>
+            </form>
+
         </div>
     </div>
 </div>
 
 <script>
+    var INIT_NUMBER_OBAT = 0;
+    var SHOW_LIST_OBAT = false;
+
     function hapusDetailTransaksiPaID(id) {
         $('#modal_hapus').modal('show');
         $('#delete_id').val(id);
@@ -277,6 +284,7 @@
                 $('#rt').val(data.transaksi.pasien.rt);
                 $('#status_transaksi').html(`<span class="badge ${data.transaksi.status === 'REGISTERED' ? 'badge-secondary': 'badge-success'}">${data.transaksi.status}</span>`);
                 $('#transaksi_id').val(data.transaksi.id);
+                $('#cetak_transaksi_id').val(data.transaksi.id);
                 if (data.transaksi.status === 'PAID') {
                     $('#cetak_transaksi').html('<i class="fas fa-print"></i> &nbsp; Print')
                 } else {
@@ -285,12 +293,14 @@
 
                 var list_obat = '';
                 var total_obat = 0;
+                var no_obat = 0;
                 data.detail_transaksi.forEach((item, i) => {
 
                     if (item.obat) {
+                        no_obat += 1;
                         list_obat = list_obat + `
                             <tr>
-                                <td class="text-center" width="5%">${i + 1}</td>
+                                <td class="text-center" width="5%">${no_obat}</td>
                                 <td width="10%">${item.obat ? item.obat.kode : ''}</td>
                                 <td width="20%">${item.obat ? item.obat.nama : ''}</td>
                                 <td width="5%" class="text-center">${item.obat ? item.qty_obat : 1}</td>
@@ -360,10 +370,6 @@
             }
         }]
     });
-
-
-    var INIT_NUMBER_OBAT = 0;
-    var SHOW_LIST_OBAT = false;
 
     function delete_row_obat(row) {
         INIT_NUMBER_OBAT = INIT_NUMBER_OBAT - 1;
