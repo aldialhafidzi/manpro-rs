@@ -50,7 +50,7 @@
 
                                                 <div class="form-group row">
                                                     <label for="" class="col-sm-12 col-md-3">Nama</label>
-                                                    <input disabled id="nama" name="nama" type="text" class="form-control col-sm-12 col-md-9" placeholder="Nama lengkap pasien">
+                                                    <input required disabled id="nama" name="nama" type="text" class="form-control col-sm-12 col-md-9" placeholder="Nama lengkap pasien">
                                                 </div>
 
                                                 <div class="form-group row">
@@ -87,18 +87,21 @@
                                                 <div class="form-group row">
                                                     <div class="col-6">
                                                         <label for="">Kota</label>
-                                                        <input disabled id="kota" name="kota" type="text" class="form-control" placeholder="Kota pasien">
+                                                        <select disabled id="kota" name="kota" class="select-kota form-control form-control-sm ">
+                                                        </select>
                                                     </div>
                                                     <div class="col-6">
                                                         <label for="">Kecamatan</label>
-                                                        <input disabled id="kecamatan" name="kecamatan" type="text" class="form-control" placeholder="Kecamatan pasien">
+                                                        <select disabled id="kecamatan" name="kecamatan" class="select-kecamatan form-control form-control-sm ">
+                                                        </select>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row">
                                                     <div class="col-6">
                                                         <label for="">Kelurahan</label>
-                                                        <input disabled id="kelurahan" name="kelurahan" type="text" class="form-control" placeholder="Kelurahan pasien">
+                                                        <select disabled id="kelurahan" name="kelurahan" class="select-kelurahan form-control form-control-sm ">
+                                                        </select>
                                                     </div>
                                                     <div class="col-3">
                                                         <label for="">RT</label>
@@ -140,18 +143,21 @@
                                                     </div>
                                                     <div class="col-6">
                                                         <label for="">Kota</label>
-                                                        <input disabled id="kota_pj" name="kota_pj" type="text" class="form-control" placeholder="Kota penanggung jawab">
+                                                        <select disabled id="kota_pj" name="kota_pj" class="select-kota_pj form-control form-control-sm ">
+                                                        </select>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group row">
                                                     <div class="col-6">
                                                         <label for="">Kecamatan</label>
-                                                        <input disabled id="kecamatan_pj" name="kecamatan_pj" type="text" class="form-control" placeholder="Kecamatan penanggung jawab">
+                                                        <select disabled id="kecamatan_pj" name="kecamatan_pj" class="select-kecamatan_pj form-control form-control-sm ">
+                                                        </select>
                                                     </div>
                                                     <div class="col-6">
                                                         <label for="">Kelurahan</label>
-                                                        <input disabled id="kelurahan_pj" name="kelurahan_pj" type="text" class="form-control" placeholder="Kelurahan penanggung jawab">
+                                                        <select disabled id="kelurahan_pj" name="kelurahan_pj" class="select-kelurahan_pj form-control form-control-sm ">
+                                                        </select>
                                                     </div>
                                                 </div>
 
@@ -184,7 +190,7 @@
                                                     <div class="col-12">
                                                         <label>Kamar</label>
                                                         <select required id="bed" name="bed" class="select-kamar form-control form-control-sm">
-                                                            <option>Pilih Kamar</option>
+                                                            <!-- <option>Pilih Kamar</option> -->
                                                         </select>
                                                     </div>
 
@@ -283,6 +289,181 @@
 <script>
     var SHOW_LIST_PASIEN = false;
 
+    $('#kota').select2({
+        theme: 'bootstrap4',
+        placeholder: "Pilih Kota",
+        allowClear: true,
+        tags: [],
+        ajax: {
+            url: '<?= base_url() ?>admin/search_kota',
+            dataType: 'JSON',
+            method: 'GET',
+            data: function(params) {
+                return {
+                    search: params.term
+                }
+            },
+            processResults: function(data, page) {
+                return {
+                    results: data
+                };
+            }
+        }
+    });
+
+    $('#kota_pj').select2({
+        theme: 'bootstrap4',
+        placeholder: "Pilih Kota",
+        allowClear: true,
+        tags: [],
+        ajax: {
+            url: '<?= base_url() ?>admin/search_kota',
+            dataType: 'JSON',
+            method: 'GET',
+            data: function(params) {
+                return {
+                    search: params.term
+                }
+            },
+            processResults: function(data, page) {
+                return {
+                    results: data
+                };
+            }
+        }
+    });
+
+    $('#kecamatan').select2({
+        theme: 'bootstrap4',
+        placeholder: "Pilih Kecamatan",
+        allowClear: true,
+        tags: [],
+        ajax: {
+            url: '<?= base_url() ?>admin/search_kecamatan',
+            dataType: 'JSON',
+            method: 'GET',
+            data: function(params) {
+                return {
+                    search: params.term
+                }
+            },
+            processResults: function(data, page) {
+                return {
+                    results: data
+                };
+            }
+        }
+    });
+
+    $('#kecamatan_pj').select2({
+        theme: 'bootstrap4',
+        placeholder: "Pilih Kecamatan",
+        allowClear: true,
+        tags: [],
+        ajax: {
+            url: '<?= base_url() ?>admin/search_kecamatan',
+            dataType: 'JSON',
+            method: 'GET',
+            data: function(params) {
+                return {
+                    search: params.term
+                }
+            },
+            processResults: function(data, page) {
+                return {
+                    results: data
+                };
+            }
+        }
+    });
+
+    $('#kelurahan').select2({
+        theme: 'bootstrap4',
+        placeholder: "Pilih Kelurahan",
+        allowClear: true,
+        tags: [],
+        ajax: {
+            url: '<?= base_url() ?>admin/search_kelurahan',
+            dataType: 'JSON',
+            method: 'GET',
+            data: function(params) {
+                return {
+                    search: params.term
+                }
+            },
+            processResults: function(data, page) {
+                return {
+                    results: data
+                };
+            }
+        }
+    });
+
+    $('#kelurahan_pj').select2({
+        theme: 'bootstrap4',
+        placeholder: "Pilih Kelurahan",
+        allowClear: true,
+        tags: [],
+        ajax: {
+            url: '<?= base_url() ?>admin/search_kelurahan',
+            dataType: 'JSON',
+            method: 'GET',
+            data: function(params) {
+                return {
+                    search: params.term
+                }
+            },
+            processResults: function(data, page) {
+                return {
+                    results: data
+                };
+            }
+        }
+    });
+
+    $.validator.addMethod("is_nik", function(value, element) {
+        return this.optional(element) || /^((1[1-9])|(21)|([37][1-6])|(5[1-4])|(6[1-5])|([8-9][1-2]))[0-9]{2}[0-9]{2}(([0-6][0-9])|(7[0-1]))((0[1-9])|(1[0-2]))([0-9]{2})[0-9]{4}$/g.test(value);
+    }, "Please enter a valid nik");
+
+    $.validator.addMethod("is_phone", function(value, element) {
+        return this.optional(element) || /^(^\+62\s?|^0)(\d{3,4}-?){2}\d{3,4}$/g.test(value);
+    }, "Please enter a valid phone");
+
+    $('#form_rawat_jalan').validate({
+        rules: {
+            nik: {
+                required: true,
+                is_nik: true
+            },
+            nik_pj: {
+                is_nik: true
+            },
+            no_telp_pj: {
+                is_phone: true
+            },
+            no_telp: {
+                is_phone: true,
+                required: true
+            }
+        },
+        messages: {
+            nik: {
+                is_nik: "Please enter a valid nik"
+            },
+        },
+        errorElement: 'span',
+        errorPlacement: function(error, element) {
+            error.addClass('invalid-feedback');
+            element.closest('.form-group div').append(error);
+        },
+        highlight: function(element, errorClass, validClass) {
+            $(element).addClass('is-invalid');
+        },
+        unhighlight: function(element, errorClass, validClass) {
+            $(element).removeClass('is-invalid');
+        }
+    });
+
     function clickItemNomorRM(id, no_asuransi, nama, no_mr, tanggal_lahir, jenis_kelamin, nik, no_telp, kota, kecamatan, kelurahan, rt, rw, tipe_id, nama_pj, hubungan_pj, nik_pj, no_telp_pj, kota_pj, kecamatan_pj, kelurahan_pj, rt_pj, rw_pj) {
         $('#pasien_id').val(id);
         $('#no_asuransi').val(no_asuransi);
@@ -292,9 +473,55 @@
         $("#jenis_kelamin").select2("val", jenis_kelamin);
         $('#nik').val(nik);
         $('#no_telp').val(no_telp);
-        $('#kota').val(kota);
-        $('#kecamatan').val(kecamatan);
-        $('#kelurahan').val(kelurahan);
+        
+        $.ajax({
+            url: `<?= base_url() ?>admin/wilayah?kode=${kota}`,
+            type: 'GET',
+            dataType: 'JSON',
+            success: function(data) {
+                kota = $('#kota');
+                kota.append(new Option(data.nama, data.kode, true, true)).trigger('change');
+                kota.trigger({
+                    type: 'select2:select',
+                    params: {
+                        data: data
+                    }
+                });
+            }
+        });
+
+        $.ajax({
+            url: `<?= base_url() ?>admin/wilayah?kode=${kecamatan}`,
+            type: 'GET',
+            dataType: 'JSON',
+            success: function(data) {
+                kecamatan = $('#kecamatan');
+                kecamatan.append(new Option(data.nama, data.kode, true, true)).trigger('change');
+                kecamatan.trigger({
+                    type: 'select2:select',
+                    params: {
+                        data: data
+                    }
+                });
+            }
+        });
+
+        $.ajax({
+            url: `<?= base_url() ?>admin/wilayah?kode=${kelurahan}`,
+            type: 'GET',
+            dataType: 'JSON',
+            success: function(data) {
+                kelurahan = $('#kelurahan');
+                kelurahan.append(new Option(data.nama, data.kode, true, true)).trigger('change');
+                kelurahan.trigger({
+                    type: 'select2:select',
+                    params: {
+                        data: data
+                    }
+                });
+            }
+        });
+
         $('#rt').val(rt);
         $('#rw').val(rw);
         $("#tipe_pasien").select2("val", tipe_id);
@@ -302,9 +529,57 @@
         $("#hubungan_pj").val(hubungan_pj);
         $('#nik_pj').val(nik_pj);
         $('#no_telp_pj').val(no_telp_pj);
-        $('#kota_pj').val(kota_pj);
-        $('#kecamatan_pj').val(kecamatan_pj);
-        $('#kelurahan_pj').val(kelurahan_pj);
+        // $('#kota_pj').val(kota_pj);
+        // $('#kecamatan_pj').val(kecamatan_pj);
+        // $('#kelurahan_pj').val(kelurahan_pj);
+
+        $.ajax({
+            url: `<?= base_url() ?>admin/wilayah?kode=${kota_pj}`,
+            type: 'GET',
+            dataType: 'JSON',
+            success: function(data) {
+                kota_pj = $('#kota_pj');
+                kota_pj.append(new Option(data.nama, data.kode, true, true)).trigger('change');
+                kota_pj.trigger({
+                    type: 'select2:select',
+                    params: {
+                        data: data
+                    }
+                });
+            }
+        });
+
+        $.ajax({
+            url: `<?= base_url() ?>admin/wilayah?kode=${kecamatan_pj}`,
+            type: 'GET',
+            dataType: 'JSON',
+            success: function(data) {
+                kecamatan_pj = $('#kecamatan_pj');
+                kecamatan_pj.append(new Option(data.nama, data.kode, true, true)).trigger('change');
+                kecamatan_pj.trigger({
+                    type: 'select2:select',
+                    params: {
+                        data: data
+                    }
+                });
+            }
+        });
+
+        $.ajax({
+            url: `<?= base_url() ?>admin/wilayah?kode=${kelurahan_pj}`,
+            type: 'GET',
+            dataType: 'JSON',
+            success: function(data) {
+                kelurahan_pj = $('#kelurahan_pj');
+                kelurahan_pj.append(new Option(data.nama, data.kode, true, true)).trigger('change');
+                kelurahan_pj.trigger({
+                    type: 'select2:select',
+                    params: {
+                        data: data
+                    }
+                });
+            }
+        });
         $('#rt_pj').val(rt_pj);
         $('#rw_pj').val(rw_pj);
     }

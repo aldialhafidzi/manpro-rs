@@ -419,9 +419,54 @@
         $("#jenis_kelamin").select2("val", jenis_kelamin);
         $('#nik').val(nik);
         $('#no_telp').val(no_telp);
-        $('#kota').val(kota);
-        $('#kecamatan').val(kecamatan);
-        $('#kelurahan').val(kelurahan);
+
+        $.ajax({
+            url: `<?= base_url() ?>admin/wilayah?kode=${kota}`,
+            type: 'GET',
+            dataType: 'JSON',
+            success: function(data) {
+                kota = $('#kota');
+                kota.append(new Option(data.nama, data.kode, true, true)).trigger('change');
+                kota.trigger({
+                    type: 'select2:select',
+                    params: {
+                        data: data
+                    }
+                });
+            }
+        });
+
+        $.ajax({
+            url: `<?= base_url() ?>admin/wilayah?kode=${kecamatan}`,
+            type: 'GET',
+            dataType: 'JSON',
+            success: function(data) {
+                kecamatan = $('#kecamatan');
+                kecamatan.append(new Option(data.nama, data.kode, true, true)).trigger('change');
+                kecamatan.trigger({
+                    type: 'select2:select',
+                    params: {
+                        data: data
+                    }
+                });
+            }
+        });
+
+        $.ajax({
+            url: `<?= base_url() ?>admin/wilayah?kode=${kelurahan}`,
+            type: 'GET',
+            dataType: 'JSON',
+            success: function(data) {
+                kelurahan = $('#kelurahan');
+                kelurahan.append(new Option(data.nama, data.kode, true, true)).trigger('change');
+                kelurahan.trigger({
+                    type: 'select2:select',
+                    params: {
+                        data: data
+                    }
+                });
+            }
+        });
         $('#rt').val(rt);
         $('#rw').val(rw);
         $("#tipe_pasien").select2("val", tipe_id);
@@ -429,9 +474,53 @@
         $("#hub").val(hubungan_pj);
         $('#nik_pj').val(nik_pj);
         $('#no_telp_pj').val(no_telp_pj);
-        $('#kota_pj').val(kota_pj);
-        $('#kecamatan_pj').val(kecamatan_pj);
-        $('#kelurahan_pj').val(kelurahan_pj);
+        $.ajax({
+            url: `<?= base_url() ?>admin/wilayah?kode=${kota_pj}`,
+            type: 'GET',
+            dataType: 'JSON',
+            success: function(data) {
+                kota_pj = $('#kota_pj');
+                kota_pj.append(new Option(data.nama, data.kode, true, true)).trigger('change');
+                kota_pj.trigger({
+                    type: 'select2:select',
+                    params: {
+                        data: data
+                    }
+                });
+            }
+        });
+
+        $.ajax({
+            url: `<?= base_url() ?>admin/wilayah?kode=${kecamatan_pj}`,
+            type: 'GET',
+            dataType: 'JSON',
+            success: function(data) {
+                kecamatan_pj = $('#kecamatan_pj');
+                kecamatan_pj.append(new Option(data.nama, data.kode, true, true)).trigger('change');
+                kecamatan_pj.trigger({
+                    type: 'select2:select',
+                    params: {
+                        data: data
+                    }
+                });
+            }
+        });
+
+        $.ajax({
+            url: `<?= base_url() ?>admin/wilayah?kode=${kelurahan_pj}`,
+            type: 'GET',
+            dataType: 'JSON',
+            success: function(data) {
+                kelurahan_pj = $('#kelurahan_pj');
+                kelurahan_pj.append(new Option(data.nama, data.kode, true, true)).trigger('change');
+                kelurahan_pj.trigger({
+                    type: 'select2:select',
+                    params: {
+                        data: data
+                    }
+                });
+            }
+        });
         $('#rt_pj').val(rt_pj);
         $('#rw_pj').val(rw_pj);
     }

@@ -236,12 +236,14 @@ class Pendaftaran extends CI_Controller
 
     $diagnosa_awal = '';
     foreach ($data['tr_with_detail_tr_penyakit']->detail_transaksi as $key => $value) {
-      $diagnosa_awal = $diagnosa_awal . '
+      if ($value->penyakit_id) {
+        $diagnosa_awal = $diagnosa_awal . '
         <tr style="border:1px solid #d6d6d6;">
-          <td width="30%" style="padding:1rem;border-bottom: 1px solid #d6d6d6;">' . $value->penyakit->kode . '</td>
-          <td width="70%" style="padding:1rem;border-bottom: 1px solid #d6d6d6;">' . $value->penyakit->nama . '</td>
+        <td width="30%" style="padding:1rem;border-bottom: 1px solid #d6d6d6;">' . $value->penyakit->kode . '</td>
+        <td width="70%" style="padding:1rem;border-bottom: 1px solid #d6d6d6;">' . $value->penyakit->nama . '</td>
         </tr>
-      ';
+        ';
+      }
     }
 
     $book_kamar = '';
