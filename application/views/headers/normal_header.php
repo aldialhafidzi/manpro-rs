@@ -95,7 +95,7 @@ to get the desired effect
                         </li>
                         <li class="nav-header">SHORTCUT</li>
                         <?php if ($this->session->userdata('role_id') == '1' || $this->session->userdata('role_id') == '2') { ?>
-                            <li class="nav-item has-treeview <?= ($page == 'rawat_jalan' || $page == 'rawat_inap') ? 'menu-open' : '' ?>">
+                            <li class="nav-item has-treeview <?= ($page == 'rawat_jalan' || $page == 'rawat_inap' || $page == 'rawat_igd') ? 'menu-open' : '' ?>">
                                 <a href="#" class="nav-link">
                                     <i class="nav-icon far fa-plus-square"></i>
                                     <p>
@@ -116,11 +116,17 @@ to get the desired effect
                                             <p>Rawat Inap</p>
                                         </a>
                                     </li>
+                                    <li class="nav-item">
+                                        <a href="<?= base_url() ?>pendaftaran/rawat-igd" class="nav-link <?= ($page == 'rawat_igd') ? 'active' : '' ?>">
+                                            <i class="fas fa-plus-square nav-icon"></i>
+                                            <p>Rawat IGD</p>
+                                        </a>
+                                    </li>
                                 </ul>
                             </li>
                         <?php } ?>
 
-                        <li class="nav-item has-treeview <?= ($page == 'rekam-jalan' || $page == 'rekam-inap' || $page == 'rekam-medis') ? 'menu-open' : '' ?>">
+                        <li class="nav-item has-treeview <?= ($page == 'rekam-jalan' || $page == 'rekam-inap' || $page == 'rekam-medis' || $page == 'rekam-igd') ? 'menu-open' : '' ?>">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-notes-medical"></i>
                                 <p>
@@ -141,6 +147,13 @@ to get the desired effect
                                         <p>Rekam Inap</p>
                                     </a>
                                 </li>
+
+                                <li class="nav-item">
+                                    <a href="<?= base_url() ?>rekam-medis/rawat-igd" class="nav-link <?= ($page == 'rekam-igd') ? 'active' : '' ?>">
+                                        <i class="fas fa-plus-square nav-icon"></i>
+                                        <p>Rekam IGD</p>
+                                    </a>
+                                </li>
                                 <li class="nav-item">
                                     <a href="<?= base_url() ?>rekam-medis" class="nav-link <?= ($page == 'rekam-medis') ? 'active' : '' ?>">
                                         <i class="fas fa-users nav-icon"></i>
@@ -153,7 +166,7 @@ to get the desired effect
 
                         <li class="nav-header">Master</li>
 
-                        <li class="nav-item has-treeview <?= ($page == 'transaksi-jalan' || $page == 'transaksi-inap') ? 'menu-open' : '' ?>">
+                        <li class="nav-item has-treeview <?= ($page == 'transaksi-jalan' || $page == 'transaksi-inap' || $page == 'transaksi-igd') ? 'menu-open' : '' ?>">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-money-bill"></i>
                                 <p>
@@ -172,6 +185,12 @@ to get the desired effect
                                     <a href="<?= base_url() ?>transaksi/rawat-inap" class="nav-link <?= ($page == 'transaksi-inap') ? 'active' : '' ?>">
                                         <i class="fas fa-procedures nav-icon"></i>
                                         <p>Transaksi Inap</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="<?= base_url() ?>transaksi/rawat-igd" class="nav-link <?= ($page == 'transaksi-igd') ? 'active' : '' ?>">
+                                        <i class="fas fa-plus-square nav-icon"></i>
+                                        <p>Transaksi IGD</p>
                                     </a>
                                 </li>
                             </ul>
@@ -317,11 +336,21 @@ to get the desired effect
                                 </a>
                             </li>
 
+
                             <li class="nav-item">
                                 <a href="<?= base_url() ?>admin/obat" class="nav-link <?= ($page == 'admin-obat') ? 'active' : '' ?>">
                                     <i class="nav-icon fas fa-capsules"></i>
                                     <p>
                                         Obat
+                                    </p>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="<?= base_url() ?>admin/bed" class="nav-link <?= ($page == 'admin-bed') ? 'active' : '' ?>">
+                                    <i class="nav-icon fas fa-capsules"></i>
+                                    <p>
+                                        Bed
                                     </p>
                                 </a>
                             </li>

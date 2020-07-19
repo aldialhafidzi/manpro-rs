@@ -44,6 +44,16 @@ class Transaksi extends CI_Controller
         $this->load->view('footers/normal_footer');
     }
 
+    public function rawat_igd()
+    {
+        $data['title'] = 'MANPRO-RS | Transaksi Rawat IGD';
+        $data['page'] = 'transaksi-igd';
+
+        $this->load->view('headers/normal_header', $data);
+        $this->load->view('pages/transaksi_igd');
+        $this->load->view('footers/normal_footer');
+    }
+
     public function getRekamInap()
     {
         $fetch_data = $this->TransaksiModel->make_datatables('RAWAT-INAP');
@@ -68,6 +78,35 @@ class Transaksi extends CI_Controller
             "draw" => intval($_POST["draw"]),
             "recordsTotal" => $this->TransaksiModel->get_all_data('RAWAT-INAP'),
             "recordsFiltered" => $this->TransaksiModel->get_filtered_data('RAWAT-INAP'),
+            "data"  => $data
+        );
+        echo json_encode($output);
+    }
+
+    public function getRekamIgd()
+    {
+        $fetch_data = $this->TransaksiModel->make_datatables('RAWAT-IGD');
+        $data = array();
+        foreach ($fetch_data as $key => $row) {
+            $sub_array = array();
+            $sub_array[] = $key + 1;
+            $sub_array[] = $row->no_bill;
+            $sub_array[] = $row->no_mr;
+            $sub_array[] = $row->nama;
+            $sub_array[] = $row->no_telp;
+            $sub_array[] = $row->total_tarif;
+            $sub_array[] = $row->status;
+            $sub_array[] = '
+            <button class="btn btn-sm btn-info" onclick="showDetailTransaksiByTransaksiID(' . $row->id . ');">
+                    <i class="far fa-eye"></i> &nbsp; Lihat
+            </button>';
+            $data[] = $sub_array;
+        }
+
+        $output = array(
+            "draw" => intval($_POST["draw"]),
+            "recordsTotal" => $this->TransaksiModel->get_all_data('RAWAT-IGD'),
+            "recordsFiltered" => $this->TransaksiModel->get_filtered_data('RAWAT-IGD'),
             "data"  => $data
         );
         echo json_encode($output);
@@ -101,6 +140,8 @@ class Transaksi extends CI_Controller
         );
         echo json_encode($output);
     }
+
+
 
     public function find()
     {

@@ -61,6 +61,17 @@ class RekamMedis extends CI_Controller
         $this->load->view('footers/normal_footer');
     }
 
+    public function rawat_igd()
+    {
+        $data['title'] = 'MANPRO-RS | Rekam Medis Rawat IGD';
+        $data['page'] = 'rekam-igd';
+
+        $this->load->view('headers/normal_header', $data);
+        $this->load->view('pages/rekam_igd');
+        $this->load->view('footers/normal_footer');
+    }
+
+
     public function getRekamInap()
     {
         $fetch_data = $this->DetailTransaksiModel->make_datatables('RAWAT-INAP');
@@ -87,6 +98,38 @@ class RekamMedis extends CI_Controller
             "draw" => intval($_POST["draw"]),
             "recordsTotal" => $this->DetailTransaksiModel->get_all_data('RAWAT-INAP'),
             "recordsFiltered" => $this->DetailTransaksiModel->get_filtered_data('RAWAT-INAP'),
+            "data"  => $data
+        );
+        echo json_encode($output);
+    }
+
+    public function getRekamIgd()
+    {
+        $fetch_data = $this->DetailTransaksiModel->make_datatables('RAWAT-IGD');
+        $data = array();
+        foreach ($fetch_data as $key => $row) {
+            $sub_array = array();
+            $sub_array[] = $key + 1;
+            $sub_array[] = $row->no_mr;
+            $sub_array[] = $row->nama;
+            $sub_array[] = $row->no_telp;
+            $sub_array[] = $row->no_bed;
+            $sub_array[] = $row->kecamatan ? $row->kecamatan : '-';
+            $sub_array[] = $row->kelurahan ? $row->kelurahan : '-';
+            $sub_array[] = $row->rt ? $row->rt : '-';
+            $sub_array[] = $row->rw ? $row->rw : '-';
+
+            $sub_array[] = '
+            <button type="button" class="btn btn-sm btn-info" onclick="showRekamMedisByPasienID(' . $row->pasien_id . ');">
+                    <i class="far fa-eye"></i> &nbsp; Lihat
+            </button>';
+            $data[] = $sub_array;
+        }
+
+        $output = array(
+            "draw" => intval($_POST["draw"]),
+            "recordsTotal" => $this->DetailTransaksiModel->get_all_data('RAWAT-IGD'),
+            "recordsFiltered" => $this->DetailTransaksiModel->get_filtered_data('RAWAT-IGD'),
             "data"  => $data
         );
         echo json_encode($output);
@@ -305,10 +348,14 @@ class RekamMedis extends CI_Controller
 
     public function delete()
     {
+        // var_dump($this->input->post('delete_id', TRUE)); die;
         if ($this->DetailTransaksiModel->where('transaksi_id', $this->input->post('delete_id', TRUE))->delete()) {
             $this->session->set_flashdata('success', 'Rekam medis berhasil dihapus');
             if ($this->input->post('jenis_rawat', TRUE) === 'RAWAT-JALAN') {
                 redirect(base_url("/rekam-medis/rawat-jalan"));
+            }
+            if ($this->input->post('jenis_rawat', TRUE) === 'RAWAT-IGD') {
+                redirect(base_url("/rekam-medis/rawat-igd"));
             }
             redirect(base_url("/rekam-medis/rawat-inap"));
         }
@@ -316,6 +363,9 @@ class RekamMedis extends CI_Controller
         if ($this->input->post('jenis_rawat', TRUE) === 'RAWAT-JALAN') {
             redirect(base_url("/rekam-medis/rawat-jalan"));
         }
+        if ($this->input->post('jenis_rawat', TRUE) === 'RAWAT-IGD') {
+                redirect(base_url("/rekam-medis/rawat-igd"));
+            }
         redirect(base_url("/rekam-medis/rawat-inap"));
     }
 }

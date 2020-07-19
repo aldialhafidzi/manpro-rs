@@ -46,6 +46,7 @@ class DetailTransaksiModel extends MY_Model
         $this->table = 'detail_transaksi';
         $this->order_column = array(null, 'pasien.no_mr', 'pasien.nama', 'pasien.no_telp');
         $this->db->select(array(
+            $tipe_rawat == 'RAWAT-IGD' ? 'bed.kode as no_bed' : '',
             'transaksi.id', 'detail_transaksi.created_at as tgl_rekam',
             'pasien.nama', 'pasien.no_mr', 'pasien.tanggal_lahir', 'pasien.no_telp', 'pasien.kecamatan', 'pasien.kelurahan', 'pasien.rt', 'pasien.rw',
             'transaksi.no_bill', 'transaksi.created_at as tanggal_transaksi', 'transaksi.jenis_rawat', 'transaksi.pasien_id', 'transaksi.total_tarif',
@@ -54,6 +55,11 @@ class DetailTransaksiModel extends MY_Model
 
         $this->db->from($this->table);
         $this->db->join('transaksi', 'transaksi.id = detail_transaksi.transaksi_id');
+
+        if ($tipe_rawat == 'RAWAT-IGD') {
+            $this->db->join('bed', 'bed.id = detail_transaksi.bed_id');
+        }
+
         $this->db->join('pasien', 'pasien.id = transaksi.pasien_id');
         if ($tipe_rawat) {
             $this->db->where('transaksi.jenis_rawat', $tipe_rawat);
@@ -98,6 +104,7 @@ class DetailTransaksiModel extends MY_Model
         $this->table = 'detail_transaksi';
         $this->order_column = array(null, 'pasien.no_mr', 'pasien.nama', 'pasien.no_telp');
         $this->db->select(array(
+            $tipe_rawat == 'RAWAT-IGD' ? 'bed.kode as no_bed' : '',
             'transaksi.id', 'detail_transaksi.created_at as tgl_rekam',
             'pasien.nama', 'pasien.no_mr', 'pasien.tanggal_lahir', 'pasien.no_telp', 'pasien.kecamatan', 'pasien.kelurahan', 'pasien.rt', 'pasien.rw',
             'transaksi.no_bill', 'transaksi.created_at as tanggal_transaksi', 'transaksi.jenis_rawat', 'transaksi.total_tarif',
@@ -106,6 +113,11 @@ class DetailTransaksiModel extends MY_Model
 
         $this->db->from($this->table);
         $this->db->join('transaksi', 'transaksi.id = detail_transaksi.transaksi_id');
+
+        if ($tipe_rawat == 'RAWAT-IGD') {
+            $this->db->join('bed', 'bed.id = detail_transaksi.bed_id');
+        }
+
         if ($tipe_rawat) {
             $this->db->where('transaksi.jenis_rawat', $tipe_rawat);
         }

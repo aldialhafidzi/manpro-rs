@@ -23,6 +23,7 @@ class BedModel extends MY_Model
 
         $this->db->from($this->table);
         $this->db->join('kamar', 'kamar.id = bed.kamar_id');
+        $this->db->where('bed.status', 0);
         $this->db->join('ruangan', 'ruangan.id = kamar.ruangan_id');
         $this->db->like('ruangan.nama', $search);
 

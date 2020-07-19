@@ -21,6 +21,7 @@ class Admin extends CI_Controller
         $this->load->model('JadwalDokterModel');
         $this->load->model('DokterModel');
         $this->load->model('PasienModel');
+        $this->load->model('BedModel');
         $this->load->model('PenyakitModel');
         $this->load->model('RoleModel');
         $this->load->model('ObatModel');
@@ -141,6 +142,16 @@ class Admin extends CI_Controller
         $data['obats'] = $this->ObatModel->get_all();
         $this->load->view('headers/normal_header', $data);
         $this->load->view('pages/obat', $data);
+        $this->load->view('footers/normal_footer');
+    }
+
+    public function bed()
+    {
+        $data['title'] = 'MANPRO-RS | List Obat';
+        $data['page'] = 'admin-bed';
+        $data['beds'] = $this->BedModel->get_all();
+        $this->load->view('headers/normal_header', $data);
+        $this->load->view('pages/bed', $data);
         $this->load->view('footers/normal_footer');
     }
 

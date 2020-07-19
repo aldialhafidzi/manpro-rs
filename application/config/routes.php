@@ -8,6 +8,7 @@ $route['logout'] = 'login/logout';
 
 $route['rekam-medis/rawat-jalan'] = 'RekamMedis/rawat_jalan';
 $route['rekam-medis/rawat-inap'] = 'RekamMedis/rawat_inap';
+$route['rekam-medis/rawat-igd'] = 'RekamMedis/rawat_igd';
 
 $route['rekam-medis'] = 'RekamMedis/index';
 $route['rekam-medis/find'] = 'RekamMedis/find';
@@ -17,15 +18,21 @@ $route['rekam-medis/add-inap'] = 'RekamMedis/add_inap';
 $route['rekam-medis/rekam-all'] = 'RekamMedis/getRekamMedis';
 $route['rekam-medis/rekam-jalan-all'] = 'RekamMedis/getRekamJalan';
 $route['rekam-medis/rekam-inap-all'] = 'RekamMedis/getRekamInap';
+$route['rekam-medis/rekam-igd-all'] = 'RekamMedis/getRekamIgd';
 
 $route['pendaftaran/rawat-jalan'] = 'pendaftaran/rawat_jalan';
 $route['pendaftaran/rawat-inap'] = 'pendaftaran/rawat_inap';
+$route['pendaftaran/rawat-igd'] = 'pendaftaran/rawat_igd';
 
 $route['transaksi/find'] = 'transaksi/find';
 $route['transaksi/rawat-jalan'] = 'transaksi/rawat_jalan';
 $route['transaksi/rawat-inap'] = 'transaksi/rawat_inap';
+$route['transaksi/rawat-igd'] = 'transaksi/rawat_igd';
+
 $route['transaksi/transaksi-jalan-all'] = 'transaksi/getRekamJalan';
 $route['transaksi/transaksi-inap-all'] = 'transaksi/getRekamInap';
+$route['transaksi/transaksi-igd-all'] = 'transaksi/getRekamIgd';
+
 
 $route['admin/jadwal-poliklinik'] = 'Admin/jadwal_poliklinik';
 $route['jadwal-poliklinik/get'] = 'JadwalPoliklinik/get';

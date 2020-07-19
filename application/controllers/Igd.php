@@ -14,6 +14,10 @@ class Igd extends CI_Controller
             }
         }
         $this->load->model('M_igd');
+        $this->load->model('BedModel');
+        $this->load->model('DetailTransaksiModel');
+
+
     }
     public function index()
     {
@@ -327,14 +331,18 @@ class Igd extends CI_Controller
         $data['title'] = 'MANPRO-RS | IGD';
         $data['page'] = 'bedigd';
 
-        $where = array('id' => $id);
+        // $where = array('id' => $id);
+        // $data['detail'] = $this->M_igd->beddetail($id);
+        // $data['detail2'] = $this->M_igd->beddetailtransaksi($id);
+        $data['detail_transaksi'] = $this->DetailTransaksiModel->with_penyakit()->with_obat()->with_transaksi(array('with' => array('pasien')))->with_bed()->where(array('tanggal_keluar' => NULL, 'bed_id' => $id))->get();
 
-        $data['detail'] = $this->M_igd->beddetail($id);
-        $data['detail2'] = $this->M_igd->beddetailtransaksi($id);
-        //var_dump($data2);die();
+        $data['detail_transaksi_all'] = $this->DetailTransaksiModel->with_penyakit()->where('transaksi_id', $data['detail_transaksi']->transaksi_id)->get_all();
+
+        // $data['bed'] = $this->BedModel->with_detail_transaksi(array('with'=> array('transaksi')))->where('id', $id)->get();
+        echo json_encode($data); die;
 
         $this->load->view('headers/normal_header', $data);
-        $this->load->view('pages/bedigddetail', $data);
+        $this->load->view('pages/detailbedigd', $data);
         $this->load->view('footers/normal_footer');
     }
 

@@ -59,4 +59,46 @@ class Bed extends CI_Controller
         }
         echo json_encode($list);
     }
+
+
+    public function get()
+    {
+        $data = $this->BedModel->get($this->input->get('bed_id'));
+        echo json_encode($data);
+    }
+
+    public function delete()
+    {
+        if ($this->BedModel->where('id', $this->input->post('delete_id', TRUE))->delete()) {
+            $this->session->set_flashdata('success', 'Data bed berhasil dihapus');
+            redirect(base_url("/admin/bed"));
+        }
+        $this->session->set_flashdata('error', 'Data bed gagal dihapus');
+        redirect(base_url("/admin/bed"));
+    }
+
+    public function create()
+    {
+        $bed = array(
+            'kode' => $this->input->post('kode', TRUE),
+            'nama' => $this->input->post('nama', TRUE),
+            'jenis' => $this->input->post('jenis', TRUE),
+            'harga' => $this->input->post('harga', TRUE)
+        );
+
+        if ($this->input->post('bed_id', TRUE)) {
+            if ($this->BedModel->update($bed, $this->input->post('bed_id', TRUE))) {
+                $this->session->set_flashdata('success', 'Bed berhasil diupdate');
+            } else {
+                $this->session->set_flashdata('error', 'Bed gagal diupdate');
+            }
+        } else {
+            if ($this->BedModel->insert($bed)) {
+                $this->session->set_flashdata('success', 'Bed berhasil ditambahkan');
+            } else {
+                $this->session->set_flashdata('error', 'Bed gagal ditambahkan');
+            }
+        }
+        redirect(base_url("/admin/bed"));
+    }
 }

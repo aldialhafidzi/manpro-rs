@@ -92,6 +92,26 @@ class Pendaftaran extends CI_Controller
     return $data;
   }
 
+    public function nextTransactionRaigd()
+  {
+    $data['tanggal'] = date('d/m/Y');
+
+    $data['nextBill'] = $this->formatBill('G', '00000');
+    $data['nextMR'] = $this->formatMR('00000');
+    $data['nextReg'] = $this->formatReg('00000');
+
+    $data['lastPasien'] = $this->PasienModel->lastRecord();
+    $data['lastPasien'] ? $data['nextMR'] = $this->formatMR($data['lastPasien']->id) : '';
+
+    $data['lastTransaksi'] = $this->TransaksiModel->lastRecord();
+    if ($data['lastTransaksi']) {
+      $data['nextBill'] = $this->formatBill('G', $data['lastTransaksi']->id);
+      $data['nextReg'] = $this->formatReg($data['lastTransaksi']->no_reg);
+    }
+
+    return $data;
+  }
+
   public function generateBuktiPendaftaranRajal($data)
   {
     $this->pdf->setPaper('A4', 'potrait');
@@ -338,6 +358,127 @@ class Pendaftaran extends CI_Controller
     return base_url() . '/public/pdf/bukti-pendaftaran/' . date('Y-m-d H-m-ss') . $data['tr_with_pasien']->pasien->no_mr . '.pdf';
   }
 
+  public function generateBuktiPendaftaranRaigd($data)
+  {
+    $this->pdf->setPaper('A4', 'potrait');
+
+    $diagnosa_awal = '';
+    foreach ($data['tr_with_detail_tr_penyakit']->detail_transaksi as $key => $value) {
+      $diagnosa_awal = $diagnosa_awal . '
+        <tr style="border:1px solid #d6d6d6;">
+          <td width="30%" style="padding:1rem;border-bottom: 1px solid #d6d6d6;">' . $value->penyakit->kode . '</td>
+          <td width="70%" style="padding:1rem;border-bottom: 1px solid #d6d6d6;">' . $value->penyakit->nama . '</td>
+        </tr>
+      ';
+    }
+
+    $book_kamar = '';
+    foreach ($data['tr_with_detail_tr_bed']->detail_transaksi as $key => $value) {
+      $book_kamar = $book_kamar . '
+        <tr style="border:1px solid #d6d6d6;">
+          <td width="20%" style="padding:1rem;border-bottom: 1px solid #d6d6d6;">' . $value->bed->kode . '</td>
+        </tr>
+      ';
+    }
+
+    $html =
+      '<html>
+
+            <head>
+              <style>
+                p {
+                  display: block;
+                  margin-block-start: 0.5em;
+                  margin-block-end: 0.5em;
+                  margin-inline-start: 0px;
+                  margin-inline-end: 0px;
+                }
+            
+              </style>
+            </head>
+            
+            <body>
+              <div style="border: 2px dashed rgb(0, 0, 0); padding: 1rem;">
+                <h1 style="text-align:center;">BUKTI PENDAFTARAN RAWAT IGD</h1>
+                <h3 style="text-align:center;">MANPRO-RS</h3>
+                <p style="text-align:center;font-weight: 500;">Jl. Gunung Puntang No.3 Kabupaten Bandung Kecamatan Banjaran 40377
+                </p>
+                <hr style="border: 2px solid;margin-bottom:2rem;">
+                <div style="border: 1px dashed rgb(138, 138, 138); padding: 1rem; border-radius: 8px; position: relative; margin-bottom:1rem;">
+                  <table>
+                    <tr>
+                      <td width="250px">
+                        <p>No. Bill</p>
+                      </td>
+                      <td>
+                        <p>: ' . $data['tr_with_pasien']->no_bill . '</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td width="250px">
+                        <p>No. MR</p>
+                      </td>
+                      <td>
+                        <p>: ' . $data['tr_with_pasien']->pasien->no_mr . '</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td width="250px">
+                        <p>Nama Pasien</p>
+                      </td>
+                      <td>
+                        <p>: ' . $data['tr_with_pasien']->pasien->nama . ' - [ ' . $data['tr_with_pasien']->pasien->tipe_pasien->nama . ' ]</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td width="250px">
+                        <p>Tanggal Pendaftaran</p>
+                      </td>
+                      <td>
+                        <p>: ' . date('Y/m/d H:m:s') . '</p>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+
+                <p>Diagnosa Awal</p>
+
+                <div style="border: 1px dashed rgb(138, 138, 138); padding: 1rem; border-radius: 8px; position: relative;margin-bottom:1rem;">
+                  <table style="width:100%;">
+                    <tr style="padding:1rem;background-color:#d6d6d6;border:1px solid #d6d6d6;">
+                      <td style="padding:1rem;"> Kode </td>
+                      <td style="padding:1rem;"> Diagnosa</td>
+                    </tr>
+                    ' . $diagnosa_awal . '
+                  </table>
+                </div>
+
+
+                <div style="border: 1px dashed rgb(138, 138, 138); padding: 1rem; border-radius: 8px; position: relative;margin-bottom:1rem;">
+                  <table style="width:100%;">
+                    <tr style="padding:1rem;background-color:#d6d6d6;border:1px solid #d6d6d6;">
+                      <td style="padding:1rem;"> Bed</td>
+                    </tr>
+                    ' . $book_kamar . '
+                  </table>
+                </div>
+                
+                <div>
+                  <p style="border: 2px solid rgb(56, 56, 56); padding: 1rem; text-align: center;">
+                    <span style="font-weight: 600; font-size: 25px;">' . $this->formatReg($data['tr_with_pasien']->no_reg - 1) . '</span>
+                  </p>
+                </div>
+              </div>
+            </body>
+            </html>
+            ';
+    $this->pdf->load_html($html);
+    $this->pdf->render();
+    $output = $this->pdf->output();
+    file_put_contents('public/pdf/bukti-pendaftaran/' . date('Y-m-d H-m-ss') . $data['tr_with_pasien']->pasien->no_mr . '.pdf', $output);
+    return base_url() . '/public/pdf/bukti-pendaftaran/' . date('Y-m-d H-m-ss') . $data['tr_with_pasien']->pasien->no_mr . '.pdf';
+  }
+
   public function index()
   {
     $data['title'] = 'MANPRO-RS | Pendaftaran';
@@ -368,6 +509,20 @@ class Pendaftaran extends CI_Controller
 
     $this->load->view('headers/normal_header', $data);
     $this->load->view('pages/rawat_inap');
+    $this->load->view('footers/normal_footer');
+  }
+
+    public function rawat_igd()
+  {
+    $data                 = $this->nextTransactionRaigd();
+    $data['tipe_pasien']  = $this->TipePasienModel->get_all();
+    $data['title']        = 'MANPRO-RS | Pendaftaran';
+    $data['page']         = 'rawat_igd';
+    $data['tersedia']         = $this->BedModel->where('status',1)->count_rows();
+    $data['terisi']         = $this->BedModel->where('status',0)->count_rows();
+
+    $this->load->view('headers/normal_header', $data);
+    $this->load->view('pages/rawat_igd');
     $this->load->view('footers/normal_footer');
   }
 
@@ -621,6 +776,10 @@ class Pendaftaran extends CI_Controller
       );
 
       if ($this->DetailTransaksiModel->insert($data_detail_transaksi)) {
+
+        // Update Bed Status
+        $this->BedModel->update(array('status' => 1), $data['bed']->id);
+        
         // Generate PDF untuk membuat bukti transaksi
         $transaksi['tr_with_pasien'] = $this->TransaksiModel->with_pasien(array('with' => array('tipe_pasien')))->get($transaksi_id);
         $transaksi['tr_with_user'] = $this->TransaksiModel->with_user()->get($transaksi_id);
@@ -686,12 +845,12 @@ class Pendaftaran extends CI_Controller
         )));
     }
 
-    $data['nextBill']       = $this->formatBill('I', '00000');
+    $data['nextBill']       = $this->formatBill('G', '00000');
     $data['nextReg']        = 1;
     $data['lastTransaksi']  = $this->TransaksiModel->lastRecord();
 
     if ($data['lastTransaksi']) {
-      $data['nextBill']   = $this->formatBill('I', $data['lastTransaksi']->id);
+      $data['nextBill']   = $this->formatBill('G', $data['lastTransaksi']->id);
 
       $current_time       = strtotime($data['lastTransaksi']->created_at);
       $current_date       = date("Y-m-d", $current_time);
@@ -709,7 +868,7 @@ class Pendaftaran extends CI_Controller
       'no_bill'       => $data['nextBill'],
       'no_reg'        => $data['nextReg'],
       'total_tarif'   => $this->input->post('tarif_awal', TRUE),
-      'jenis_rawat'   => 'RAWAT-INAP',
+      'jenis_rawat'   => 'RAWAT-IGD',
       'status'        => 'REGISTERED',
       'created_at'    => date("Y-m-d"),
       'updated_at'    => date("Y-m-d"),
@@ -751,6 +910,10 @@ class Pendaftaran extends CI_Controller
       );
 
       if ($this->DetailTransaksiModel->insert($data_detail_transaksi)) {
+
+        // Update Bed Status
+        $this->BedModel->update(array('status' => 1), $data['bed']->id);
+
         // Generate PDF untuk membuat bukti transaksi
         $transaksi['tr_with_pasien'] = $this->TransaksiModel->with_pasien(array('with' => array('tipe_pasien')))->get($transaksi_id);
         $transaksi['tr_with_user'] = $this->TransaksiModel->with_user()->get($transaksi_id);
@@ -764,7 +927,7 @@ class Pendaftaran extends CI_Controller
           $value->bed->ruangan = $ruangan;
         }
 
-        $download_url          = $this->generateBuktiPendaftaranRanap($transaksi);
+        $download_url          = $this->generateBuktiPendaftaranRaigd($transaksi);
 
         // Script ini untuk memberikan response success ke client yang melakukan request
         $data                  = $this->nextTransactionRanap();
