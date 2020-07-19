@@ -3,368 +3,372 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Transaksi extends CI_Controller
 {
-    public function __construct()
-    {
-        parent::__construct();
-        if (!$this->session->userdata('logged_in')) {
-            redirect('/admin/login');
-        } else {
-            if ($this->session->userdata('role_id') === '4') {
-                redirect('/');
-            }
-        }
-        $this->load->library('pdf');
-        $this->load->model('DokterModel');
-        $this->load->model('ObatModel');
-        $this->load->model('PoliklinikModel');
-        $this->load->model('PasienModel');
-        $this->load->model('TipePasienModel');
-        $this->load->model('UserModel');
-        $this->load->model('BedModel');
-        $this->load->model('KamarModel');
-        $this->load->model('DetailTransaksiModel');
-        $this->load->model('TransaksiModel');
+  public function __construct()
+  {
+    parent::__construct();
+    if (!$this->session->userdata('logged_in')) {
+      redirect('/admin/login');
+    } else {
+      if ($this->session->userdata('role_id') === '4') {
+        redirect('/');
+      }
     }
-    public function rawat_jalan()
-    {
+    $this->load->library('pdf');
+    $this->load->model('DokterModel');
+    $this->load->model('ObatModel');
+    $this->load->model('PoliklinikModel');
+    $this->load->model('PasienModel');
+    $this->load->model('TipePasienModel');
+    $this->load->model('UserModel');
+    $this->load->model('BedModel');
+    $this->load->model('KamarModel');
+    $this->load->model('DetailTransaksiModel');
+    $this->load->model('TransaksiModel');
+  }
+  public function rawat_jalan()
+  {
 
-        $data['title'] = 'MANPRO-RS | Transaksi Rawat Jalan';
-        $data['page'] = 'transaksi-jalan';
+    $data['title'] = 'MANPRO-RS | Transaksi Rawat Jalan';
+    $data['page'] = 'transaksi-jalan';
 
-        $this->load->view('headers/normal_header', $data);
-        $this->load->view('pages/transaksi_jalan');
-        $this->load->view('footers/normal_footer');
-    }
+    $this->load->view('headers/normal_header', $data);
+    $this->load->view('pages/transaksi_jalan');
+    $this->load->view('footers/normal_footer');
+  }
 
-    public function rawat_inap()
-    {
-        $data['title'] = 'MANPRO-RS | Transaksi Rawat Inap';
-        $data['page'] = 'transaksi-inap';
+  public function rawat_inap()
+  {
+    $data['title'] = 'MANPRO-RS | Transaksi Rawat Inap';
+    $data['page'] = 'transaksi-inap';
 
-        $this->load->view('headers/normal_header', $data);
-        $this->load->view('pages/transaksi_inap');
-        $this->load->view('footers/normal_footer');
-    }
+    $this->load->view('headers/normal_header', $data);
+    $this->load->view('pages/transaksi_inap');
+    $this->load->view('footers/normal_footer');
+  }
 
-    public function rawat_igd()
-    {
-        $data['title'] = 'MANPRO-RS | Transaksi Rawat IGD';
-        $data['page'] = 'transaksi-igd';
+  public function rawat_igd()
+  {
+    $data['title'] = 'MANPRO-RS | Transaksi Rawat IGD';
+    $data['page'] = 'transaksi-igd';
 
-        $this->load->view('headers/normal_header', $data);
-        $this->load->view('pages/transaksi_igd');
-        $this->load->view('footers/normal_footer');
-    }
+    $this->load->view('headers/normal_header', $data);
+    $this->load->view('pages/transaksi_igd');
+    $this->load->view('footers/normal_footer');
+  }
 
-    public function getRekamInap()
-    {
-        $fetch_data = $this->TransaksiModel->make_datatables('RAWAT-INAP');
-        $data = array();
-        foreach ($fetch_data as $key => $row) {
-            $sub_array = array();
-            $sub_array[] = $key + 1;
-            $sub_array[] = $row->no_bill;
-            $sub_array[] = $row->no_mr;
-            $sub_array[] = $row->nama;
-            $sub_array[] = $row->no_telp;
-            $sub_array[] = $row->total_tarif;
-            $sub_array[] = $row->status;
-            $sub_array[] = '
+  public function getRekamInap()
+  {
+    $fetch_data = $this->TransaksiModel->make_datatables('RAWAT-INAP');
+    $data = array();
+    foreach ($fetch_data as $key => $row) {
+      $sub_array = array();
+      $sub_array[] = $key + 1;
+      $sub_array[] = $row->no_bill;
+      $sub_array[] = $row->no_mr;
+      $sub_array[] = $row->nama;
+      $sub_array[] = $row->no_telp;
+      $sub_array[] = $row->total_tarif;
+      $sub_array[] = $row->status;
+      $sub_array[] = '
             <button class="btn btn-sm btn-info" onclick="showDetailTransaksiByTransaksiID(' . $row->id . ');">
                     <i class="far fa-eye"></i> &nbsp; Lihat
             </button>';
-            $data[] = $sub_array;
-        }
-
-        $output = array(
-            "draw" => intval($_POST["draw"]),
-            "recordsTotal" => $this->TransaksiModel->get_all_data('RAWAT-INAP'),
-            "recordsFiltered" => $this->TransaksiModel->get_filtered_data('RAWAT-INAP'),
-            "data"  => $data
-        );
-        echo json_encode($output);
+      $data[] = $sub_array;
     }
 
-    public function getRekamIgd()
-    {
-        $fetch_data = $this->TransaksiModel->make_datatables('RAWAT-IGD');
-        $data = array();
-        foreach ($fetch_data as $key => $row) {
-            $sub_array = array();
-            $sub_array[] = $key + 1;
-            $sub_array[] = $row->no_bill;
-            $sub_array[] = $row->no_mr;
-            $sub_array[] = $row->nama;
-            $sub_array[] = $row->no_telp;
-            $sub_array[] = $row->total_tarif;
-            $sub_array[] = $row->status;
-            $sub_array[] = '
+    $output = array(
+      "draw" => intval($_POST["draw"]),
+      "recordsTotal" => $this->TransaksiModel->get_all_data('RAWAT-INAP'),
+      "recordsFiltered" => $this->TransaksiModel->get_filtered_data('RAWAT-INAP'),
+      "data"  => $data
+    );
+    echo json_encode($output);
+  }
+
+  public function getRekamIgd()
+  {
+    $fetch_data = $this->TransaksiModel->make_datatables('RAWAT-IGD');
+    $data = array();
+    foreach ($fetch_data as $key => $row) {
+      $sub_array = array();
+      $sub_array[] = $key + 1;
+      $sub_array[] = $row->no_bill;
+      $sub_array[] = $row->no_mr;
+      $sub_array[] = $row->nama;
+      $sub_array[] = $row->no_telp;
+      $sub_array[] = $row->total_tarif;
+      $sub_array[] = $row->status;
+      $sub_array[] = '
             <button class="btn btn-sm btn-info" onclick="showDetailTransaksiByTransaksiID(' . $row->id . ');">
                     <i class="far fa-eye"></i> &nbsp; Lihat
             </button>';
-            $data[] = $sub_array;
-        }
-
-        $output = array(
-            "draw" => intval($_POST["draw"]),
-            "recordsTotal" => $this->TransaksiModel->get_all_data('RAWAT-IGD'),
-            "recordsFiltered" => $this->TransaksiModel->get_filtered_data('RAWAT-IGD'),
-            "data"  => $data
-        );
-        echo json_encode($output);
+      $data[] = $sub_array;
     }
 
-    public function getRekamJalan()
-    {
-        $fetch_data = $this->TransaksiModel->make_datatables('RAWAT-JALAN');
-        $data = array();
-        foreach ($fetch_data as $key => $row) {
-            $sub_array = array();
-            $sub_array[] = $key + 1;
-            $sub_array[] = $row->no_bill;
-            $sub_array[] = $row->no_mr;
-            $sub_array[] = $row->nama;
-            $sub_array[] = $row->no_telp;
-            $sub_array[] = $row->total_tarif;
-            $sub_array[] = $row->status;
-            $sub_array[] = '
+    $output = array(
+      "draw" => intval($_POST["draw"]),
+      "recordsTotal" => $this->TransaksiModel->get_all_data('RAWAT-IGD'),
+      "recordsFiltered" => $this->TransaksiModel->get_filtered_data('RAWAT-IGD'),
+      "data"  => $data
+    );
+    echo json_encode($output);
+  }
+
+  public function getRekamJalan()
+  {
+    $fetch_data = $this->TransaksiModel->make_datatables('RAWAT-JALAN');
+    $data = array();
+    foreach ($fetch_data as $key => $row) {
+      $sub_array = array();
+      $sub_array[] = $key + 1;
+      $sub_array[] = $row->no_bill;
+      $sub_array[] = $row->no_mr;
+      $sub_array[] = $row->nama;
+      $sub_array[] = $row->no_telp;
+      $sub_array[] = $row->total_tarif;
+      $sub_array[] = $row->status;
+      $sub_array[] = '
             <button class="btn btn-sm btn-info" onclick="showDetailTransaksiByTransaksiID(' . $row->id . ');">
                     <i class="far fa-eye"></i> &nbsp; Lihat
             </button>';
-            $data[] = $sub_array;
-        }
+      $data[] = $sub_array;
+    }
 
-        $output = array(
-            "draw" => intval($_POST["draw"]),
-            "recordsTotal" => $this->TransaksiModel->get_all_data('RAWAT-JALAN'),
-            "recordsFiltered" => $this->TransaksiModel->get_filtered_data('RAWAT-JALAN'),
-            "data"  => $data
+    $output = array(
+      "draw" => intval($_POST["draw"]),
+      "recordsTotal" => $this->TransaksiModel->get_all_data('RAWAT-JALAN'),
+      "recordsFiltered" => $this->TransaksiModel->get_filtered_data('RAWAT-JALAN'),
+      "data"  => $data
+    );
+    echo json_encode($output);
+  }
+
+
+
+  public function find()
+  {
+    $data['transaksi'] = $this->TransaksiModel
+      ->with_pasien()
+      ->with_user()
+      ->where('id', $this->input->get('id', TRUE))->get();
+
+    $data['detail_transaksi'] = (array) $this->DetailTransaksiModel
+      ->with_jadwal_dokter()
+      ->with_penyakit()
+      ->with_tindakan()
+      ->with_obat()
+      ->with_ruangan()
+      ->with_kamar()
+      ->with_bed()
+      ->where('transaksi_id', $this->input->get('id', TRUE))->get_all();
+
+    foreach ($data['detail_transaksi'] as $item) {
+
+      if ($item->jadwal_dokter_id) {
+        $dokter         = $this->DokterModel->get($item->jadwal_dokter->dokter_id);
+        $poliklinik     = $this->PoliklinikModel->get($item->jadwal_dokter->poli_id);
+        $item->jadwal_dokter->dokter        = $dokter;
+        $item->jadwal_dokter->poliklinik    = $poliklinik;
+      }
+    }
+
+    echo json_encode($data);
+  }
+
+  public function tambah_obat()
+  {
+    $detail_transaksi = $this->DetailTransaksiModel->where('transaksi_id', $this->input->post('transaksi_id', TRUE))->get();
+
+    if ($detail_transaksi) {
+      foreach ($this->input->post('obat_id', TRUE) as $key => $item) {
+        $obat = $this->ObatModel->get($item);
+        $data = array(
+          'transaksi_id'      => $this->input->post('transaksi_id', TRUE),
+          'jadwal_dokter_id'  => $detail_transaksi->jadwal_dokter_id,
+          'penyakit_id'       => $detail_transaksi->penyakit_id,
+          'tarif_pendaftaran' => $detail_transaksi->tarif_pendaftaran,
+          'tarif_dokter'      => $detail_transaksi->tarif_dokter,
+          'obat_id'           => $item,
+          'qty_obat'          => $this->input->post('qty_obat', TRUE)[$key],
+          'tarif_obat'        => $obat->harga
         );
-        echo json_encode($output);
+        $this->DetailTransaksiModel->insert($data);
+      }
+      return $this->output
+        ->set_content_type('application/json')
+        ->set_status_header(200)
+        ->set_output(json_encode(array(
+          'status'            => '200',
+          'message'           => 'success',
+        )));
     }
 
+    return $this->output
+      ->set_content_type('application/json')
+      ->set_status_header(500)
+      ->set_output(json_encode(array(
+        'status'            => '500',
+        'message'           => 'error',
+      )));
+  }
 
+  public function delete()
+  {
+    if ($this->DetailTransaksiModel->delete('pasien_id', $this->input->post('delete_id', TRUE))) {
+      $this->session->set_flashdata('success', 'Rekam medis berhasil dihapus');
+      redirect(base_url("/rekam-medis/rawat-jalan"));
+    }
 
-    public function find()
-    {
-        $data['transaksi'] = $this->TransaksiModel
-            ->with_pasien()
-            ->with_user()
-            ->where('id', $this->input->get('id', TRUE))->get();
+    $this->session->set_flashdata('error', 'Rekam medis gagal dihapus');
+    redirect(base_url("/rekam-medis/rawat-jalan"));
+  }
 
-        $data['detail_transaksi'] = (array) $this->DetailTransaksiModel
-            ->with_jadwal_dokter()
-            ->with_penyakit()
-            ->with_tindakan()
-            ->with_obat()
-            ->with_ruangan()
-            ->with_kamar()
-            ->with_bed()
-            ->where('transaksi_id', $this->input->get('id', TRUE))->get_all();
+  public function save()
+  {
+    // If exists transaksi
+    $tr = $this->TransaksiModel->get($this->input->post('transaksi_id', TRUE));
+    if ($tr) {
+      // Update transaksi status
+      $this->TransaksiModel->update(array('status' => 'SUCCESS'), $this->input->post('transaksi_id', TRUE));
 
-        foreach ($data['detail_transaksi'] as $item) {
+      // if exists detail transaksi
+      $detail_transaksi = (array) $this->DetailTransaksiModel->where('transaksi_id', $this->input->post('transaksi_id', TRUE))->get_all();
+      if ($detail_transaksi) {
+        foreach ($detail_transaksi as $key => $dt) {
+          // Update detail transaksi tanggal keluar
+          $this->DetailTransaksiModel->update(array('tanggal_keluar' => date("Y-m-d")), $dt->id);
+          // if not null bed_id
+          if ($dt->bed_id) {
+            // update bed status
+            $this->BedModel->update(array('status' => 0), $dt->bed_id);
+          }
 
-            if ($item->jadwal_dokter_id) {
-                $dokter         = $this->DokterModel->get($item->jadwal_dokter->dokter_id);
-                $poliklinik     = $this->PoliklinikModel->get($item->jadwal_dokter->poli_id);
-                $item->jadwal_dokter->dokter        = $dokter;
-                $item->jadwal_dokter->poliklinik    = $poliklinik;
-            }
+          if ($dt->kamar_id) {
+            // update kamar status
+            $this->KamarModel->update(array('status' => 0), $dt->kamar_id);
+          }
         }
 
-        echo json_encode($data);
-    }
+        // Generate PDF untuk membuat bukti transaksi
+        $transaksi['tr_with_pasien'] = $this->TransaksiModel->with_pasien(array('with' => array('tipe_pasien')))->get($this->input->post('transaksi_id', TRUE));
+        $transaksi['tr_with_user'] = $this->TransaksiModel->with_user()->get($this->input->post('transaksi_id', TRUE));
+        $transaksi['tr_with_detail_tr_penyakit'] = $this->TransaksiModel->with_detail_transaksi(array('with' => array('penyakit')))->get($this->input->post('transaksi_id', TRUE));
+        $transaksi['tr_with_detail_tr_bed'] = $this->TransaksiModel->with_detail_transaksi(array('with' => array('bed')))->get($this->input->post('transaksi_id', TRUE));
+        $transaksi['tr_with_detail_tr_jadwal_dokter'] = $this->TransaksiModel->with_detail_transaksi(array('with' => array('jadwal_dokter')))->get($this->input->post('transaksi_id', TRUE));
+        $transaksi['tr_with_detail_tr_obat'] = $this->TransaksiModel->with_detail_transaksi(array('with' => array('obat')))->get($this->input->post('transaksi_id', TRUE));
 
-    public function tambah_obat()
-    {
-        $detail_transaksi = $this->DetailTransaksiModel->where('transaksi_id', $this->input->post('transaksi_id', TRUE))->get();
-
-        if ($detail_transaksi) {
-            foreach ($this->input->post('obat_id', TRUE) as $key => $item) {
-                $obat = $this->ObatModel->get($item);
-                $data = array(
-                    'transaksi_id'      => $this->input->post('transaksi_id', TRUE),
-                    'jadwal_dokter_id'  => $detail_transaksi->jadwal_dokter_id,
-                    'penyakit_id'       => $detail_transaksi->penyakit_id,
-                    'tarif_pendaftaran' => $detail_transaksi->tarif_pendaftaran,
-                    'tarif_dokter'      => $detail_transaksi->tarif_dokter,
-                    'obat_id'           => $item,
-                    'qty_obat'          => $this->input->post('qty_obat', TRUE)[$key],
-                    'tarif_obat'        => $obat->harga
-                );
-                $this->DetailTransaksiModel->insert($data);
-            }
-            return $this->output
-                ->set_content_type('application/json')
-                ->set_status_header(200)
-                ->set_output(json_encode(array(
-                    'status'            => '200',
-                    'message'           => 'success',
-                )));
+        foreach ($transaksi['tr_with_detail_tr_bed']->detail_transaksi as $key => $value) {
+          if ($value->bed_id) {
+            $kamar = $this->KamarModel->where('id', $value->bed->kamar_id)->get();
+            $ruangan = $this->RuanganModel->where('id', $kamar->ruangan_id)->get();
+            $value->bed->kamar = $kamar;
+            $value->bed->ruangan = $ruangan;
+          }
         }
 
-        return $this->output
-            ->set_content_type('application/json')
-            ->set_status_header(500)
-            ->set_output(json_encode(array(
-                'status'            => '500',
-                'message'           => 'error',
-            )));
-    }
-
-    public function delete()
-    {
-        if ($this->DetailTransaksiModel->delete('pasien_id', $this->input->post('delete_id', TRUE))) {
-            $this->session->set_flashdata('success', 'Rekam medis berhasil dihapus');
-            redirect(base_url("/rekam-medis/rawat-jalan"));
+        foreach ($transaksi['tr_with_detail_tr_jadwal_dokter']->detail_transaksi as $key => $value) {
+          if ($value->jadwal_dokter_id) {
+            $dokter = $this->DokterModel->where('id', $value->jadwal_dokter->dokter_id)->get();
+            $value->jadwal_dokter->dokter = $dokter;
+          }
         }
 
-        $this->session->set_flashdata('error', 'Rekam medis gagal dihapus');
-        redirect(base_url("/rekam-medis/rawat-jalan"));
+        $download_url = $this->generateTransaksiIgd($transaksi);
+        $this->session->set_flashdata('success', 'Transaksi berhasil di cetak');
+        redirect($download_url);
+      }
+
+      $this->session->set_flashdata('error', 'Transaksi gagal di cetak');
+      return $this->output
+        ->set_content_type('application/json')
+        ->set_status_header(500)
+        ->set_output(json_encode(array(
+          'status' => '500',
+        )));
     }
+  }
 
-    public function save()
-    {
-        // If exists transaksi
-        $tr = $this->TransaksiModel->get($this->input->post('transaksi_id', TRUE));
-        if ($tr) {
-            // Update transaksi status
-            $this->TransaksiModel->update(array('status' => 'SUCCESS'), $this->input->post('transaksi_id', TRUE));
+  public function generateTransaksiIgd($data)
+  {
+    $this->pdf->setPaper('A4', 'potrait');
 
-            // if exists detail transaksi
-            $detail_transaksi = (array) $this->DetailTransaksiModel->where('transaksi_id', $this->input->post('transaksi_id', TRUE))->get_all();
-            if ($detail_transaksi) {
-                foreach ($detail_transaksi as $key => $dt) {
-                    // Update detail transaksi tanggal keluar
-                    $this->DetailTransaksiModel->update(array('tanggal_keluar' => date("Y-m-d")), $dt->id);
-                    // if not null bed_id
-                    if ($dt->bed_id) {
-                        // update bed status
-                        $this->BedModel->update(array('status' => 0), $dt->bed_id);
-                    }
-
-                    if ($dt->kamar_id) {
-                        // update kamar status
-                        $this->KamarModel->update(array('status' => 0), $dt->kamar_id);
-                    }
-                }
-
-                // Generate PDF untuk membuat bukti transaksi
-                $transaksi['tr_with_pasien'] = $this->TransaksiModel->with_pasien(array('with' => array('tipe_pasien')))->get($this->input->post('transaksi_id', TRUE));
-                $transaksi['tr_with_user'] = $this->TransaksiModel->with_user()->get($this->input->post('transaksi_id', TRUE));
-                $transaksi['tr_with_detail_tr_penyakit'] = $this->TransaksiModel->with_detail_transaksi(array('with' => array('penyakit')))->get($this->input->post('transaksi_id', TRUE));
-                $transaksi['tr_with_detail_tr_bed'] = $this->TransaksiModel->with_detail_transaksi(array('with' => array('bed')))->get($this->input->post('transaksi_id', TRUE));
-                $transaksi['tr_with_detail_tr_jadwal_dokter'] = $this->TransaksiModel->with_detail_transaksi(array('with' => array('jadwal_dokter')))->get($this->input->post('transaksi_id', TRUE));
-                $transaksi['tr_with_detail_tr_obat'] = $this->TransaksiModel->with_detail_transaksi(array('with' => array('obat')))->get($this->input->post('transaksi_id', TRUE));
-
-                foreach ($transaksi['tr_with_detail_tr_bed']->detail_transaksi as $key => $value) {
-                    if ($value->bed_id) {
-                        $kamar = $this->KamarModel->where('id', $value->bed->kamar_id)->get();
-                        $ruangan = $this->RuanganModel->where('id', $kamar->ruangan_id)->get();
-                        $value->bed->kamar = $kamar;
-                        $value->bed->ruangan = $ruangan;
-                    }
-                }
-
-                foreach ($transaksi['tr_with_detail_tr_jadwal_dokter']->detail_transaksi as $key => $value) {
-                    if ($value->jadwal_dokter_id) {
-                        $dokter = $this->DokterModel->where('id', $value->jadwal_dokter->dokter_id)->get();
-                        $value->jadwal_dokter->dokter = $dokter;
-                    }
-                }
-
-                $download_url = $this->generateTransaksiIgd($transaksi);
-                $this->session->set_flashdata('success', 'Transaksi berhasil di cetak');
-                redirect($download_url);
-            }
-
-            $this->session->set_flashdata('error', 'Transaksi gagal di cetak');
-            return $this->output
-                ->set_content_type('application/json')
-                ->set_status_header(500)
-                ->set_output(json_encode(array(
-                    'status' => '500',
-                )));
-        }
-    }
-
-    public function generateTransaksiIgd($data)
-    {
-        $this->pdf->setPaper('A4', 'potrait');
-
-        $diagnosa_awal = '';
-        foreach ($data['tr_with_detail_tr_penyakit']->detail_transaksi as $key => $value) {
-            if ($value->penyakit_id) {
-                $diagnosa_awal = $diagnosa_awal . '
+    $diagnosa_awal = '';
+    foreach ($data['tr_with_detail_tr_penyakit']->detail_transaksi as $key => $value) {
+      if ($value->penyakit_id) {
+        $diagnosa_awal = $diagnosa_awal . '
             <tr style="border:1px solid #d6d6d6;">
               <td width="30%" style="padding:1rem;border-bottom: 1px solid #d6d6d6;">' . $value->penyakit->kode . '</td>
               <td width="70%" style="padding:1rem;border-bottom: 1px solid #d6d6d6;">' . $value->penyakit->nama . '</td>
             </tr>
           ';
-            }
-        }
+      }
+    }
 
-        $book_kamar = '';
-        $no_kamar = 0;
-        $total_kamar = 0;
-        foreach ($data['tr_with_detail_tr_bed']->detail_transaksi as $key => $value) {
-            if ($value->bed_id) {
-                $no_kamar += 1;
-                $total_kamar += $value->tarif_kamar;
-                $book_kamar = $book_kamar . '
+    $book_kamar = '';
+    $no_kamar = 0;
+    $total_kamar = 0;
+    foreach ($data['tr_with_detail_tr_bed']->detail_transaksi as $key => $value) {
+      if ($value->bed_id) {
+        $no_kamar += 1;
+        $total_kamar += $value->tarif_kamar;
+        $book_kamar = $book_kamar . '
             <tr style="border:1px solid #d6d6d6;">
               <td width="10%" style="padding:1rem;border-bottom: 1px solid #d6d6d6;">' . $no_kamar . '</td>
               <td width="30%" style="padding:1rem;border-bottom: 1px solid #d6d6d6;">' . $value->bed->kode . '</td>
               <td width="60%" style="padding:1rem;border-bottom: 1px solid #d6d6d6; text-align:right;"> IDR ' . number_format($value->tarif_kamar) . '</td>
             </tr>
           ';
-            }
-        }
+      }
+    }
 
-        $book_dokter = '';
-        $no_dokter = 0;
-        $total_dokter = 0;
+    $book_dokter = '';
+    $no_dokter = 0;
+    $total_dokter = 0;
+    $temp_dokter = '';
 
-        // echo json_encode($data['tr_with_detail_tr_jadwal_dokter']); die;
-        foreach ($data['tr_with_detail_tr_jadwal_dokter']->detail_transaksi as $key => $value) {
-            if ($value->jadwal_dokter_id) {
-                $no_dokter += 1;
-                $total_dokter += $value->jadwal_dokter->tarif;
-                $book_dokter = $book_dokter . '
+    // echo json_encode($data['tr_with_detail_tr_jadwal_dokter']); die;
+    foreach ($data['tr_with_detail_tr_jadwal_dokter']->detail_transaksi as $key => $value) {
+      if ($value->jadwal_dokter_id) {
+        if ($temp_dokter != $value->jadwal_dokter->dokter->id) {
+          $no_dokter += 1;
+          $temp_dokter = $value->jadwal_dokter->dokter->id;
+          $total_dokter += $value->jadwal_dokter->tarif;
+          $book_dokter = $book_dokter . '
             <tr style="border:1px solid #d6d6d6;">
               <td width="10%" style="padding:1rem;border-bottom: 1px solid #d6d6d6;">' . $no_dokter . '</td>
               <td width="30%" style="padding:1rem;border-bottom: 1px solid #d6d6d6;">' . $value->jadwal_dokter->dokter->nama . '</td>
               <td width="60%" style="padding:1rem;border-bottom: 1px solid #d6d6d6; text-align:right;"> IDR ' . number_format($value->jadwal_dokter->tarif) . '</td>
             </tr>
           ';
-            }
         }
+      }
+    }
 
-        $book_obat = '';
-        $no_obat = 0;
-        $total_obat = 0;
+    $book_obat = '';
+    $no_obat = 0;
+    $total_obat = 0;
 
-        // echo json_encode($data['tr_with_detail_tr_jadwal); die;
-        foreach ($data['tr_with_detail_tr_obat']->detail_transaksi as $key => $value) {
-            if ($value->obat_id) {
-                $total_obat += $value->tarif_obat;
-                $no_obat += 1;
-                $book_obat = $book_obat . '
+    // echo json_encode($data['tr_with_detail_tr_jadwal); die;
+    foreach ($data['tr_with_detail_tr_obat']->detail_transaksi as $key => $value) {
+      if ($value->obat_id) {
+        $total_obat += $value->tarif_obat;
+        $no_obat += 1;
+        $book_obat = $book_obat . '
             <tr style="border:1px solid #d6d6d6;">
               <td width="10%" style="padding:1rem;border-bottom: 1px solid #d6d6d6;">' . $no_obat . '</td>
               <td width="30%" style="padding:1rem;border-bottom: 1px solid #d6d6d6;">' . $value->obat->nama . '</td>
               <td width="60%" style="padding:1rem;border-bottom: 1px solid #d6d6d6; text-align:right;"> IDR ' . number_format($value->tarif_obat) . '</td>
             </tr>
           ';
-            }
-        }
+      }
+    }
 
-        $total_biaya = $total_obat + $total_dokter + $total_kamar;
-        $masuk = date("Y/m/d H:m:s", strtotime($data['tr_with_pasien']->created_at));
-        $keluar = date("Y/m/d H:m:s", strtotime($data['tr_with_pasien']->updated_at));
+    $total_biaya = $total_obat + $total_dokter + $total_kamar;
+    $masuk = date("Y/m/d H:m:s", strtotime($data['tr_with_pasien']->created_at));
+    $keluar = date("Y/m/d H:m:s", strtotime($data['tr_with_pasien']->updated_at));
 
-        $html =
-            '<html>
+    $html =
+      '<html>
 
             <head>
               <style>
@@ -508,18 +512,18 @@ class Transaksi extends CI_Controller
             </body>
             </html>
             ';
-        $this->pdf->load_html($html);
-        $this->pdf->render();
-        $output = $this->pdf->output();
-        file_put_contents('public/pdf/bukti-pendaftaran/' . date('Y-m-d H-m-ss') . $data['tr_with_pasien']->pasien->no_mr . '.pdf', $output);
-        return base_url() . '/public/pdf/bukti-pendaftaran/' . date('Y-m-d H-m-ss') . $data['tr_with_pasien']->pasien->no_mr . '.pdf';
-    }
+    $this->pdf->load_html($html);
+    $this->pdf->render();
+    $output = $this->pdf->output();
+    file_put_contents('public/pdf/bukti-pendaftaran/' . date('Y-m-d H-m-ss') . $data['tr_with_pasien']->pasien->no_mr . '.pdf', $output);
+    return base_url() . '/public/pdf/bukti-pendaftaran/' . date('Y-m-d H-m-ss') . $data['tr_with_pasien']->pasien->no_mr . '.pdf';
+  }
 
-    public function formatReg($number)
-    {
-        $currentYear = substr(date('Y'), -2);
-        $currentMonth = date('m');
-        $number = str_pad($number + 1, 4, '0', STR_PAD_LEFT);
-        return "REG-$currentYear-$currentMonth-$number";
-    }
+  public function formatReg($number)
+  {
+    $currentYear = substr(date('Y'), -2);
+    $currentMonth = date('m');
+    $number = str_pad($number + 1, 4, '0', STR_PAD_LEFT);
+    return "REG-$currentYear-$currentMonth-$number";
+  }
 }
