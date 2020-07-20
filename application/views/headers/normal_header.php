@@ -95,7 +95,7 @@ to get the desired effect
                         </li>
                         <li class="nav-header">SHORTCUT</li>
                         <?php if ($this->session->userdata('role_id') == '1' || $this->session->userdata('role_id') == '2') { ?>
-                            <li class="nav-item has-treeview <?= ($page == 'rawat_jalan' || $page == 'rawat_inap' || $page == 'rawat_igd') ? 'menu-open' : '' ?>">
+                            <li class="nav-item has-treeview <?= ($page == 'rawat_jalan' || $page == 'rawat_inap' || $page == 'rawat_lab' || $page == 'rawat_radiologi' || $page == 'rawat_poli' || $page == 'rawat_igd') ? 'menu-open' : '' ?>">
                                 <a href="#" class="nav-link">
                                     <i class="nav-icon far fa-plus-square"></i>
                                     <p>
@@ -114,6 +114,24 @@ to get the desired effect
                                         <a href="<?= base_url() ?>pendaftaran/rawat-inap" class="nav-link <?= ($page == 'rawat_inap') ? 'active' : '' ?>">
                                             <i class="fas fa-clinic-medical nav-icon"></i>
                                             <p>Rawat Inap</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="<?= base_url() ?>pendaftaran/rawat-poli" class="nav-link <?= ($page == 'rawat_poli') ? 'active' : '' ?>">
+                                            <i class="fas fa-user-injured nav-icon"></i>
+                                            <p>Rawat Poli</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="<?= base_url() ?>pendaftaran/rawat-radiologi" class="nav-link <?= ($page == 'rawat_radiologi') ? 'active' : '' ?>">
+                                            <i class="fas fa-x-ray nav-icon"></i>
+                                            <p>Rawat Radiologi</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="<?= base_url() ?>pendaftaran/rawat-lab" class="nav-link <?= ($page == 'rawat_lab') ? 'active' : '' ?>">
+                                            <i class="fas fa-flask nav-icon"></i>
+                                            <p>Rawat Lab</p>
                                         </a>
                                     </li>
                                     <li class="nav-item">

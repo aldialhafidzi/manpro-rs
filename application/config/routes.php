@@ -23,6 +23,9 @@ $route['rekam-medis/rekam-igd-all'] = 'RekamMedis/getRekamIgd';
 $route['pendaftaran/rawat-jalan'] = 'pendaftaran/rawat_jalan';
 $route['pendaftaran/rawat-inap'] = 'pendaftaran/rawat_inap';
 $route['pendaftaran/rawat-igd'] = 'pendaftaran/rawat_igd';
+$route['pendaftaran/rawat-poli'] = 'pendaftaran/rawat_poli';
+$route['pendaftaran/rawat-radiologi'] = 'pendaftaran/rawat_radiologi';
+$route['pendaftaran/rawat-lab'] = 'pendaftaran/rawat_lab';
 
 $route['transaksi/find'] = 'transaksi/find';
 $route['transaksi/rawat-jalan'] = 'transaksi/rawat_jalan';
@@ -41,6 +44,12 @@ $route['jadwal-poliklinik/create'] = 'JadwalPoliklinik/create';
 
 $route['tipepasien/search'] = 'TipePasien/search';
 $route['tindakan/search'] = 'Tindakan/search';
+$route['parameter-diagnosa/search'] = 'ParameterDiagnosa/search';
+$route['parameter-radiologi/search'] = 'ParameterRadiologi/search';
+
+$route['admin/search_kota'] = 'Admin/search_kota';
+$route['admin/search_kecamatan'] = 'Admin/search_kecamatan';
+$route['admin/search_kelurahan'] = 'Admin/search_kelurahan';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
