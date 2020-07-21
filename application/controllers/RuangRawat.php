@@ -57,6 +57,7 @@ class RuangRawat extends CI_Controller
         $data['page'] = 'lantai2';
         $data['det_ruangan'] = $this->ruangan->get_ruangan_eko();
         $data['detail_ruangan'] = $this->ruangan->get_detail_ruangan();
+        // echo json_encode($data['detail_ruangan']); die;
         $this->load->view('headers/normal_header', $data);
         $this->load->view('pages/class_rr/l2', $data);
         $this->load->view('footers/normal_footer');
