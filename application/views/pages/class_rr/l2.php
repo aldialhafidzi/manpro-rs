@@ -12,7 +12,7 @@
 
         <div class="btn-group" style="margin: 0px 5px 0px 5px">
           <button type="button" class="btn btn-default" style="height:40px; width: 140px">Ekonomi</button>
-          <button type="button" class="btn btn-default dropdown-toggle"  style="height:40px" data-toggle="dropdown">
+          <button type="button" class="btn btn-default dropdown-toggle" style="height:40px" data-toggle="dropdown">
             <span class="caret"></span>
           </button>
           <ul class="dropdown-menu" role="menu">
@@ -69,122 +69,169 @@
 
       <div class="row">
 
-      <?php foreach ($det_ruangan as $key => $value) :?>
-        <div class="col-md-2  col-xs-2">
-          <div class="small-box bg-white">
-            <div class="inner">
-              <h4>
-                <?php
-                  echo $value->nama;
-                ?>
-                </h4>
-              <table class="table text-center">
+
+
+        <?php
+        $temp_ruangan = null;
+        $temp_kamar = null;
+        ?>
+        <?php foreach ($det_ruangan as $key => $value) : ?>
+          <?php
+
+          if ($temp_ruangan != $value->nama) {
+            echo '<div class="col-12">
+                    <div class="small-box bg-white">
+                      <div class="inner">
+                        <h4> ' . $value->nama . '</h4>
+                            <div class="row">
+                        ';
+          }
+          $status = $value->status == 1 ? 'btn btn-block btn-danger' : 'btn btn-block btn-success';
+          if ($temp_kamar != $value->k_kode) {
+            echo '
+              <div class="col-6">
+                <table class="table text-center">
+                        <tbody>
+                          <tr>
+                            <td>
+                              <div class="small-box bg-white">
+                                <div class="inner">
+                                  <h4>' . $value->k_kode . '</h4>
+                                  <div class="row">
+                                  ';
+          }
+
+          echo ' <div class="col-4"> <table class="table text-center">
                 <tbody>
                   <tr>
                     <td>
-                      <div class="small-box bg-white">
-                        <div class="inner">
-                          <h4><?php echo $value->k_kode ?></h4>
-                          <table class="table text-center">
-                            <tbody>
-                              <tr>
-                                <td>
-                                  <a type="button" class="<?php if($value->status == 1) { echo 'btn btn-block btn-danger';} else { echo 'btn btn-block btn-success'; } ?>" data-toggle="modal" data-target="#ruang_rawat_info"><?php echo $value->b_kode?></a>
-                                </td>
-                                </th>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
-                      </div>
+                      <a type="button" class="' . $status  . '" data-toggle="modal" data-target="#ruang_rawat_info">' . $value->b_kode . '</a>
                     </td>
-                  </tr>
-                  </th>
+                    </th>
                   </tr>
                 </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
+              </table></div>';
+
+
+
+          $temp_ruangan = $value->nama;
+          $temp_kamar = $value->k_kode;
+
+          if ($key + 1 != count($det_ruangan)) {
+            if ($temp_kamar != $det_ruangan[$key + 1]->k_kode) {
+              echo '        </div>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+              </div>';
+            }
+          } else {
+            echo '     </div>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>';
+          }
+
+          if ($key + 1 != count($det_ruangan)) {
+            if ($temp_ruangan != $det_ruangan[$key + 1]->nama) {
+              echo '    </div>
+                      </div>
+                    </div>
+                  </div>';
+            }
+          } else {
+            echo '      </div>
+                      </div>
+                    </div>
+                  </div>';
+          }
+          ?>
         <?php endforeach; ?>
-      
+
         <!-- ============ MODAL Info =============== -->
-      <div class="modal fade" id="ruang_rawat_info" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
-        <div class="modal-dialog" style="max-width: 700px">
-          <div class="modal-content" style="width: 700px">
-            <div class="modal-header">
-              <h3 class="modal-title" id="myModalLabel">Info Ruangan</h3>
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+        <div class="modal fade" id="ruang_rawat_info" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+          <div class="modal-dialog" style="max-width: 700px">
+            <div class="modal-content" style="width: 700px">
+              <div class="modal-header">
+                <h3 class="modal-title" id="myModalLabel">Info Ruangan</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+              </div>
+              <?php foreach ($detail_ruangan as $key => $value) {
+              ?>
+                <div class="modal-body form">
+                  <form action="#" id="form" class="form-horizontal">
+                    <input type="hidden" value=<?php $key ?> name="id" />
+                    <div class="row">
+                      <div class="col-md-4">
+
+                        <div class="form-group">
+                          <label class="control-label col-xs-3">Kode Ruangan</label>
+                          <div class="col-xs-6">
+                            <input name="kode" class="form-control" type="text" value="<?php echo $value->kode ?>" disabled>
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <label class="control-label col-xs-3">Status Ruangan</label>
+                          <div class="col-xs-6">
+                            <input name="status" class="form-control" type="text" value="<?php echo $value->kode ?>" disabled>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col-md-8">
+                        <div class="form-group">
+                          <label class="control-label col-xs-3">No.Medrec</label>
+                          <div class="col-xs-8">
+                            <input name="nama_ruangan" class="form-control" type="text" value="<?php echo $value->no_mr ?>" disabled>
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <label class="control-label col-xs-3">Nama Pasien</label>
+                          <div class="col-xs-8">
+                            <input name="nama_ruangan" class="form-control" type="text" value="<?php echo $value->nama ?>" disabled>
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <label class="control-label col-xs-3">Jenis Kelamin</label>
+                          <div class="col-xs-8">
+                            <input name="nama_ruangan" class="form-control" type="text" value="<?php echo $value->jenis_kelamin ?>" disabled>
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <label class="control-label col-xs-3">No.Telp Pasien</label>
+                          <div class="col-xs-8">
+                            <input name="nama_ruangan" class="form-control" type="text" value="<?php echo $value->no_telp ?>" disabled>
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <label class="control-label col-xs-3">Alamat Pasien</label>
+                          <div class="col-xs-8">
+                            <input name="nama_ruangan" class="form-control" type="text" value="<?php echo $value->kelas ?>" disabled>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="modal-footer">
+                        <button class="btn btn-info" data-dismiss="modal" aria-hidden="true">Tutup</button>
+                      </div>
+                    <?php } ?>
+                  </form>
+                </div>
+
             </div>
-            <?php foreach ($detail_ruangan as $key => $value) {
-            ?>
-            <div class="modal-body form">
-              <form action="#" id="form" class="form-horizontal">
-                <input type="hidden" value=<?php $key?> name="id" />
-                <div class="row">
-                  <div class="col-md-4">
-
-                    <div class="form-group">
-                      <label class="control-label col-xs-3">Kode Ruangan</label>
-                      <div class="col-xs-6">
-                        <input name="kode" class="form-control" type="text" value="<?php echo $value->kode?>" disabled>
-                      </div>
-                    </div>
-
-                    <div class="form-group">
-                      <label class="control-label col-xs-3">Status Ruangan</label>
-                      <div class="col-xs-6">
-                        <input name="status" class="form-control" type="text" value="<?php echo $value->kode?>" disabled>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="col-md-8">
-                    <div class="form-group">
-                      <label class="control-label col-xs-3">No.Medrec</label>
-                      <div class="col-xs-8">
-                        <input name="nama_ruangan" class="form-control" type="text" value="<?php echo $value->no_mr?>" disabled>
-                      </div>
-                    </div>
-
-                    <div class="form-group">
-                      <label class="control-label col-xs-3">Nama Pasien</label>
-                      <div class="col-xs-8">
-                        <input name="nama_ruangan" class="form-control" type="text" value="<?php echo $value->nama?>" disabled>
-                      </div>
-                    </div>
-
-                    <div class="form-group">
-                      <label class="control-label col-xs-3">Jenis Kelamin</label>
-                      <div class="col-xs-8">
-                        <input name="nama_ruangan" class="form-control" type="text" value="<?php echo $value->jenis_kelamin?>" disabled>
-                      </div>
-                    </div>
-
-                    <div class="form-group">
-                      <label class="control-label col-xs-3">No.Telp Pasien</label>
-                      <div class="col-xs-8">
-                        <input name="nama_ruangan" class="form-control" type="text" value="<?php echo $value->no_telp?>" disabled>
-                      </div>
-                    </div>
-
-                    <div class="form-group">
-                      <label class="control-label col-xs-3">Alamat Pasien</label>
-                      <div class="col-xs-8">
-                        <input name="nama_ruangan" class="form-control" type="text" value="<?php echo $value->kelas?>" disabled>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="modal-footer">
-                    <button class="btn btn-info" data-dismiss="modal" aria-hidden="true">Tutup</button>
-                  </div>
-              <?php }?>
-              </form>
-            </div>
-
           </div>
         </div>
-      </div>
 
-    </div>
+      </div>
