@@ -16,9 +16,8 @@
             <span class="caret"></span>
           </button>
           <ul class="dropdown-menu" role="menu">
-            <li><a class="dropdown-item" href="<?= base_url() ?>ruangrawat/lantai1">Lantai 1</a></li>
-            <li><a class="dropdown-item" href="<?= base_url() ?>ruangrawat/lantai2">Lantai 2</a></li>
-            <li><a class="dropdown-item" href="<?= base_url() ?>ruangrawat/lantai3">Lantai 3</a></li>
+            <li><a class="dropdown-item" href="<?= base_url() ?>ruangrawat/lantai1">Executive</a></li>
+            <li><a class="dropdown-item" href="<?= base_url() ?>ruangrawat/lantai2">Ekonomi</a></li>
           </ul>
         </div>
       </div>

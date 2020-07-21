@@ -20,6 +20,7 @@
           <div class="card">
             <div class="card-body">
               <div class="mb-3">
+                <button class="btn btn-primary btn-sm" onclick="add_pasien()"> <i class="fas fa-plus"></i> &nbsp; Tambah Pasien</button>
                 <button class="btn btn-primary btn-sm" onclick="add_ruangan()"> <i class="fas fa-plus"></i> &nbsp; Tambah Ruangan</button>
                 <button class="btn btn-primary btn-sm" onclick="view_facility()"> <i class="fas fa-eye"></i> &nbsp; Lihat Fasilitas</button>
                 <button class="btn btn-secondary btn-sm" onclick="reload_table()"> <i class="fas fa-sync"></i> &nbsp; Refresh</button>
@@ -69,6 +70,18 @@
                 });
               });
 
+              function add_pasien() {
+                save_method = 'add';
+                $('#form')[0].reset(); // reset form on modals
+                $('.form-group').removeClass('has-error'); // clear error class
+                $('.help-block').empty(); // clear error string
+                $('#modal_form_pasien').modal('show'); // show bootstrap modal
+                $('.modal-title').text('Tambah pasien'); // Set Title to Bootstrap modal title
+                $('input').removeAttr('disabled'); // clear error class
+                $('select').removeAttr('disabled'); // clear error class
+
+              }
+              
               function add_ruangan() {
                 save_method = 'add';
                 $('#form')[0].reset(); // reset form on modals
@@ -223,6 +236,76 @@
                 }
               }
             </script>
+
+            <div class="modal fade" id="modal_form_pasien" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h3 class="modal-title" id="myModalLabel">Tambah Pasien</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                  </div>
+                  <div class="modal-body form">
+                    <form action="#" id="form" class="form-horizontal">
+                      <input type="hidden" value="" name="id" />
+                      <div class="form-group">
+                        <label class="control-label col-xs-3">No.MR</label>
+                        <div class="col-xs-8">
+                          <input name="kode" class="form-control" type="text" placeholder="Nomor MedRec...">
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label class="control-label col-xs-3">Nama Pasien</label>
+                        <div class="col-xs-8">
+                          <input name="kode" class="form-control" type="text" placeholder="Nama Pasien...">
+                        </div>
+                      </div>
+                      
+                      <div class="form-group">
+                        <label class="control-label col-xs-3">No.Telp</label>
+                        <div class="col-xs-8">
+                          <input name="kode" class="form-control" type="text" placeholder="Nomor Telepon...">
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label class="control-label col-xs-3">Alamat</label>
+                        <div class="col-xs-8">
+                          <input name="kode" class="form-control" type="text" placeholder="Alamat Pasien...">
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label class="control-label col-xs-3">Tanggal Masuk Pasien</label>
+                        <div class="col-xs-8">
+                          <input name="kode" class="form-control" type="text" placeholder="Tanggal Masuk Pasien...">
+                        </div>
+                      </div>
+                      
+                      <div class="form-group">
+                        <label class="control-label col-xs-3">Tanggal Masuk Pasien</label>
+                        <div class="col-xs-8">
+                          <input name="kode" class="form-control" type="text" placeholder="Tanggal Masuk Pasien...">
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label class="control-label col-xs-3">Tanggal Keluar Pasien</label>
+                        <div class="col-xs-8">
+                          <input name="kode" class="form-control" type="text" placeholder="Tanggal Keluar Pasien...">
+                        </div>
+                      </div>
+                  </div>
+
+                  <div class="modal-footer">
+                    <button type="button" id="btnSave" onclick="save_edit()" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                  </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+            
             <!-- ============ MODAL Edit =============== -->
             <div class="modal fade" id="modal_form" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
               <div class="modal-dialog">

@@ -44,9 +44,10 @@ class RuangRawat extends CI_Controller
     {
         $data['title'] = 'MANPRO-RS | Ruang Rawat';
         $data['page'] = 'lantai1';
+        $data['det_ruangan'] = $this->ruangan->get_ruangan_exe();
         $data['detail_ruangan'] = $this->ruangan->get_detail_ruangan();
         $this->load->view('headers/normal_header', $data);
-        $this->load->view('pages/class_rr/l1', $data );
+        $this->load->view('pages/class_rr/l1', $data);
         $this->load->view('footers/normal_footer');
     }
 
@@ -54,8 +55,10 @@ class RuangRawat extends CI_Controller
     {
         $data['title'] = 'MANPRO-RS | Ruang Rawat';
         $data['page'] = 'lantai2';
+        $data['det_ruangan'] = $this->ruangan->get_ruangan_eko();
+        $data['detail_ruangan'] = $this->ruangan->get_detail_ruangan();
         $this->load->view('headers/normal_header', $data);
-        $this->load->view('pages/class_rr/l2');
+        $this->load->view('pages/class_rr/l2', $data);
         $this->load->view('footers/normal_footer');
     }
 
@@ -130,6 +133,10 @@ class RuangRawat extends CI_Controller
       echo json_encode($output);
     }
 
+    public function bed_info($status) {
+      $data = $this->ruangan->get_by_status($status);
+      echo json_encode($status);
+    }
 
     public function ajax_edit($id)
     {
@@ -144,6 +151,19 @@ class RuangRawat extends CI_Controller
     }
 
     public function ajax_add()
+    {
+      $data = array(
+          'kode' => $this->input->post('kode'),
+          'kelas' => $this->input->post('kelas'),
+          'nama' => $this->input->post('nama'),
+          'status' => $this->input->post('status'),
+          'harga' => $this->input->post('harga'),
+        );
+      $insert = $this->ruangan->save($data);
+      echo json_encode(array("status" => TRUE));
+    }
+
+    public function add_pasien()
     {
       $data = array(
           'kode' => $this->input->post('kode'),

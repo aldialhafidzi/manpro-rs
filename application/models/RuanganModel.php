@@ -58,13 +58,34 @@ class RuanganModel extends MY_Model
 
 	function get_detail_ruangan()
 	{
-		$this->db->select('detail_transaksi.transaksi_id, pasien.no_mr, pasien.nama, pasien.no_telp, ruangan.kode, kamar.kode, bed.kode');
+		$this->db->select('detail_transaksi.transaksi_id, transaksi.jenis_rawat, pasien.no_mr, pasien.nama, pasien.jenis_kelamin, pasien.no_telp, ruangan.kode as r_kode, ruangan.nama as r_nama, ruangan.kelas, kamar.kode as k_kode, bed.kode');
 		$this->db->from('bed');
 		$this->db->join('kamar', 'bed.kamar_id=kamar.id');
 		$this->db->join('ruangan', 'kamar.ruangan_id=ruangan.id');
 		$this->db->join('detail_transaksi', 'ruangan.id=detail_transaksi.ruangan_id');
 		$this->db->join('transaksi', 'detail_transaksi.transaksi_id=transaksi.id');
 		$this->db->join('pasien', 'transaksi.pasien_id=pasien.id');
+		$this->db->where('jenis_rawat="RAWAT-INAP"');
+		$query = $this->db->get();
+		return $query->result();
+	}
+
+	function get_ruangan_exe(){
+		$this->db->select('ruangan.nama, ruangan.kelas, kamar.kode as k_kode, bed.kode as b_kode, bed.`status`');
+		$this->db->from('bed');
+		$this->db->join('kamar', 'bed.kamar_id=kamar.id');
+		$this->db->join('ruangan', 'kamar.ruangan_id=ruangan.id');
+		$this->db->where('ruangan.kelas = "EXECUTIVE"');
+		$query = $this->db->get();
+		return $query->result();
+	}
+
+	function get_ruangan_eko(){
+		$this->db->select('ruangan.nama, ruangan.kelas, kamar.kode as k_kode, bed.kode as b_kode, bed.`status`');
+		$this->db->from('bed');
+		$this->db->join('kamar', 'bed.kamar_id=kamar.id');
+		$this->db->join('ruangan', 'kamar.ruangan_id=ruangan.id');
+		$this->db->where('ruangan.kelas = "EKONOMI"');
 		$query = $this->db->get();
 		return $query->result();
 	}
@@ -95,6 +116,15 @@ class RuanganModel extends MY_Model
 	{
 		$this->db->from($this->table);
 		$this->db->where('id',$id);
+		$query = $this->db->get();
+
+		return $query->row();
+	}
+
+	public function get_by_status($status)
+	{
+		$this->get_detail_ruangan();
+		$this->db->where('status',$status);
 		$query = $this->db->get();
 
 		return $query->row();
